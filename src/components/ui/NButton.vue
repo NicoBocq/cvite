@@ -21,9 +21,9 @@ export default {
       default: false
     }
   },
-  setup(props, context) {
+  setup(props,  { emit } ) {
     const onClick = () => {
-      !props.disabled && context.emit('click')
+      !props.disabled && emit('click')
     }
     return {
       onClick
