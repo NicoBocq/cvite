@@ -2,6 +2,7 @@
   <div>
     <label :for="id" class="sr-only">Email</label>
     <input
+      v-if="type !== 'textarea'"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
       :type="type"
@@ -9,8 +10,19 @@
       :id="id"
       v-bind="$attrs"
       class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-      placeholder=""
+      :placeholder="placeholder"
     >
+    <textarea
+      v-else
+      :value="modelValue"
+      @input="$emit('update:modelValue', $event.target.value)"
+      :type="type"
+      :name="id"
+      :id="id"
+      v-bind="$attrs"
+      class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+      :placeholder="placeholder"
+    />
   </div>
 </template>
 
@@ -31,6 +43,10 @@ name: "NInput",
     },
     modelValue: {
       type: [String, Number],
+      default: ''
+    },
+    placeholder: {
+      type: String,
       default: ''
     }
   },

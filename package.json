@@ -9,8 +9,10 @@
   "dependencies": {
     "@headlessui/vue": "^0.3.1",
     "@heroicons/vue": "^1.0.0",
+    "html2canvas": "^1.0.0-rc.7",
     "jspdf": "^2.3.1",
-    "vue": "^3.0.5"
+    "vue": "^3.0.5",
+    "vue-router": "^4.0.6"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.3.2",

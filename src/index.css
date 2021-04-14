@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.print-container {
+    position: relative;
+    overflow: hidden;
+    padding: 1cm;
+    page-break-after: always;
+    width: 21cm;
+    height: 29.7cm;
+}
+
+.print-w-left {
+    width: 13cm;
+}
+.print-w-right {
+    width: 6cm;
+}
