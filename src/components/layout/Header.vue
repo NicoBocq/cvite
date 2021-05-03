@@ -4,7 +4,7 @@
     <div class="flex-1" />
     <div class="flex items-center space-x-2">
       <n-dropdown />
-      <n-button @click="redirectToExport">Télécharger</n-button>
+      <n-button @click="printToPdf">Télécharger</n-button>
       <n-button @click="toggleSlide">Ouvrir</n-button>
     </div>
   </div>
@@ -14,7 +14,7 @@
 import { toggleSlide } from '/src/store'
 import NDropdown from "../ui/NDropdown.vue";
 import NButton from "../ui/NButton.vue";
-import {computed, onMounted, reactive, ref, watchEffect} from "vue";
+import { printToPdf } from '/src/pdf'
 import {useRouter} from "vue-router";
 export default {
   name: "Header",
@@ -29,7 +29,7 @@ export default {
     }
     return {
       toggleSlide,
-      redirectToExport
+      printToPdf
     }
   }
 }

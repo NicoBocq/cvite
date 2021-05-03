@@ -3,7 +3,6 @@
     <Header />
     <Slide />
     <Summary />
-    <Summary print />
   </div>
 </template>
 <script>

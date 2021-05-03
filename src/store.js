@@ -1,6 +1,5 @@
 
 import { createApp, reactive, computed, ref, h, resolveComponent} from 'vue'
-import {jsPDF} from "jspdf";
 
 const state = reactive({
   isSlideOpen: false,
