@@ -7,11 +7,12 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@headlessui/vue": "^0.3.1",
-    "@heroicons/vue": "^1.0.0",
+    "@headlessui/vue": "^1.2.0",
+    "@heroicons/vue": "^1.0.1",
     "pdfmake": "^0.1.71",
     "vue": "^3.0.5",
-    "vue-router": "^4.0.6"
+    "vue-router": "^4.0.6",
+    "vuedraggable": "^4.0.3"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.3.2",
