@@ -77,25 +77,38 @@
                       Experiences
                     </template>
                     <template #body>
-                      <div v-for="(experience, idx) in sortedList('experiences')" :key="idx" class="flex flex-col space-y-3 divide-y divide-gray-200">
-                         <div class="flex space-x-2 justify-between items-center">
-                           <div class="uppercase font-semibold">
-                             {{ experience.order }} - {{ experience.title }}
-                           </div>
-                           <n-button @click="removeItem(idx, 'experiences')" small icon="delete">
-                             Supprimer
-                           </n-button>
-                         </div>
-                        <div class="flex flex-col space-y-1">
-                          <n-input :id="'title-' + idx" v-model="experience.title" placeholder="Title" />
-                          <n-input :id="'year-' + idx" v-model="experience.year" placeholder="Begin Date " />
-                          <n-input :id="'company-' + idx" v-model="experience.company" placeholder="Company" />
-                          <n-input type="textarea" :id="'description-' + idx" v-model="experience.description" />
-                        </div>
+                      <div
+                        class="space-y-4"
+                      >
+                        <transition-group name="list" tag="div" class="space-y-4">
+                          <div
+                            v-for="(experience, idx) in sortedList('experiences')"
+                            :key="experience.id"
+                            class="flex flex-col space-y-3 cursor-move focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                            draggable="true"
+                            @dragenter.prevent
+                            @dragover.prevent
+                            @dragstart="startDrag($event, experience)"
+                            @drop="onDrop($event, experience)"
+                          >
+                             <div class="flex space-x-2 justify-between items-center">
+                               <div class="uppercase font-semibold">
+                                 {{ experience.order }} - {{ experience.title }}
+                               </div>
+                               <n-button @click="removeItem(idx, 'experiences')" small icon="trash" />
+                             </div>
+                            <div class="flex flex-col space-y-2">
+                              <n-input :id="'title-' + idx" v-model="experience.title" placeholder="Title" />
+                              <n-input :id="'year-' + idx" v-model="experience.year" placeholder="Begin Date " />
+                              <n-input :id="'company-' + idx" v-model="experience.company" placeholder="Company" />
+                              <n-input type="textarea" :id="'description-' + idx" v-model="experience.description" />
+                            </div>
+                          </div>
+                        </transition-group>
+                        <n-button @click="addItem('experiences')">
+                          Ajouter une nouvelle expérience professionnelle
+                        </n-button>
                       </div>
-                      <n-button @click="addItem('experiences')">
-                        Ajouter une nouvelle expérience professionnelle
-                      </n-button>
                     </template>
                   </n-disclosure>
                 </n-box-form>
@@ -105,7 +118,7 @@
                       Education
                     </template>
                     <template #body>
-                      <div v-for="(item, idx) in sortedList('education')" :key="idx" class="flex flex-col space-y-1">
+                      <div v-for="(item, idx) in sortedList('education')" :key="item.id" class="flex flex-col space-y-1">
                         <div class="flex justify-between items-center space-x-2">
                           <span>{{ item.order }} - {{ item.degree }}</span>
                           <n-button small icon="trash" @click="removeItem(idx, 'education')"/>
@@ -130,7 +143,16 @@
 
 <script>
 import NInput from "../ui/NInput.vue";
-import { isSlideOpen, toggleSlide, resume, addItem, removeItem, sortedList } from '/src/store'
+import {
+  isSlideOpen,
+  toggleSlide,
+  resume,
+  addItem,
+  removeItem,
+  sortedList,
+  startDrag,
+  onDrop
+} from '/src/store'
 import NButton from "../ui/NButton.vue";
 import NDisclosure from "../ui/NDisclosure.vue";
 import NBoxForm from "../ui/NBoxForm.vue";
@@ -150,7 +172,9 @@ export default {
       resume,
       addItem,
       removeItem,
-      sortedList
+      sortedList,
+      startDrag,
+      onDrop
     }
   }
 }

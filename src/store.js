@@ -1,5 +1,4 @@
-
-import { reactive, computed, toRefs } from 'vue'
+import {computed, reactive} from 'vue'
 
 const state = reactive({
   isSlideOpen: false,
@@ -38,8 +37,8 @@ const state = reactive({
     }],
     experiences: [
       {
-        order: 1,
         id: 1,
+        order: 1,
         year: '20-21',
         title: 'Dev',
         company: 'Oparedo',
@@ -56,12 +55,23 @@ const state = reactive({
     ],
     education: [
       {
+        id: 1,
         order: 1,
         beginDate: '1996',
         endDate: '1998',
         school: 'Université des Pays du Vaucluse',
         degree: 'MST Communication : conception multimédias',
         city: 'Avignon',
+        description: null
+      },
+      {
+        id: 2,
+        order: 2,
+        beginDate: '1994',
+        endDate: null,
+        school: 'Lycée Marseilleveyre',
+        degree: 'Bac B',
+        city: 'Marseille',
         description: null
       }
     ],
@@ -80,12 +90,30 @@ const toggleSlide = () => {
   state.isSlideOpen = !state.isSlideOpen
 }
 
+const startDrag = (event, item) => {
+  event.dataTransfer.dropEffect = 'move'
+  event.dataTransfer.effectAllowed = 'move'
+  event.dataTransfer.setData('id', item.id)
+}
+
+const onDrop = (event, item) => {
+  const idx = event.dataTransfer.getData('id')
+  const dragItem = state.resume.experiences.find((i) => i.id === +idx)
+  const orderDrag = dragItem.order
+  dragItem.order = item.order
+  item.order = orderDrag
+}
+
 const addItem = (type) => {
-  state.resume[type].push({ ...state.model[type], order: state.resume[type].length + 1 })
+  state.resume[type].push({
+    ...state.model[type],
+    order: state.resume[type].length + 1,
+    id: state.resume[type].length + 1
+  })
 }
 
 const removeItem = (id, type) => {
-  state.resume[type + 's'].splice(id, 1)
+  state.resume[type].splice(id, 1)
 }
 
 export {
@@ -94,5 +122,7 @@ export {
   resume,
   sortedList,
   addItem,
-  removeItem
+  removeItem,
+  startDrag,
+  onDrop
 }
