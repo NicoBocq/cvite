@@ -7,7 +7,7 @@
 </template>
 <script>
 import { ref, computed, reactive, toRefs, watchEffect  } from 'vue'
-import NInput from "./ui/NInput.vue"
+import NInput from './ui/NInput.vue'
 import NDropdown from "./ui/NDropdown.vue"
 import NIcon from "./ui/NIcon.vue";
 import NButton from "./ui/NButton.vue";

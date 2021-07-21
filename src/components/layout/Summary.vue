@@ -2,6 +2,7 @@
   <div class="ring ring-gray-200 ring-offset-2 shadow-lg ring-opacity-25 rounded-md container mx-auto max-w-4xl">
     <div class="w-full bg-white text-gray-800 p-5 h-full flex flex-col space-y-10">
       <div class="flex justify-between">
+        <img v-if="!!resume.avatar" :src="resume.avatar" alt="" class="w-10 h-10">
         <div class="flex flex-col">
           <div class="text-red-500 text-2xl">{{ resume.firstName }} {{ resume.lastName }}</div>
           <div class="text-3xl font-bold">{{ resume.title }}</div>

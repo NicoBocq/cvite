@@ -9,7 +9,7 @@
       :name="id"
       :id="id"
       v-bind="$attrs"
-      class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md placeholder-gray-200"
+      class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md placeholder-gray-300"
       :placeholder="placeholder"
     >
     <textarea
@@ -20,7 +20,7 @@
       :name="id"
       :id="id"
       v-bind="$attrs"
-      class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+      class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md placeholder-gray-300"
       :placeholder="placeholder"
     />
   </div>

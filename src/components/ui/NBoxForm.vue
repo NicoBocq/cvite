@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col space-y-4 ring-2 bg-gray-50 ring-gray-200 ring-opacity-75 rounded-md p-4">
+  <div class="flex flex-col space-y-4 ring-2 bg-gradient-to-t from-gray-100 via-gray-50 to-white ring-gray-200 ring-opacity-75 rounded-md p-4">
     <slot />
   </div>
 </template>

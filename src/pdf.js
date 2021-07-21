@@ -11,15 +11,24 @@ import { resume } from '/src/store'
 //   }
 // }
 
-const fonts = {
-  Helvetica: {
-    normal: 'Helvetica',
-    bold: 'Helvetica-Bold',
-    italics: 'Helvetica-Oblique',
-    bolditalics: 'Helvetica-BoldOblique'
-  },
-}
-const themeColor = '#6a737b'
+// const fonts = {
+//   Roboto: {
+//     normal: 'fonts/Roboto-Regular.ttf',
+//     bold: 'fonts/Roboto-Medium.ttf',
+//     italics: 'fonts/Roboto-Italic.ttf',
+//     bolditalics: 'fonts/Roboto-MediumItalic.ttf'
+//   }
+// };
+
+// const fonts = {
+//   Helvetica: {
+//     normal: 'Helvetica',
+//     bold: 'Helvetica-Bold',
+//     italics: 'Helvetica-Oblique',
+//     bolditalics: 'Helvetica-BoldOblique'
+//   },
+// }
+const themeColor = '#1F2937'
 
 export function printToPdf () {
   const item = resume.value
@@ -28,7 +37,7 @@ export function printToPdf () {
       {
         stack: [
           {text: i.title, style: 'listItemHeader'},
-          {text: i.year.toUpperCase(), style: 'listItemSubHeader'},
+          {text: i.year.toUpperCase() + ' / ' + i.company.toUpperCase(), style: 'listItemSubHeader'},
           {text: i.description, style: 'listItemDesc' }
         ], style: 'listItem'
       })
@@ -60,12 +69,24 @@ export function printToPdf () {
   ]
 
   const header = [
-    { stack : [
-      { text: `${item.firstName} ${item.lastName}`, style: 'name' },
-      { text: item.title, style: 'title' },
-      { text: item.summary, style: 'summary' }
-    ], style: 'headerMain'}
-  ]
+    { columns:
+      [
+        ...( item.avatar ? [{
+        width: 75,
+        image: item.avatar,
+        fit: [75, 75]
+      }] : []),
+      {
+        width: '*',
+        stack: [
+          { text: `${item.firstName} ${item.lastName}`, style: 'name' },
+          { text: item.title, style: 'title' },
+          { text: item.summary, style: 'summary' }
+        ]
+      }],
+      columnGap: 16
+      }
+    ]
   const linksSection = [
     { text: 'Liens', style: 'sectionTitle'},
     { stack: linkList, style: 'list'}
@@ -85,6 +106,10 @@ export function printToPdf () {
     { text: 'Expériences', style: 'sectionTitle'},
     { stack: experienceList, style: 'list' },
   ]
+  const hobbiesSection = [
+    { text: 'Activités', style: 'sectionTitle'},
+    { stack: item.hobbies, style: 'list' },
+  ]
   const headerSide = [
     infosSection
   ]
@@ -94,11 +119,12 @@ export function printToPdf () {
   ]
   const side = [
     linksSection,
-    skillsSection
+    skillsSection,
+    !!item.hobbies ? hobbiesSection : null
   ]
   const dd = {
     // defaultStyle: {
-    //   font: 'Helvetica'
+    //   font: 'Roboto'
     // },
     background: function () {
       return {
@@ -152,6 +178,7 @@ export function printToPdf () {
       },
       headerMain: {
         margin: [0, 0, 0, 24],
+        color: '#1F2937'
       },
       headerSide: {
         fontSize: 10,
@@ -168,21 +195,20 @@ export function printToPdf () {
         margin: [0, 0, 0, 16]
       },
       main: {
-
+        color: '#1F2937'
       },
       side: {
         color: 'white'
       },
       name: {
-        fontSize: 16,
-        bold: true,
-        margin: [0, 0, 0, 6],
+        fontSize: 14,
+        margin: [0, 0, 0, 4],
+        color: themeColor
       },
       title: {
-        color: themeColor,
-        fontSize: 18,
+        fontSize: 20,
         bold: true,
-        margin: [0, 0, 0, 6]
+        margin: [0, 0, 0, 4]
       },
       summary: {
         fontSize: 10,
@@ -202,13 +228,13 @@ export function printToPdf () {
         margin: [0, 0, 0, 3]
       },
       listItemSubHeader: {
-        fontSize: 10,
+        fontSize: 9,
         color: themeColor,
         margin: [0, 0, 0, 3]
       },
       listItemDesc: {
         lineHeight: 1.1,
-        fontSize: 10,
+        fontSize: 9,
       },
       headerListLinks: {
         decoration: 'underline',

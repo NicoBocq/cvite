@@ -2,18 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-.print-container {
-    position: relative;
-    overflow: hidden;
-    padding: 1cm;
-    page-break-after: always;
-    width: 21cm;
-    height: 29.7cm;
+.list-enter-active,
+.list-leave-active,
+.list-move {
+    transition: 500ms cubic-bezier(0.59, 0.12, 0.34, 0.95);
+    transition-property: opacity, transform;
 }
 
-.print-w-left {
-    width: 13cm;
+.list-enter {
+    opacity: 0;
+    transform: translateX(50px) scaleY(0.5);
 }
-.print-w-right {
-    width: 6cm;
+
+.list-enter-to {
+    opacity: 1;
+    transform: translateX(0) scaleY(1);
+}
+
+.list-leave-active {
+    position: absolute;
+}
+
+.list-leave-to {
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: center top;
+}
+
+.flip-list-move {
+    transition: transform 0.5s;
 }

@@ -48,7 +48,12 @@
               <n-box-form>
                 <n-input id="firstName" v-model="resume.firstName" placeholder="First Name" />
                 <n-input id="lastName" v-model="resume.lastName" placeholder="Last Name" />
-                <n-input id="description" type="textarea" v-model="resume.summary" />
+                <n-input id="description" type="textarea" v-model="resume.summary" placeholder="En bref..." />
+                <n-upload @change="handleImage" @delete="clearState('avatar')" :src="resume.avatar" />
+                <n-input id="email" v-model="resume.email" placeholder="Email" />
+                <n-input id="phone" v-model="resume.phone" placeholder="Téléphone" />
+                <n-input id="address" v-model="resume.address" placeholder="Adresse" />
+                <n-input id="more" v-model="resume.more" type="textarea" placeholder="Infos complémentaires" />
               </n-box-form>
               <n-box-form>
                 <n-disclosure>
@@ -83,8 +88,8 @@
                         <transition-group name="list" tag="div" class="space-y-4">
                           <div
                             v-for="(experience, idx) in sortedList('experiences')"
-                            :key="experience.id"
-                            class="flex flex-col space-y-3 cursor-move focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                            :key="'experiences-' + experience.id"
+                            class="flex flex-col space-y-3 cursor-move rounded-md"
                             draggable="true"
                             @dragenter.prevent
                             @dragover.prevent
@@ -92,20 +97,23 @@
                             @drop="onDrop($event, experience)"
                           >
                              <div class="flex space-x-2 justify-between items-center">
-                               <div class="uppercase font-semibold">
-                                 {{ experience.order }} - {{ experience.title }}
+                               <div class="flex space-x-1 items-center">
+                                 <n-icon icon="switch-vertical" />
+                                 <div class="uppercase font-semibold">
+                                   {{ experience.title }}
+                                 </div>
                                </div>
                                <n-button @click="removeItem(idx, 'experiences')" small icon="trash" />
                              </div>
                             <div class="flex flex-col space-y-2">
-                              <n-input :id="'title-' + idx" v-model="experience.title" placeholder="Title" />
-                              <n-input :id="'year-' + idx" v-model="experience.year" placeholder="Begin Date " />
-                              <n-input :id="'company-' + idx" v-model="experience.company" placeholder="Company" />
-                              <n-input type="textarea" :id="'description-' + idx" v-model="experience.description" />
+                              <n-input :id="'title-' + idx" v-model="experience.title" placeholder="Intitulé du poste" />
+                              <n-input :id="'year-' + idx" v-model="experience.year" placeholder="Une année, une période " />
+                              <n-input :id="'company-' + idx" v-model="experience.company" placeholder="Société" />
+                              <n-input type="textarea" :id="'description-' + idx" v-model="experience.description" placeholder="Décrivez votre activité" />
                             </div>
                           </div>
                         </transition-group>
-                        <n-button @click="addItem('experiences')">
+                        <n-button @click="addItem('experiences')" icon="plus" small>
                           Ajouter une nouvelle expérience professionnelle
                         </n-button>
                       </div>
@@ -151,15 +159,21 @@ import {
   removeItem,
   sortedList,
   startDrag,
-  onDrop
+  onDrop,
+  clearState,
+  handleImage
 } from '/src/store'
 import NButton from "../ui/NButton.vue";
 import NDisclosure from "../ui/NDisclosure.vue";
 import NBoxForm from "../ui/NBoxForm.vue";
+import NIcon from "../ui/NIcon.vue";
+import NUpload from "../ui/NUpload.vue";
 
 export default {
   name: "Slide",
   components: {
+    NUpload,
+    NIcon,
     NBoxForm,
     NDisclosure,
     NButton,
@@ -174,7 +188,9 @@ export default {
       removeItem,
       sortedList,
       startDrag,
-      onDrop
+      onDrop,
+      clearState,
+      handleImage
     }
   }
 }

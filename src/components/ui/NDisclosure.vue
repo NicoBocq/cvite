@@ -1,7 +1,7 @@
 <template>
   <Disclosure>
     <DisclosureButton class="py-2 flex justify-between items-center space-x-2" v-slot="{ open }">
-      <span class="leading-relaxed uppercase">
+      <span class="leading-relaxed tracking-wide uppercase font-bold">
         <slot name="title" />
       </span>
       <n-icon icon="chevron-right" :class="open ? 'transform rotate-90' : ''" />
