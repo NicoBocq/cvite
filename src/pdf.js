@@ -1,36 +1,22 @@
-import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
-pdfMake.vfs = pdfFonts.pdfMake.vfs
+import pdfMake from 'pdfmake/build/pdfmake'
+import pdfFonts from '/src/assets/customVfs.js'
 import { resume } from '/src/store'
 
-// const fonts = {
-//   Inter : {
-//     normal: '/src/assets/fonts/Inter-Regular.ttf',
-//     semiBold: '/src/assets/fonts/Inter-SemiBold.ttf',
-//     bold: '/src/assets/fonts/Inter-ExtraBold.ttf',
-//   }
-// }
-
-// const fonts = {
-//   Roboto: {
-//     normal: 'fonts/Roboto-Regular.ttf',
-//     bold: 'fonts/Roboto-Medium.ttf',
-//     italics: 'fonts/Roboto-Italic.ttf',
-//     bolditalics: 'fonts/Roboto-MediumItalic.ttf'
-//   }
-// };
-
-// const fonts = {
-//   Helvetica: {
-//     normal: 'Helvetica',
-//     bold: 'Helvetica-Bold',
-//     italics: 'Helvetica-Oblique',
-//     bolditalics: 'Helvetica-BoldOblique'
-//   },
-// }
 const themeColor = '#1F2937'
 
 export function printToPdf () {
+  pdfMake.vfs = pdfFonts
+
+  pdfMake.fonts = {
+    Inter : {
+      normal: 'Inter-Regular.ttf',
+      // medium: 'Inter-Medium.ttf',
+      // semiBold: 'Inter-SemiBold.ttf',
+      bold: 'Inter-Bold.ttf',
+      // extraBold: 'Inter-ExtraBold.ttf'
+    }
+  }
+
   const item = resume.value
   const experienceList = item.experiences.reduce((r, i) => {
     r.push(
@@ -123,9 +109,9 @@ export function printToPdf () {
     !!item.hobbies ? hobbiesSection : null
   ]
   const dd = {
-    // defaultStyle: {
-    //   font: 'Roboto'
-    // },
+    defaultStyle: {
+      font: 'Inter'
+    },
     background: function () {
       return {
         canvas: [
@@ -207,8 +193,8 @@ export function printToPdf () {
       },
       title: {
         fontSize: 20,
-        bold: true,
-        margin: [0, 0, 0, 4]
+        margin: [0, 0, 0, 4],
+        bold: true
       },
       summary: {
         fontSize: 10,
@@ -247,7 +233,6 @@ export function printToPdf () {
       }
     }
   }
-  console.log(dd)
   // pdfMake.createPdf(dd, null, fonts).open()
   pdfMake.createPdf(dd).open()
 }
