@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.ghost-class {
+    @apply bg-opacity-25 shadow-inner
+}
+
 .list-enter-active,
 .list-leave-active,
 .list-move {
@@ -20,15 +24,12 @@
 }
 
 .list-leave-active {
-    position: absolute;
+    opacity: 1;
+    transform: translateX(0) scaleY(1);
 }
 
 .list-leave-to {
     opacity: 0;
-    transform: scaleY(0);
-    transform-origin: center top;
-}
-
-.flip-list-move {
-    transition: transform 0.5s;
+    /*transform: scaleY(0);*/
+    transform: translateX(-50px) scaleY(1);
 }

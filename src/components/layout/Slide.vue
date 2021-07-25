@@ -45,101 +45,7 @@
                 </div>
               </div>
               <div class="px-4 py-3 space-y-8">
-              <n-box-form>
-                <n-input id="firstName" v-model="resume.firstName" placeholder="First Name" />
-                <n-input id="lastName" v-model="resume.lastName" placeholder="Last Name" />
-                <n-input id="description" type="textarea" v-model="resume.summary" placeholder="En bref..." />
-                <n-upload @change="handleImage" @delete="clearState('avatar')" :src="resume.avatar" />
-                <n-input id="email" v-model="resume.email" placeholder="Email" />
-                <n-input id="phone" v-model="resume.phone" placeholder="Téléphone" />
-                <n-input id="address" v-model="resume.address" placeholder="Adresse" />
-                <n-input id="more" v-model="resume.more" type="textarea" placeholder="Infos complémentaires" />
-              </n-box-form>
-              <n-box-form>
-                <n-disclosure>
-                  <template #title>
-                    Links
-                  </template>
-                  <template #body>
-                    <div v-for="(link, idx) in resume.links" :key="idx" class="flex flex-col space-y-1">
-                      <div>
-                        {{ link.label }}
-                      </div>
-                      <div class="flex flex-col space-y-1">
-                        <n-input :id="'link-label-' + idx" v-model="link.label" placeholder="Label" />
-                        <n-input :id="'link-url-' + idx" v-model="link.url" placeholder="URL" />
-                      </div>
-                    </div>
-                    <n-button @click="addItem('links')" icon="plus" small>
-                      Ajouter un nouveau lien
-                    </n-button>
-                  </template>
-                </n-disclosure>
-              </n-box-form>
-                <n-box-form>
-                  <n-disclosure>
-                    <template #title>
-                      Experiences
-                    </template>
-                    <template #body>
-                      <div
-                        class="space-y-4"
-                      >
-                        <transition-group name="list" tag="div" class="space-y-4">
-                          <div
-                            v-for="(experience, idx) in sortedList('experiences')"
-                            :key="'experiences-' + experience.id"
-                            class="flex flex-col space-y-3 cursor-move rounded-md"
-                            draggable="true"
-                            @dragenter.prevent
-                            @dragover.prevent
-                            @dragstart="startDrag($event, experience)"
-                            @drop="onDrop($event, experience)"
-                          >
-                             <div class="flex space-x-2 justify-between items-center">
-                               <div class="flex space-x-1 items-center">
-                                 <n-icon icon="switch-vertical" />
-                                 <div class="uppercase font-semibold">
-                                   {{ experience.title }}
-                                 </div>
-                               </div>
-                               <n-button @click="removeItem(idx, 'experiences')" small icon="trash" />
-                             </div>
-                            <div class="flex flex-col space-y-2">
-                              <n-input :id="'title-' + idx" v-model="experience.title" placeholder="Intitulé du poste" />
-                              <n-input :id="'year-' + idx" v-model="experience.year" placeholder="Une année, une période " />
-                              <n-input :id="'company-' + idx" v-model="experience.company" placeholder="Société" />
-                              <n-input type="textarea" :id="'description-' + idx" v-model="experience.description" placeholder="Décrivez votre activité" />
-                            </div>
-                          </div>
-                        </transition-group>
-                        <n-button @click="addItem('experiences')" icon="plus" small>
-                          Ajouter une nouvelle expérience professionnelle
-                        </n-button>
-                      </div>
-                    </template>
-                  </n-disclosure>
-                </n-box-form>
-                <n-box-form>
-                  <n-disclosure>
-                    <template #title>
-                      Education
-                    </template>
-                    <template #body>
-                      <div v-for="(item, idx) in sortedList('education')" :key="item.id" class="flex flex-col space-y-1">
-                        <div class="flex justify-between items-center space-x-2">
-                          <span>{{ item.order }} - {{ item.degree }}</span>
-                          <n-button small icon="trash" @click="removeItem(idx, 'education')"/>
-                        </div>
-                        <div class="flex flex-col space-y-1">
-                          <n-input :id="'item-degree-' + idx" v-model="item.degree" placeholder="degree" />
-                          <n-input :id="'item-school-' + idx" v-model="item.school" placeholder="school" />
-                        </div>
-                      </div>
-                      <n-button @click="addItem('education')" icon="plus">Ajouter</n-button>
-                    </template>
-                  </n-disclosure>
-                </n-box-form>
+                <resume-form />
               </div>
             </div>
           </div>
@@ -150,47 +56,37 @@
 </template>
 
 <script>
-import NInput from "../ui/NInput.vue";
+
 import {
   isSlideOpen,
   toggleSlide,
   resume,
   addItem,
   removeItem,
-  sortedList,
-  startDrag,
-  onDrop,
   clearState,
-  handleImage
+  handleImage,
+  model
 } from '/src/store'
-import NButton from "../ui/NButton.vue";
-import NDisclosure from "../ui/NDisclosure.vue";
-import NBoxForm from "../ui/NBoxForm.vue";
-import NIcon from "../ui/NIcon.vue";
-import NUpload from "../ui/NUpload.vue";
+import NButton from "@/components/ui/NButton.vue";
+import ResumeForm from "@/components/customUi/ResumeForm.vue";
 
 export default {
   name: "Slide",
   components: {
-    NUpload,
-    NIcon,
-    NBoxForm,
-    NDisclosure,
+    ResumeForm,
     NButton,
-    NInput
   },
   setup() {
+
     return {
       isSlideOpen,
       toggleSlide,
       resume,
       addItem,
       removeItem,
-      sortedList,
-      startDrag,
-      onDrop,
       clearState,
-      handleImage
+      handleImage,
+      model
     }
   }
 }

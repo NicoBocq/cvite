@@ -1,6 +1,6 @@
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from '/src/assets/customVfs.js'
-import { resume } from '/src/store'
+import { resume, model } from '/src/store'
 
 const themeColor = '#1F2937'
 
@@ -17,8 +17,9 @@ export function printToPdf () {
     }
   }
 
-  const item = resume.value
-  const experienceList = item.experiences.reduce((r, i) => {
+  const stateResume = resume.value
+  const stateModel = model.value
+  const experienceList = stateResume.experience.reduce((r, i) => {
     r.push(
       {
         stack: [
@@ -27,9 +28,9 @@ export function printToPdf () {
           {text: i.description, style: 'listItemDesc' }
         ], style: 'listItem'
       })
-    return r.sort((a, b) => a.order - b.order)
+    return r
   }, [])
-  const educationList = item.education.reduce((r, i) => {
+  const educationList = stateResume.education.reduce((r, i) => {
     r.push(
       { stack: [
           { text: i.degree, style: 'listItemHeader' },
@@ -38,63 +39,64 @@ export function printToPdf () {
           { text: i.description, style: 'listItemDesc' }
         ], style: 'listItem'
       })
-    return r.sort((a, b) => a.order - b.order)
+    return r
   }, [])
-  const skillList = item.skills.reduce((r, i) => {
+  const skillList = stateResume.skill.reduce((r, i) => {
     r.push({ text: i, style: 'listItem' })
     return r
   }, [])
-  const linkList = item.links.reduce((r, i) => {
+  const linkList = stateResume.link.reduce((r, i) => {
     r.push({ text: i.label, link: i.url, style: 'headerListLinks' })
     return r
   }, [])
   const infosList = [
-    ...(item.email ? [{ text: item.email, style: 'headerListItem' }] : []),
-    ...(item.phone ? [{ text: item.phone, style: 'headerListItem' }] : []),
-    ...(item.address? [{ text: item.address, style: 'headerListItem' }] : []),
+    ...(stateResume.email ? [{ text: stateResume.email, style: 'headerListItem' }] : []),
+    ...(stateResume.phone ? [{ text: stateResume.phone, style: 'headerListItem' }] : []),
+    ...(stateResume.address ? [{ text: stateResume.address, style: 'headerListItem' }] : []),
+    ...(stateResume.more ? [{ text: stateResume.more, style: 'headerListItem' }] : [])
   ]
 
   const header = [
     { columns:
       [
-        ...( item.avatar ? [{
+        ...( stateResume.avatar ? [{
         width: 75,
-        image: item.avatar,
+        image: stateResume.avatar,
         fit: [75, 75]
       }] : []),
       {
         width: '*',
         stack: [
-          { text: `${item.firstName} ${item.lastName}`, style: 'name' },
-          { text: item.title, style: 'title' },
-          { text: item.summary, style: 'summary' }
+          { text: `${stateResume.firstName} ${stateResume.lastName}`, style: 'name' },
+          { text: stateResume.title, style: 'title' },
+          { text: stateResume.summary, style: 'summary' }
         ]
       }],
       columnGap: 16
       }
     ]
   const linksSection = [
-    { text: 'Liens', style: 'sectionTitle'},
+    { text: stateModel.link.title, style: 'sectionTitle'},
     { stack: linkList, style: 'list'}
   ]
   const infosSection = [
     { stack: infosList, style: 'headerLinks'}
   ]
   const skillsSection = [
-    { text: 'Compétences', style: 'sectionTitle'},
+    { text: stateModel.skill.title, style: 'sectionTitle'},
     { stack: skillList, style: 'list' }
   ]
   const educationSection = [
-    { text: 'Education', style: 'sectionTitle'},
+    { text: stateModel.education.title, style: 'sectionTitle'},
     { stack: educationList, style: 'list' }
   ]
   const experienceSection = [
-    { text: 'Expériences', style: 'sectionTitle'},
+    { text: stateModel.experience.title, style: 'sectionTitle'},
     { stack: experienceList, style: 'list' },
   ]
   const hobbiesSection = [
-    { text: 'Activités', style: 'sectionTitle'},
-    { stack: item.hobbies, style: 'list' },
+    { text: stateModel.experience.hobby, style: 'sectionTitle'},
+    { stack: stateResume.hobbies, style: 'list' },
   ]
   const headerSide = [
     infosSection
@@ -106,7 +108,7 @@ export function printToPdf () {
   const side = [
     linksSection,
     skillsSection,
-    !!item.hobbies ? hobbiesSection : null
+    !!stateResume.hobbies ? hobbiesSection : null
   ]
   const dd = {
     defaultStyle: {
