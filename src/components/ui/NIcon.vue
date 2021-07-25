@@ -1,36 +1,40 @@
 <template>
- <component :is="processedIcon" :class="[small ? 'h-4 w-4' : 'h-5 w-5', classColor]" class="inline-block" aria-hidden="true" />
+ <component :is="processedIcon" :class="[size, color]" class="inline-block" aria-hidden="true" />
 </template>
 
 <script>
 import {
-  ChevronRightIcon,
-  DownloadIcon,
-  PlusIcon,
-  TrashIcon,
-  SwitchVerticalIcon,
+  ChevronRightIcon as ChevronRightIconSolid,
+  DownloadIcon as DownloadIconSolid,
+  PlusIcon as PlusIconSolid,
+  SelectorIcon as SelectorIconSolid,
+  SwitchVerticalIcon as SwitchVerticalIconSolid,
+  TrashIcon as TrashIconSolid,
+  UploadIcon as UploadIconSolid
 } from '@heroicons/vue/solid'
 import {
-  UserCircleIcon
+  UserCircleIcon as UserCircleIconOutline
 } from '@heroicons/vue/outline'
 import { computed } from "vue"
 export default {
   name: 'NIcon',
   components: {
-    'ChevronRightIconSolid': ChevronRightIcon,
-    'DownloadIconSolid': DownloadIcon,
-    'PlusIconSolid': PlusIcon,
-    'TrashIconSolid': TrashIcon,
-    'SwitchVerticalIconSolid': SwitchVerticalIcon,
-    'UserCircleIconOutline': UserCircleIcon
+    ChevronRightIconSolid,
+    DownloadIconSolid,
+    PlusIconSolid,
+    TrashIconSolid,
+    SelectorIconSolid,
+    SwitchVerticalIconSolid,
+    UserCircleIconOutline,
+    UploadIconSolid
   },
   props: {
     icon: {
       type: String
     },
-    small: {
-      type: Boolean,
-      default: false
+    size: {
+      type: String,
+      default: 'h-5 w-5'
     },
     type: {
       type: String,
@@ -45,12 +49,10 @@ export default {
     const processedIcon = computed(() => {
       return `${icon}-icon-${type}`
     })
-    const classColor = computed(() => {
-      return color
-    })
+
     return {
       processedIcon,
-      classColor
+      color
     }
   }
 }

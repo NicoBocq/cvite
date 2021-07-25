@@ -4,7 +4,7 @@
     <input
       v-if="type !== 'textarea'"
       :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
+      @input="onInput"
       :type="type"
       :name="id"
       :id="id"
@@ -15,7 +15,7 @@
     <textarea
       v-else
       :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
+      @input="onInput"
       :type="type"
       :name="id"
       :id="id"
@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import {computed, toRefs} from "vue";
 
 export default {
 name: "NInput",
@@ -50,24 +49,13 @@ name: "NInput",
       default: ''
     }
   },
-  setup(props, context) {
-    // let computedValue = computed({
-    //   get: () => {
-    //     const { modelValue } = toRefs(props)
-    //     return modelValue.value
-    //   },
-    //   set: value => {
-    //     context.emit('update:modelValue', value)
-    //   }
-    // })
-    // const onInput = (event) => {
-    //   console.log(event.target.value)
-    //   computedValue = event.target.value
-    // }
-    // return {
-    //   computedValue,
-    //   onInput
-    // }
+  setup(props, { emit }) {
+    const onInput = (e) => {
+      emit('update:modelValue', e.target.value)
+    }
+    return {
+      onInput
+    }
   }
 }
 </script>

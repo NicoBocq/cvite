@@ -2,6 +2,7 @@
   <button
     class="inline-flex items-center border border-transparent font-medium justify-center rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
     @click="onClick"
+    @change="onChange"
     v-bind="$attrs"
     :class="small ? 'px-3 py-2 text-sm space-x-1' : 'px-5 py-2 text-base space-x-2'"
   >
@@ -17,7 +18,7 @@ import NIcon from "./NIcon.vue";
 export default {
   name: "NButton",
   components: { NIcon },
-  emits: ['click'],
+  emits: ['click', 'change'],
   props: {
     label: {
       type: String,
@@ -35,12 +36,17 @@ export default {
       default: false
     }
   },
-  setup(props,  { emit } ) {
+  setup({ disabled },  { emit } ) {
     const onClick = () => {
-      !props.disabled && emit('click')
+      !disabled && emit('click')
+    }
+    const onChange = (e) => {
+      console.log(e)
+      !disabled && emit('change', e)
     }
     return {
-      onClick
+      onClick,
+      onChange
     }
   }
 }
