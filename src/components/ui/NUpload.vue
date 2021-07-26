@@ -8,7 +8,7 @@
     <div class="ml-4 flex space-x-4">
       <div class="relative">
         <n-button :label="src ? 'Remplacer' : 'Ajouter'" icon="upload" />
-        <input id="user-photo" name="user-photo" type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md" accept="image/*" />
+        <input id="user-photo" name="user-photo" type="file" @change="onChange" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md" accept="image/*" />
       </div>
       <n-button icon="trash" label="Supprimer" @click="onDelete" />
     </div>
@@ -30,7 +30,6 @@
     },
     setup({ src }, { emit }) {
       const onChange = (e) => {
-        console.log(e)
         emit('change', e)
       }
       const onDelete = () => {
