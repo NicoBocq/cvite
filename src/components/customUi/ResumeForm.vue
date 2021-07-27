@@ -26,7 +26,7 @@ import { resume, handleImage, clearState } from "../../store";
 
 export default {
   name: "ResumeForm",
-  components: {ContextFormListItem, NUpload, NInput, NBoxForm},
+  components: { ContextFormListItem, NUpload, NInput, NBoxForm },
   setup() {
     return {
       resume,

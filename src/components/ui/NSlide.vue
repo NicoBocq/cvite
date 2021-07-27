@@ -1,8 +1,8 @@
 <template>
-  <section class="fixed inset-0 overflow-hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true" v-if="isSlideOpen">
+  <section class="fixed inset-0 overflow-hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true" v-if="active">
     <div class="absolute inset-0 overflow-hidden">
       <!-- Background overlay, show/hide based on slide-over state. -->
-      <div class="absolute inset-0 bg-gray-800 bg-opacity-25 cursor-pointer" aria-hidden="true" @click="toggleSlide"></div>
+      <div class="absolute inset-0 bg-gray-800 bg-opacity-25 cursor-pointer" aria-hidden="true" @click="onClose"></div>
 
       <div class="absolute inset-y-0 right-0 pl-10 max-w-full flex sm:pl-16">
         <transition
@@ -21,13 +21,7 @@
                     Team
                   </h2>
                   <div class="ml-3 h-7 flex items-center">
-                    <button class="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500" @click="toggleSlide">
-                      <span class="sr-only">Close panel</span>
-                      <!-- Heroicon name: outline/x -->
-                      <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
+                    <n-button icon="x" @click="onClose" />
                   </div>
                 </div>
               </div>
@@ -45,7 +39,7 @@
                 </div>
               </div>
               <div class="px-4 py-3 space-y-8">
-                <resume-form />
+                <slot name="body" />
               </div>
             </div>
           </div>
@@ -57,36 +51,32 @@
 
 <script>
 
-import {
-  isSlideOpen,
-  toggleSlide,
-  resume,
-  addItem,
-  removeItem,
-  clearState,
-  handleImage,
-  model
-} from '/src/store'
 import NButton from "@/components/ui/NButton.vue";
 import ResumeForm from "@/components/customUi/ResumeForm.vue";
+import { toRefs} from "vue"
 
 export default {
-  name: "Slide",
+  name: "NSlide",
+  emits: ['close'],
+  props: {
+    active: {
+      type: Boolean
+    }
+  },
   components: {
     ResumeForm,
     NButton,
   },
-  setup() {
+  setup(props, { emit }) {
+    const onClose = () => {
+      emit('close')
+    }
+
+    const { active } = toRefs(props)
 
     return {
-      isSlideOpen,
-      toggleSlide,
-      resume,
-      addItem,
-      removeItem,
-      clearState,
-      handleImage,
-      model
+      onClose,
+      active
     }
   }
 }

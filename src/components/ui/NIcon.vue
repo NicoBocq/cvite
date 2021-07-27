@@ -10,7 +10,8 @@ import {
   SelectorIcon as SelectorIconSolid,
   SwitchVerticalIcon as SwitchVerticalIconSolid,
   TrashIcon as TrashIconSolid,
-  UploadIcon as UploadIconSolid
+  UploadIcon as UploadIconSolid,
+  XIcon as XIconSolid
 } from '@heroicons/vue/solid'
 import {
   UserCircleIcon as UserCircleIconOutline
@@ -26,7 +27,8 @@ export default {
     SelectorIconSolid,
     SwitchVerticalIconSolid,
     UserCircleIconOutline,
-    UploadIconSolid
+    UploadIconSolid,
+    XIconSolid
   },
   props: {
     icon: {

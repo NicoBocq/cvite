@@ -1,24 +1,33 @@
 <template>
   <div class="h-screen w-screen overflow-hidden bg-white">
     <Header />
-    <Slide />
+    <NSlide :active="isSlideOpen" @close="toggleSlide">
+      <template #body>
+        <resume-form />
+      </template>
+    </NSlide>
     <Summary />
   </div>
 </template>
 <script>
-import { ref, computed, reactive, toRefs, watchEffect  } from 'vue'
 import NInput from './ui/NInput.vue'
 import NDropdown from "./ui/NDropdown.vue"
 import NIcon from "./ui/NIcon.vue";
 import NButton from "./ui/NButton.vue";
-import Slide from "./layout/Slide.vue";
+import NSlide from "./ui/NSlide.vue";
 import Summary from "./layout/Summary.vue";
 import Header from "./layout/Header.vue";
+import ResumeForm from "./customUi/ResumeForm.vue";
+import { isSlideOpen, toggleSlide } from "../store";
 
 export default {
   name: 'Main',
-  components: {Header, Summary, Slide, NButton, NIcon, NDropdown, NInput },
+  components: { ResumeForm, Header, Summary, NSlide, NButton, NIcon, NDropdown, NInput },
   setup(props, context) {
+    return {
+      isSlideOpen,
+      toggleSlide
+    }
   }
 }
 </script>
