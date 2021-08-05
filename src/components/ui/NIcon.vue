@@ -4,6 +4,7 @@
 
 <script>
 import {
+  CheckIcon as CheckIconSolid,
   ChevronRightIcon as ChevronRightIconSolid,
   DownloadIcon as DownloadIconSolid,
   PlusIcon as PlusIconSolid,
@@ -20,6 +21,7 @@ import { computed } from "vue"
 export default {
   name: 'NIcon',
   components: {
+    CheckIconSolid,
     ChevronRightIconSolid,
     DownloadIconSolid,
     PlusIconSolid,

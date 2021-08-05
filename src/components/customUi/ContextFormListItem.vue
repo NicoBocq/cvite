@@ -1,10 +1,6 @@
     <template>
       <n-box-form>
-        <n-disclosure>
-        <template #title>
-          {{ model[stateKey].title }}
-        </template>
-        <template #body>
+        <n-inline-editing class="text-xl font-bold" v-model="model[stateKey].title" />
       <draggable
         v-model="resume[stateKey]"
         item-key="id"
@@ -35,11 +31,9 @@
           </div>
         </template>
       </draggable>
-      <n-button @click="addItem('links')" icon="plus" small>
-        Ajouter un nouveau lien
+      <n-button @click="addItem(stateKey)" icon="plus" small>
+        Ajouter un nouvel élément
       </n-button>
-        </template>
-        </n-disclosure>
       </n-box-form>
     </template>
 <script>
@@ -50,10 +44,11 @@ import NIcon from "../ui/NIcon.vue";
 import NInput from "../ui/NInput.vue";
 import { addItem, resume, model } from "../../store.js";
 import NBoxForm from "../ui/NBoxForm.vue";
+import NInlineEditing from "../ui/NInlineEditing.vue";
 
 export default {
   name: "ContextFormListItem",
-  components: { NBoxForm, NInput, NIcon, NButton, NDisclosure, draggable },
+  components: {NInlineEditing, NBoxForm, NInput, NIcon, NButton, NDisclosure, draggable },
   props: {
     stateKey: {
       type: String
