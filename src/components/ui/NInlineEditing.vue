@@ -31,14 +31,14 @@ export default {
     const active = ref(false)
     const inputRef = ref(null)
 
-    const toggle = () => {
+    const toggle = async () => {
       active.value = !active.value
-      if (active && !!inputRef.value) {
-        setTimeout(() => {
-          console.log('zob')
-          inputRef.value.focus()
-        }, 3000)
-      }
+      // if (active && !!inputRef.value) {
+      //   setTimeout(() => {
+      //     console.log('zob')
+      //     inputRef.value.focus()
+      //   }, 3000)
+      // }
      // await nextTick(() => {
      //   refs.input.focus()
      // })
@@ -50,22 +50,45 @@ export default {
       // }
     }
 
+    const focusInput = (el) => {
+      if (!el) return
+      el.focus()
+    }
+
+    // watchEffect(() => {
+    //     console.log(inputRef.value) // => input
+    //     if (!!inputRef.value) inputRef.value.focus()
+    //   },
+    //   {
+    //     flush: 'post'
+    //   }
+    // )
+
     const save = () => {
       emit('update:modelValue', props.modelValue)
       toggle()
     }
-    // watchEffect(() => {
-    //   // if (!!active) nextTick(inputRef.value.focus())
-    //   console.log(input.value)
-    // }, {
-    //   flush: 'post'
+    watchEffect(async () => {
+      if (active) {
+        await nextTick()
+        await focusInput(inputRef.value)
+      }
+      // if (!!active && inputRef.value) inputRef.value.focus()
+    }, {
+      flush: 'post'
+    })
+    // onMounted(() => {
+    //   inputRef.value.focus()
     // })
 
-
     // watch(active, async (val) => {
+    //   // if (active) {
+    //   //   console.log(val)
+    //   //   val.value.focus()
+    //   // }
     //   if (val) {
     //     await nextTick(() => {
-    //       inputRef.value.focus()
+    //       val.value.focus()
     //     })
     //   }
     // })

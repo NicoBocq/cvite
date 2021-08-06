@@ -42,7 +42,7 @@ export function printToPdf () {
     return r
   }, [])
   const skillList = stateResume.skill.reduce((r, i) => {
-    r.push({ text: i, style: 'listItem' })
+    r.push({ text: i.label, style: 'listItem' })
     return r
   }, [])
   const linkList = stateResume.link.reduce((r, i) => {
@@ -75,6 +75,9 @@ export function printToPdf () {
       columnGap: 16
       }
     ]
+
+  const arrSection = ['link', 'skill', 'education', 'experience', 'hobby']
+
   const linksSection = [
     { text: stateModel.link.title, style: 'sectionTitle'},
     { stack: linkList, style: 'list'}
@@ -95,8 +98,8 @@ export function printToPdf () {
     { stack: experienceList, style: 'list' },
   ]
   const hobbiesSection = [
-    { text: stateModel.experience.hobby, style: 'sectionTitle'},
-    { stack: stateResume.hobbies, style: 'list' },
+    { text: stateModel.hobby.title, style: 'sectionTitle'},
+    { text: stateResume.hobbies, style: 'list' },
   ]
   const headerSide = [
     infosSection

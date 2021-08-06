@@ -1,7 +1,7 @@
 import {computed, reactive, ref} from 'vue'
 import { avatar } from '/src/assets/avatar'
 const state = reactive({
-  isSlideOpen: true,
+  isSlideOpen: false,
   model: {
     education: {
       title: 'Éducation',
@@ -26,20 +26,28 @@ const state = reactive({
     link: {
       title: 'Liens',
       data: [
-      { key: 'label', type: 'text', placeholder: 'Titre' },
-      { key: 'url', type: 'text', placeholder: 'URL' }
-    ]},
+        { key: 'label', type: 'text', placeholder: 'Titre' },
+        { key: 'url', type: 'text', placeholder: 'URL' }
+      ]
+    },
     skill: {
       title: 'Compétences',
       data: [
         { key: 'label', type: 'text', placeholder: 'Compétence' }
-      ]}
+      ]
+    },
+    hobby: {
+      title: 'Passions',
+      data: [
+        { key: 'label', type: 'text', placeholder: 'Compétence' }
+      ]
+    }
   },
   resume: {
     firstName: 'Nicolas',
     lastName: 'Bocquet',
     title: 'Front End Lead',
-    summary: '25 ans d\'expérience sur le web, j\'ai une vision à 360 degrés d\'un projet web. Toutes mes expériences ont le même dénominateur commun : mettre en forme les données.',
+    summary: '25 ans d\'expériences sur le web et toujours le même dénominateur commun : mettre en forme les données.',
     email: 'nicolas.fow@gmail.com',
     phone: '06 21 02 31 65',
     address: '29 rue Wulfram Puget - 13008 Marseille',
@@ -58,12 +66,12 @@ const state = reactive({
     {
       id: 3,
       label: 'Twitter',
-      url: 'https://www.linkedin.com/in/bocquetnicolas/'
+      url: 'https://twitter.com/_nicolasbocquet'
     }],
     experience: [
       {
         id: 1,
-        year: 'avril 2020',
+        year: '2021',
         title: 'Front End Lead',
         company: 'Oparédo',
         description: 'Développement d\'une librairie de composants (Vue, Tailwind, Storybook).\n' +
@@ -72,21 +80,21 @@ const state = reactive({
       },
       {
         id: 2,
-        year: 'avril 2020',
+        year: '2020',
         title: 'Développeur Front-End, Marseille',
         company: 'Internethic',
         description: 'Développement d\'une app BtoB : conception UX/UI (Figma), développement de composants custom et de leurs store (Vuejs, Tailwind, Storybook).'
       },
       {
         id: 3,
-        year: 'avril 2019 - mars 2020',
+        year: '2019',
         title: 'Développeur Front-End',
         company: 'Novazéo',
         description: 'Intégration et développement sur Django CMS / Symfony (VueJs, OpenLayers). Conception UX/UI (Figma).'
       },
       {
         id: 4,
-        year: 'Janvier 2016 - Décembre 2018',
+        year: '2016 - 2018',
         title: 'Journaliste web',
         company: 'La Provence',
         description: 'Rédaction, production de modules éditoriaux (Data journalisme, infographies).'
@@ -132,14 +140,15 @@ const state = reactive({
       }
     ],
     skill: [
-      { label: 'Javascript'},
-      { label: 'ES6' },
-      { label: 'Vuejs' },
-      { label: 'Figma, Adobe XD' },
-      { label: 'Storybook' },
-      { label: 'Tests unitaires' }
+      { id: 1, label: 'Javascript (ES6)'},
+      { id: 2, label: 'Vuejs (Vue3, Vuex)' },
+      { id: 3, label: 'Figma, Adobe XD' },
+      { id: 4, label: 'Tailwind, Headless UI, Vuetify, Quasar' },
+      { id: 5, label: 'Storybook, Bit' },
+      { id: 6, label: 'Tests unitaires et fonctionnels' },
+      { id: 7, label: 'Git' }
     ],
-    hobbies: null
+    hobbies: 'Histoire, sports (course à pied, football et basket)'
   }
 })
 

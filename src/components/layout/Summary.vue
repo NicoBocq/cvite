@@ -19,6 +19,9 @@
       </div>
       <div class="flex">
         <div class="w-2/3">
+          <div class="text-xl font-bold">
+            {{ model.experience.title }}
+          </div>
           <div class="divide divide-y divide-gray-200">
             <div v-for="(item, idx) in resume.experience" :key="idx" class="py-2">
               <div class="flex flex-col">
@@ -57,7 +60,7 @@
 </template>
 
 <script>
-import { resume } from '/src/store'
+import { resume, model } from '/src/store'
 import {computed, ref, watch, watchEffect} from "vue"
 import NRadioGroup from "../ui/NRadioGroup.vue";
 
@@ -66,7 +69,8 @@ export default {
   components: {NRadioGroup},
   setup(props, context) {
     return {
-      resume
+      resume,
+      model
     }
   }
 }

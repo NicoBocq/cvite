@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen w-screen overflow-hidden bg-white">
+  <div class="h-screen w-screen bg-white">
     <Header />
     <NSlide :active="isSlideOpen" @close="toggleSlide">
       <template #body>
