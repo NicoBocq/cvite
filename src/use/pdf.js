@@ -4,7 +4,7 @@ import { resume, model } from '/src/store'
 
 const themeColor = '#1F2937'
 
-export function printToPdf () {
+export default function exportToPdf () {
   pdfMake.vfs = pdfFonts
 
   pdfMake.fonts = {
@@ -62,7 +62,7 @@ export function printToPdf () {
         ...( stateResume.avatar ? [{
         width: 75,
         image: stateResume.avatar,
-        fit: [75, 75]
+        fit: [75, 75],
       }] : []),
       {
         width: '*',

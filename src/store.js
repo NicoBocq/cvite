@@ -39,7 +39,7 @@ const state = reactive({
     hobby: {
       title: 'Passions',
       data: [
-        { key: 'label', type: 'text', placeholder: 'Compétence' }
+        { key: 'label', type: 'textarea', placeholder: 'Passions' }
       ]
     }
   },

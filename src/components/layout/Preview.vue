@@ -1,5 +1,5 @@
 <template>
-  <div class="ring ring-gray-200 ring-offset-2 shadow-lg ring-opacity-25 rounded-md container mx-auto max-w-4xl">
+  <div class="ring ring-gray-200 ring-offset-2 shadow-lg ring-opacity-25 rounded-md">
     <div class="w-full bg-white text-gray-800 p-5 h-full flex flex-col space-y-10">
       <div class="flex justify-between">
         <div class="flex space-x-4 items-center">
@@ -65,7 +65,7 @@ import {computed, ref, watch, watchEffect} from "vue"
 import NRadioGroup from "../ui/NRadioGroup.vue";
 
 export default {
-  name: "Summary",
+  name: "Preview",
   components: {NRadioGroup},
   setup(props, context) {
     return {

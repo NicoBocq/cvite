@@ -3,7 +3,7 @@
     Photo
   </label>
   <div class="mt-1 flex items-center">
-    <img v-if="!!src" class="inline-block h-16 w-16 rounded-full shadow-sm" :src="src" alt="" :key="refreshId" />
+    <img v-if="!!src" class="inline-block h-16 w-16 rounded-full shadow-sm" :src="src" alt="" />
     <n-icon v-else icon="user-circle" size="h-16 w-16" type="outline" color="text-gray-300" />
     <div class="ml-4 flex space-x-4">
       <div class="relative">
@@ -18,7 +18,7 @@
 <script>
   import NButton from "./NButton.vue";
   import NIcon from "./NIcon.vue";
-  import {ref, watch} from "vue"
+  import {ref, watch, toRefs} from "vue"
   export default {
     name: 'NUpload',
     emits: ['delete', 'change'],
@@ -28,23 +28,26 @@
         type: String
       }
     },
-    setup({ src }, { emit }) {
+    setup(props, { emit }) {
       const onChange = (e) => {
         emit('change', e)
       }
       const onDelete = () => {
         emit('delete')
       }
-      const refreshId = ref(0)
 
-      watch(() => src, (val) => {
-        refreshId.value += 1
-      })
+      const { src } = toRefs(props)
+
+      // const refreshId = ref(0)
+
+      // watch(() => src, (val) => {
+      //   refreshId.value += 1
+      // })
 
       return {
         onDelete,
         onChange,
-        refreshId
+        src
       }
     }
   }

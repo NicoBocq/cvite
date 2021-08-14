@@ -26,7 +26,6 @@
 <!--        <a v-for="link in navigation" :key="link.name" :href="link.href" class="text-base font-medium text-white hover:text-indigo-50">-->
 <!--          {{ link.name }}-->
 <!--        </a>-->
-        <n-button @click="printToPdf" icon="download">Télécharger</n-button>
         <n-button @click="toggleSlide">Ouvrir</n-button>
       </div>
     </nav>
@@ -37,7 +36,6 @@
 import { toggleSlide } from '/src/store'
 import NDropdown from "../ui/NDropdown.vue";
 import NButton from "../ui/NButton.vue";
-import { printToPdf } from '/src/pdf'
 import { useRouter } from "vue-router";
 export default {
   name: "Header",
@@ -46,13 +44,8 @@ export default {
     NDropdown
   },
   setup() {
-    const router = useRouter()
-    const redirectToExport = () => {
-      router.push({ name: 'Export' })
-    }
     return {
-      toggleSlide,
-      printToPdf
+      toggleSlide
     }
   }
 }

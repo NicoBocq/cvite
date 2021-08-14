@@ -30,7 +30,6 @@
 
 .list-leave-to {
     opacity: 0;
-    /*transform: scaleY(0);*/
     transform: translateX(20vw) scaleY(0.5);
 }
 
