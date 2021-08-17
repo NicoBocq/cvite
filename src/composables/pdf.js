@@ -166,6 +166,7 @@ export default function exportToPdf () {
       },
       list: {
         margin: [0, 0, 0, 16],
+        fontSize: 10
       },
       headerMain: {
         margin: [0, 0, 0, 24],
@@ -209,17 +210,17 @@ export default function exportToPdf () {
         margin: [0, 0, 0, 6]
       },
       listItem: {
-        fontSize: 11,
+        fontSize: 9,
         margin: [0, 0, 0, 8]
       },
       listItemHeader: {
-        fontSize: 11,
+        fontSize: 10,
         // lineHeight: 1,
         bold: true,
         margin: [0, 0, 0, 3]
       },
       listItemSubHeader: {
-        fontSize: 9,
+        fontSize: 10,
         color: themeColor,
         margin: [0, 0, 0, 3]
       },

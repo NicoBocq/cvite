@@ -12,16 +12,19 @@
       >
         <template #item="{ element }">
           <div class="p-2 rounded-md space-y-2 hover:shadow">
-            <div class="flex items-center space-x-2">
-              <n-icon icon="selector" class="handle cursor-move text-gray-200 hover:text-gray-800" />
-              <span>{{ element[titleKey] }}</span>
+            <div class="flex justify-between items-center">
+              <div class="flex items-center space-x-2">
+                <n-icon v-if="resume[stateKey].length > 1" icon="selector" class="handle cursor-move text-gray-200 hover:text-gray-800" />
+                <span>{{ element[titleKey] }} {{ element.id }}</span>
+              </div>
+              <n-button icon="trash" @click="removeItem(element.id, stateKey)" />
             </div>
             <div>
               <div class="flex flex-col space-y-2">
                 <n-input
                   v-for="item in model[stateKey].data"
-                  :key="item.key + '-' + element.id"
-                  :id="item.key + '-' + element.id"
+                  :key="stateKey + '-' + item.key + '-' + element.id"
+                  :id="stateKey + '-' + item.key + '-' + element.id"
                   :type="item.type"
                   v-model="element[item.key]"
                   :placeholder="item.placeholder"
@@ -42,7 +45,7 @@ import NDisclosure from "../ui/NDisclosure.vue";
 import NButton from "../ui/NButton.vue";
 import NIcon from "../ui/NIcon.vue";
 import NInput from "../ui/NInput.vue";
-import { addItem, resume, model } from "../../store.js";
+import { addItem, resume, model, removeItem } from "../../store.js";
 import NBoxForm from "../ui/NBoxForm.vue";
 import NInlineEditing from "../ui/NInlineEditing.vue";
 
@@ -64,7 +67,8 @@ export default {
       titleKey,
       addItem,
       resume,
-      model
+      model,
+      removeItem
     }
   }
 }

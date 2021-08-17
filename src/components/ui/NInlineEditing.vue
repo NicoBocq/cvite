@@ -1,8 +1,16 @@
 <template>
   <div class="flex flex-col">
     <transition name="fade" mode="out-in">
-      <div v-if="!active" @click="toggle" class="cursor-pointer hover:text-opacity-50" v-bind="$attrs" key="close">
-        {{ modelValue }}
+      <div
+        v-if="!active"
+        @click="toggle"
+        class="cursor-pointer hover:text-opacity-50 hover:border space-x-2 flex items-center"
+        key="close"
+      >
+        <div v-bind="$attrs">
+          {{ modelValue }}
+        </div>
+        <n-icon icon="pencil" />
       </div>
       <div v-else class="flex space-x-2 justify-between" key="open" @keydown.enter="save" @keydown.esc="toggle">
         <n-input v-model="modelValue" class="flex-1" ref="inputRef" />
@@ -14,9 +22,10 @@
 </template>
 
 <script>
-import {ref, watch, toRefs, nextTick, watchEffect, onMounted} from "vue";
+import { ref, watch, toRefs, nextTick, watchEffect, onMounted } from "vue";
 import NInput from "./NInput.vue";
 import NButton from "./NButton.vue";
+import NIcon from "./NIcon.vue";
 
 export default {
   name: "NInlineEditing",
@@ -26,12 +35,12 @@ export default {
     },
   },
   emits: ['update:modelValue'],
-  components: { NButton, NInput },
+  components: {NIcon, NButton, NInput },
   setup(props, { emit }) {
     const active = ref(false)
     const inputRef = ref(null)
 
-    const toggle = async () => {
+    const toggle = () => {
       active.value = !active.value
       // if (active && !!inputRef.value) {
       //   setTimeout(() => {
@@ -69,11 +78,10 @@ export default {
       toggle()
     }
     watchEffect(async () => {
-      if (active) {
+      if (active.value) {
         await nextTick()
-        await focusInput(inputRef.value)
+        focusInput(inputRef.value)
       }
-      // if (!!active && inputRef.value) inputRef.value.focus()
     }, {
       flush: 'post'
     })

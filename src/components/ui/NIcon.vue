@@ -5,8 +5,10 @@
 <script>
 import {
   CheckIcon as CheckIconSolid,
+  ChevronLeftIcon as ChevronLeftIconSolid,
   ChevronRightIcon as ChevronRightIconSolid,
   DownloadIcon as DownloadIconSolid,
+  PencilIcon as PencilIconSolid,
   PlusIcon as PlusIconSolid,
   SelectorIcon as SelectorIconSolid,
   SwitchVerticalIcon as SwitchVerticalIconSolid,
@@ -22,8 +24,10 @@ export default {
   name: 'NIcon',
   components: {
     CheckIconSolid,
+    ChevronLeftIconSolid,
     ChevronRightIconSolid,
     DownloadIconSolid,
+    PencilIconSolid,
     PlusIconSolid,
     TrashIconSolid,
     SelectorIconSolid,
@@ -46,7 +50,7 @@ export default {
     },
     color: {
       type: String,
-      default: 'text-gray-500'
+      default: 'text-white'
     }
   },
   setup({ icon, color, type }) {
