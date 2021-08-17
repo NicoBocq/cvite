@@ -1,23 +1,21 @@
 <template>
   <div class="flex flex-col">
-    <transition name="fade" mode="out-in">
       <div
         v-if="!active"
         @click="toggle"
-        class="cursor-pointer hover:text-opacity-50 hover:border space-x-2 flex items-center"
+        class="cursor-pointer hover:text-opacity-50 space-x-2 flex items-center"
         key="close"
       >
         <div v-bind="$attrs">
           {{ modelValue }}
         </div>
-        <n-icon icon="pencil" />
+        <n-icon icon="pencil" color="text-gray-300" />
       </div>
-      <div v-else class="flex space-x-2 justify-between" key="open" @keydown.enter="save" @keydown.esc="toggle">
-        <n-input v-model="modelValue" class="flex-1" ref="inputRef" />
+      <div v-show="active" class="flex space-x-2 justify-between" key="open" @keydown.enter="save" @keydown.esc="toggle">
+        <input :id="'title-' + modelValue" v-model="modelValue" v-bind="$attrs" class="flex-1 rounded-md focus:border focus:ring-indigo-500 focus:border-indigo-500" ref="inputRef" />
         <n-button icon="check" @click="save" />
         <n-button icon="x" @click="toggle" />
       </div>
-    </transition>
   </div>
 </template>
 
@@ -60,13 +58,15 @@ export default {
     }
 
     const focusInput = (el) => {
-      if (!el) return
+      console.log('3')
       el.focus()
     }
 
-    // watchEffect(() => {
-    //     console.log(inputRef.value) // => input
-    //     if (!!inputRef.value) inputRef.value.focus()
+    // watchEffect(async () => {
+    //     if (active.value) {
+    //       await nextTick()
+    //       focusInput(inputRef.value)
+    //     }
     //   },
     //   {
     //     flush: 'post'
@@ -77,29 +77,13 @@ export default {
       emit('update:modelValue', props.modelValue)
       toggle()
     }
-    watchEffect(async () => {
-      if (active.value) {
+
+    watch(active, async(val) => {
+      if (val) {
         await nextTick()
         focusInput(inputRef.value)
       }
-    }, {
-      flush: 'post'
     })
-    // onMounted(() => {
-    //   inputRef.value.focus()
-    // })
-
-    // watch(active, async (val) => {
-    //   // if (active) {
-    //   //   console.log(val)
-    //   //   val.value.focus()
-    //   // }
-    //   if (val) {
-    //     await nextTick(() => {
-    //       val.value.focus()
-    //     })
-    //   }
-    // })
 
     return {
       toggle,

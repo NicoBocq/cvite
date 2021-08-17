@@ -9,11 +9,11 @@
       </n-button>
     </div>
     <div class="flex-grow w-full max-w-7xl mx-auto xl:px-8 flex overflow-hidden">
-      <div class="w-1/2 hidden md:flex items-center justify-center">
+      <div class="w-1/2 hidden lg:flex items-center justify-center">
         <preview />
       </div>
-      <div class="w-full md:w-1/2 flex flex-col flex-1">
-        <div class="h-16 p-4 flex items-center border-b border-gray-200">
+      <div class="w-full lg:w-1/2 flex flex-col flex-1">
+        <div class="h-16 m-4 flex items-center border-b border-gray-200">
           <div class="flex space-x-4">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Contenu</a>
@@ -22,7 +22,7 @@
             <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Calendar</a>
           </div>
         </div>
-        <div class="relative h-full px-4 overflow-y-auto">
+        <div class="relative h-full mx-4 overflow-y-auto">
           <resume-form />
         </div>
       </div>

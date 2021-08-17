@@ -15,7 +15,7 @@
             <div class="flex justify-between items-center">
               <div class="flex items-center space-x-2">
                 <n-icon v-if="resume[stateKey].length > 1" icon="selector" class="handle cursor-move text-gray-200 hover:text-gray-800" />
-                <span>{{ element[titleKey] }} {{ element.id }}</span>
+                <span>{{ element[titleKey] }}</span>
               </div>
               <n-button icon="trash" @click="removeItem(element.id, stateKey)" />
             </div>

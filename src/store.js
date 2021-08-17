@@ -74,8 +74,8 @@ const toggleSlide = () => {
 
 const addItem = (type) => {
   state.resume[type].push({
-    ...state.model[type].data,
-    id: Math.max(...state.resume[type].map((i) => i.id)) + 1
+    ...state.model[type].data.key,
+    id: Date.now()
   })
 }
 
