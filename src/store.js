@@ -24,10 +24,10 @@ const state = reactive({
     education: {
       title: 'Éducation',
       data: [
+        { key: 'degree', type: 'text', placeholder: 'Diplôme' },
         { key: 'beginDate', type: 'text', placeholder: 'Année de début' },
         { key: 'endDate', type: 'text', placeholder: 'Année de fin' },
         { key: 'school', type: 'text', placeholder: 'École' },
-        { key: 'degree', type: 'text', placeholder: 'Diplôme' },
         { key: 'city', type: 'text', placeholder: ' Ville' },
         { key: 'description', type: 'textarea', placeholder: 'Description' },
       ]
@@ -35,8 +35,8 @@ const state = reactive({
     experience: {
       title: 'Expériences',
       data: [
-        { key: 'year', type: 'text', placeholder: 'Année(s)' },
         { key: 'title', type: 'text', placeholder: 'Poste' },
+        { key: 'year', type: 'text', placeholder: 'Année(s)' },
         { key: 'company', type: 'text', placeholder: 'Société' },
         { key: 'description', type: 'textarea', placeholder: 'Description' },
       ]
@@ -74,9 +74,24 @@ const toggleSlide = () => {
 
 const addItem = (type) => {
   state.resume[type].push({
-    ...state.model[type].data.key,
     id: Date.now()
   })
+}
+
+const initResume = async () => {
+  for (const type of await Object.keys(state.model)) {
+    if (resume[type] && !resume[type].length) addItem(type)
+  }
+}
+
+const setNewResume = async () => {
+  // await clearState()
+  // await initResume()
+}
+
+const isEmpty = (type) => {
+  const { id, ...obj } = state.resume[type]
+  return Object.values(obj).every((i) => !i)
 }
 
 const removeItem = (id, type) => {
@@ -87,7 +102,7 @@ const removeItem = (id, type) => {
 
 const clearState = (key) => {
   if (!key) {
-    state.resume = initialResume
+    Object.assign(state.resume, initialResume)
     // Object.assign(state.resume, initialResume)
   } else {
     state.resume[key] = null
@@ -116,5 +131,8 @@ export {
   clearState,
   handleImage,
   model,
-  addNicoBocq
+  addNicoBocq,
+  initResume,
+  isEmpty,
+  setNewResume
 }

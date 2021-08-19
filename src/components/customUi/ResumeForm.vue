@@ -15,7 +15,7 @@
     <context-form-list-item state-key="education" title-key="degree" />
     <context-form-list-item state-key="link" />
     <context-form-list-item state-key="skill" />
-    <context-form-list-item state-key="hobby" />
+<!--    <context-form-list-item state-key="hobby" />-->
   </div>
 </template>
 

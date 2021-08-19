@@ -3,13 +3,13 @@
     <div class="h-20 w-full py-4 px-4 sm:px-6 lg:px-8 bg-gray-800 flex justify-between shadow flex-shrink-0">
       <n-button icon="chevron-left" @click="goTo({ name: 'Home'})" />
       <n-button @click="addNicoBocq" icon="plus" />
-      <n-button @click="clearState" icon="minus" />
+      <n-button @click="setNewResume" icon="plus" />
       <n-button icon="download" @click="exportToPdf">
         Télécharger
       </n-button>
     </div>
     <div class="flex-grow w-full max-w-7xl mx-auto xl:px-8 flex overflow-hidden">
-      <div class="w-1/2 hidden lg:flex items-center justify-center">
+      <div class="w-1/2 hidden lg:flex items-center justify-center overflow-scroll">
         <preview />
       </div>
       <div class="w-full lg:w-1/2 flex flex-col flex-1">
@@ -36,17 +36,25 @@ import Preview from "../layout/Preview.vue";
 import NButton from "../ui/NButton.vue";
 import exportToPdf from '/src/composables/pdf'
 import goTo from "../../composables/helpers"
-import { addNicoBocq, clearState } from "../../store";
+import { addNicoBocq, clearState, initResume, setNewResume } from "../../store";
+import { onMounted } from "vue";
 
 export default {
   name: "Edit",
   components: {NButton, Preview, ResumeForm},
   setup() {
+
+    onMounted(() => {
+      initResume()
+    })
+
     return {
       exportToPdf,
       goTo,
       addNicoBocq,
-      clearState
+      clearState,
+      initResume,
+      setNewResume
     }
   }
 }

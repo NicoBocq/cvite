@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label :for="id" class="sr-only">Email</label>
+    <label :for="id" class="sr-only">{{ label }}</label>
     <input
       v-if="type !== 'textarea'"
       :value="modelValue"
@@ -41,12 +41,13 @@ name: "NInput",
       default: 'text'
     },
     modelValue: {
-      type: [String, Number],
-      default: ''
+      type: [String, Number]
     },
     placeholder: {
       type: String,
-      default: ''
+    },
+    label: {
+      type: String
     }
   },
   setup(props, { emit }) {
