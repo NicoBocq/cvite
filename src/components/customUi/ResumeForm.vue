@@ -11,10 +11,10 @@
       <n-input id="address" v-model="resume.address" placeholder="Adresse" />
       <n-input id="more" v-model="resume.more" type="textarea" placeholder="Infos complémentaires" />
     </n-box-form>
-    <context-form-list-item state-key="experience" title-key="title" />
-    <context-form-list-item state-key="education" title-key="degree" />
-    <context-form-list-item state-key="link" />
-    <context-form-list-item state-key="skill" />
+    <form-list state-key="experience" title-key="title" />
+    <form-list state-key="education" title-key="degree" />
+    <form-list state-key="link" />
+    <form-list state-key="skill" />
 <!--    <context-form-list-item state-key="hobby" />-->
   </div>
 </template>
@@ -23,12 +23,12 @@
 import NBoxForm from "../ui/NBoxForm.vue";
 import NInput from "../ui/NInput.vue";
 import NUpload from "../ui/NUpload.vue";
-import ContextFormListItem from "./ContextFormListItem.vue";
+import FormList from "./FormList.vue";
 import { resume, handleImage, clearState } from "../../store";
 
 export default {
   name: "ResumeForm",
-  components: { ContextFormListItem, NUpload, NInput, NBoxForm },
+  components: { FormList, NUpload, NInput, NBoxForm },
   setup() {
     return {
       resume,
