@@ -55,11 +55,9 @@ export default {
     const resumeKey = props.resumeKey
     const { title, items } = toRefs(props)
     return {
-      title,
-      items,
-      resume,
-      model,
       resumeKey,
+      model,
+      resume,
       isEmpty
     }
   }

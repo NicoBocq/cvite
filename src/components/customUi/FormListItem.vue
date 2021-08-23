@@ -7,15 +7,18 @@
       </div>
       <n-button icon="trash" @click="removeItem(element.id, stateKey)" />
     </div>
-    <div v-if="active" class="flex flex-col space-y-2">
-      <n-input
-        v-for="item in model[stateKey].data"
-        :key="stateKey + '-' + item.key + '-' + element.id"
-        :id="stateKey + '-' + item.key + '-' + element.id"
-        :type="item.type"
-        v-model="element[item.key]"
-        :placeholder="item.placeholder"
-      />
+    <div v-if="active" class="flex flex-col space-y-2" :ref="'add' + stateKey">
+<!--      <form-item :element="element" />-->
+      <div class="space-y-4">
+        <n-input
+          v-for="item in model[stateKey].data"
+          :key="stateKey + '-' + item.key + '-' + element.id"
+          :id="stateKey + '-' + item.key + '-' + element.id"
+          :type="item.type"
+          v-model="element[item.key]"
+          :placeholder="item.placeholder"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -27,10 +30,11 @@ import NDisclosure from "../ui/NDisclosure.vue";
 import NInput from "../ui/NInput.vue";
 import NButton from "../ui/NButton.vue";
 import NIcon from "../ui/NIcon.vue";
+import FormItem from "./FormItem.vue";
 
 export default {
   name: "FormListItem",
-  components: {NIcon, NButton, NInput, NDisclosure},
+  components: {FormItem, NIcon, NButton, NInput, NDisclosure},
   props: {
     element: {
       type: Object,

@@ -7,29 +7,30 @@
         key="close"
       >
         <div v-bind="$attrs">
-          {{ modelValue }}
+          {{ sectionTitle }}
         </div>
         <n-icon icon="pencil" color="text-gray-300" />
       </div>
-      <div v-show="active" class="flex space-x-2 justify-between" key="open" @keydown.enter="save" @keydown.esc="toggle">
+      <div v-show="active" class="flex space-x-2 justify-between" key="open" @keydown.enter="save" @keydown.esc="close">
         <input
-          :id="'title-' + modelValue"
-          v-model="modelValue"
+          :id="'section-title-' + sectionTitle"
+          v-model="sectionTitle"
           v-bind="$attrs"
-          class="flex-1 rounded-md border focus:ring-indigo-500 focus:border-indigo-500"
+          class="flex-1 focus:outline-none border-b-2 border-transparent focus:border-blue-400 focus:bg-blue-50 focus:border"
           ref="inputRef"
         />
-        <n-button icon="check" @click="save" />
-        <n-button icon="x" @click="toggle" />
+        <n-button icon="check" @click="save" :disabled="isBlank" />
+        <n-button icon="x" @click="close" />
       </div>
   </div>
 </template>
 
 <script>
-import { ref, watch, toRefs, nextTick, watchEffect, onMounted } from "vue";
+import {ref, watch, toRefs, nextTick, watchEffect, onMounted, computed} from "vue";
 import NInput from "./NInput.vue";
 import NButton from "./NButton.vue";
 import NIcon from "./NIcon.vue";
+import {useModelWrapper} from "../../composables/modelWrapper";
 
 export default {
   name: "NInlineEditing",
@@ -39,26 +40,33 @@ export default {
     },
   },
   emits: ['update:modelValue'],
-  components: {NIcon, NButton, NInput },
+  components: { NIcon, NButton, NInput },
   setup(props, { emit }) {
     const active = ref(false)
     const inputRef = ref(null)
-
+    const { modelValue } = toRefs(props)
+    const initialValue = ref(null)
     const toggle = () => {
       active.value = !active.value
     }
-
+    const isBlank = computed(() => !!modelValue)
     const focusInput = (el) => {
       el.focus()
     }
+    const sectionTitle = useModelWrapper(props, emit)
+
+    const close = () => {
+      active.value = false
+      sectionTitle.value = initialValue.value
+    }
 
     const save = () => {
-      emit('update:modelValue', props.modelValue)
-      toggle()
+      active.value = false
     }
 
     watch(active, async(val) => {
       if (val) {
+        initialValue.value = modelValue.value
         await nextTick()
         focusInput(inputRef.value)
       }
@@ -68,7 +76,10 @@ export default {
       toggle,
       active,
       save,
-      inputRef
+      inputRef,
+      close,
+      isBlank,
+      sectionTitle
     }
   }
 }

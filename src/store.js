@@ -23,6 +23,7 @@ const state = reactive({
   model: {
     education: {
       title: 'Éducation',
+      new: {},
       data: [
         { key: 'degree', type: 'text', placeholder: 'Diplôme' },
         { key: 'beginDate', type: 'text', placeholder: 'Année de début' },
@@ -34,6 +35,7 @@ const state = reactive({
     },
     experience: {
       title: 'Expériences',
+      new: {},
       data: [
         { key: 'title', type: 'text', placeholder: 'Poste' },
         { key: 'year', type: 'text', placeholder: 'Année(s)' },
@@ -43,6 +45,7 @@ const state = reactive({
     },
     link: {
       title: 'Liens',
+      new: {},
       data: [
         { key: 'label', type: 'text', placeholder: 'Titre' },
         { key: 'url', type: 'text', placeholder: 'URL' }
@@ -50,12 +53,14 @@ const state = reactive({
     },
     skill: {
       title: 'Compétences',
+      new: {},
       data: [
         { key: 'label', type: 'text', placeholder: 'Compétence' }
       ]
     },
     hobby: {
       title: 'Passions',
+      new: {},
       data: [
         { key: 'label', type: 'textarea', placeholder: 'Passions' }
       ]
@@ -76,7 +81,20 @@ const addItem = (type) => {
   state.resume[type].push({
     id: Date.now()
   })
+  // scrollTo(type)
 }
+
+const saveItem = (type) => {
+  state.resume[type].push({
+    id: Date.now(),
+    ...state.model[type].new
+  })
+}
+
+// const scrollTo = (type) => {
+//   const ref = 'add-' + type
+//   ref.scrollIntoView()
+// }
 
 const initResume = async () => {
   for (const type of await Object.keys(state.model)) {
@@ -134,5 +152,6 @@ export {
   addNicoBocq,
   initResume,
   isEmpty,
-  setNewResume
+  setNewResume,
+  saveItem
 }
