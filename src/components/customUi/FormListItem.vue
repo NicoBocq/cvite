@@ -5,7 +5,7 @@
         <n-icon v-if="resume[stateKey].length > 1" color="text-gray-200" icon="selector" class="handle cursor-move hover:text-gray-800" />
         <span @click="toggle" class="cursor-pointer truncate">{{ element[titleKey] ? element[titleKey] : '[Provisoire]' }}</span>
       </div>
-      <n-button icon="trash" @click="removeItem(element.id, stateKey)" />
+      <n-button icon="trash" theme="transparent" small @click="removeItem(element.id, stateKey)" />
     </div>
     <div v-if="active" class="flex flex-col space-y-2" :ref="'add' + stateKey">
 <!--      <form-item :element="element" />-->

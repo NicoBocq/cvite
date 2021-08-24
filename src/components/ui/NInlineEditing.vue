@@ -19,8 +19,8 @@
           class="flex-1 focus:outline-none border-b-2 border-transparent focus:border-blue-400 focus:bg-blue-50 focus:border"
           ref="inputRef"
         />
-        <n-button icon="check" @click="save" :disabled="isBlank" />
-        <n-button icon="x" @click="close" />
+        <n-button icon="check" small theme="transparent" @click="save" :disabled="isBlank" />
+        <n-button icon="x" small theme="transparent" @click="close" />
       </div>
   </div>
 </template>

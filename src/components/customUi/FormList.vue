@@ -14,7 +14,7 @@
         <form-list-item :element="element" />
       </template>
     </draggable>
-    <n-button v-if="!active" @click="toggle" icon="plus" small>
+    <n-button v-if="!active" @click="toggle" theme="transparent" icon="plus" small>
       Ajouter un nouvel élément
     </n-button>
     <div v-show="active" class="space-y-4 px-6 py-4 rounded-lg ring ring-gray-200 ring-opacity-50 shadow-inner shadow grid grid-cols-2 gap-2" ref="refAdd">
@@ -32,8 +32,8 @@
       />
 <!--      <form-item />-->
       <div class="flex space-x-4 justify-end col-span-2">
-        <n-button label="Fermer" icon="x" @click="toggle" />
-        <n-button label="Sauver" icon="check" @click="saveItem(stateKey)" />
+        <n-button label="Fermer" small icon="x" @click="toggle" theme="transparent" />
+        <n-button label="Sauver" small icon="check" @click="saveItem(stateKey)" />
       </div>
     </div>
   </n-box-form>

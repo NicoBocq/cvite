@@ -52,7 +52,7 @@ export default {
     },
     color: {
       type: String,
-      default: 'text-white'
+      default: ''
     }
   },
   setup({ icon, color, type }) {

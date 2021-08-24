@@ -7,10 +7,10 @@
     <n-icon v-else icon="user-circle" size="h-16 w-16" type="outline" color="text-gray-300" />
     <div class="flex space-x-2">
       <div class="relative">
-        <n-button :label="src ? 'Remplacer' : 'Ajouter'" icon="upload" />
+        <n-button :label="src ? 'Remplacer' : 'Ajouter'" icon="upload" small />
         <input id="user-photo" name="user-photo" type="file" @change="onChange" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md" accept="image/*" />
       </div>
-      <n-button icon="trash" label="Supprimer" @click="onDelete" />
+      <n-button icon="trash" small label="Supprimer" @click="onDelete" />
     </div>
   </div>
 </template>
