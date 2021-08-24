@@ -17,17 +17,21 @@
     <n-button v-if="!active" @click="toggle" icon="plus" small>
       Ajouter un nouvel élément
     </n-button>
-    <div v-else class="space-y-4 bg-blue-50 p-4 rounded-md shadow">
+    <div v-show="active" class="space-y-4 px-6 py-4 rounded-lg ring ring-indigo-200 shadow grid grid-cols-2 gap-2" ref="refAdd">
+      <h3 class="font-medium text-gray-800 text-lg">
+        Ajouter un nouvel élément
+      </h3>
       <n-input
         v-for="item in model[stateKey].data"
         :key="stateKey + '-' + item.key + '-' + model[stateKey].new.id"
         :id="stateKey + '-' + item.key + '-' + model[stateKey].new.id"
         :type="item.type"
         v-model="model[stateKey].new[item.key]"
+        :class="item.short ? '' : 'sm:col-span-2'"
         :placeholder="item.placeholder"
       />
 <!--      <form-item />-->
-      <div class="flex space-x-4 justify-end">
+      <div class="flex space-x-4 justify-end col-span-2">
         <n-button label="Fermer" icon="x" @click="toggle" />
         <n-button label="Sauver" icon="check" @click="saveItem(stateKey)" />
       </div>
@@ -43,7 +47,7 @@ import NInput from "../ui/NInput.vue";
 import { addItem, resume, model, removeItem, saveItem } from "../../store.js";
 import NBoxForm from "../ui/NBoxForm.vue";
 import NInlineEditing from "../ui/NInlineEditing.vue";
-import {onMounted, ref, toRefs, watch, watchEffect, provide} from "vue";
+import { onMounted, ref, toRefs, watch, watchEffect, provide} from "vue";
 import FormListItem from "./FormListItem.vue";
 import FormItem from "./FormItem.vue";
 
@@ -65,9 +69,22 @@ export default {
     provide('stateKey', stateKey)
     provide('titleKey', titleKey)
     const active = ref(false)
+    const refAdd = ref(null)
     const toggle = () => {
       active.value = !active.value
     }
+
+    watch(() => active, (val) => {
+      if (val) {
+        refAdd.value.scrollIntoView({behavior: 'smooth'})
+      }
+    })
+
+    watchEffect(() => {
+      if (!resume[stateKey]?.length) {
+        active.value = true
+      }
+    })
 
     return {
       stateKey,
@@ -78,7 +95,8 @@ export default {
       removeItem,
       active,
       toggle,
-      saveItem
+      saveItem,
+      refAdd
     }
   }
 }

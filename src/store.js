@@ -26,8 +26,8 @@ const state = reactive({
       new: {},
       data: [
         { key: 'degree', type: 'text', placeholder: 'Diplôme' },
-        { key: 'beginDate', type: 'text', placeholder: 'Année de début' },
-        { key: 'endDate', type: 'text', placeholder: 'Année de fin' },
+        { key: 'beginDate', type: 'text', placeholder: 'Année de début', short: true },
+        { key: 'endDate', type: 'text', placeholder: 'Année de fin', short: true },
         { key: 'school', type: 'text', placeholder: 'École' },
         { key: 'city', type: 'text', placeholder: ' Ville' },
         { key: 'description', type: 'textarea', placeholder: 'Description' },
@@ -38,7 +38,8 @@ const state = reactive({
       new: {},
       data: [
         { key: 'title', type: 'text', placeholder: 'Poste' },
-        { key: 'year', type: 'text', placeholder: 'Année(s)' },
+        { key: 'beginDate', type: 'text', placeholder: 'Année de début', short: true },
+        { key: 'endDate', type: 'text', placeholder: 'Année de fin', short: true },
         { key: 'company', type: 'text', placeholder: 'Société' },
         { key: 'description', type: 'textarea', placeholder: 'Description' },
       ]

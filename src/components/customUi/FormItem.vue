@@ -47,13 +47,13 @@ export default {
     //   }
     // })
 
-    // watch(() => add, (val) => {
-    //   if (val) {
-    //     Object.assign(bindObj.value, model[stateKey].new)
-    //   } else {
-    //     Object.assign(bindObj.value, element)
-    //   }
-    // })
+    watch(() => element, (val) => {
+      if (val) {
+        bindObj.value = model[stateKey].new
+      } else {
+        bindObj.value = element.value
+      }
+    })
     // const vModelBinding = () => {
     //   if (!element) {
     //     console.log(element)
@@ -62,14 +62,14 @@ export default {
     //     return element
     //   }
     // }
-    onMounted(() => {
-      if (!element.value) {
-        bindObj.value = model[stateKey]?.new
-      } else {
-        console.log('element ok')
-        bindObj.value = element.value
-      }
-    })
+    // onMounted(() => {
+    //   if (!element.value) {
+    //     bindObj.value = model[stateKey]?.new
+    //   } else {
+    //     console.log('element ok')
+    //     bindObj.value = element.value
+    //   }
+    // })
 
     return {
       resume,

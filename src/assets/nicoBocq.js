@@ -3,8 +3,8 @@ import {avatar} from "./avatar";
 export const nicoBocq = {
   firstName: 'Nicolas',
   lastName: 'Bocquet',
-  title: 'Front End Lead',
-  summary: '25 ans d\'expériences sur le web et toujours le même dénominateur commun : mettre en forme les données.',
+  title: 'Développeur Front-End',
+  summary: '25 ans d\'expériences sur le web et toujours la même passion : mettre en forme les données.',
   email: 'nicolas.fow@gmail.com',
   phone: '06 21 02 31 65',
   address: '29 rue Wulfram Puget - 13008 Marseille',
@@ -80,7 +80,7 @@ export const nicoBocq = {
     {
       id: 8,
       year: '2001 - 2004',
-      title: 'Developper fullstack',
+      title: 'Développeur fullstack',
       company: 'Freelance',
       description: 'Création de sites web : graphisme, développement et intégration'
     }
@@ -88,8 +88,8 @@ export const nicoBocq = {
   education: [
     {
       id: 1,
-      beginDate: '1996',
-      endDate: '1998',
+      beginDate: '1999',
+      endDate: '2001',
       school: 'Université des Pays du Vaucluse',
       degree: 'MST Communication : conception multimédias',
       city: 'Avignon',
@@ -99,8 +99,9 @@ export const nicoBocq = {
   skill: [
     { id: 1, label: 'Javascript (ES6)'},
     { id: 2, label: 'Vuejs (Vue3, Vuex)' },
-    { id: 3, label: 'Figma, Adobe XD' },
     { id: 4, label: 'Tailwind, Headless UI, Vuetify, Quasar' },
+    { id: 8, label: 'Datavisualisation : D3, OpenLayers' },
+    { id: 3, label: 'Figma, Adobe XD' },
     { id: 5, label: 'Storybook, Bit' },
     { id: 6, label: 'Tests unitaires et fonctionnels' },
     { id: 7, label: 'Git' }

@@ -193,12 +193,13 @@ export default function exportToPdf () {
         color: 'white'
       },
       name: {
-        fontSize: 14,
+        fontSize: 18,
         margin: [0, 0, 0, 4],
-        color: themeColor
+        color: themeColor,
+        bold: true
       },
       title: {
-        fontSize: 20,
+        fontSize: 14,
         margin: [0, 0, 0, 4],
         bold: true
       },

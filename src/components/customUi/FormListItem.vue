@@ -9,13 +9,14 @@
     </div>
     <div v-if="active" class="flex flex-col space-y-2" :ref="'add' + stateKey">
 <!--      <form-item :element="element" />-->
-      <div class="space-y-4">
+      <div class="space-y-4 grid gap-2 grid-cols-2" ref="add">
         <n-input
           v-for="item in model[stateKey].data"
           :key="stateKey + '-' + item.key + '-' + element.id"
           :id="stateKey + '-' + item.key + '-' + element.id"
           :type="item.type"
           v-model="element[item.key]"
+          :class="item.short ? '' : 'col-span-2'"
           :placeholder="item.placeholder"
         />
       </div>
