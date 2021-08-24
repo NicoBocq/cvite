@@ -6,7 +6,7 @@
       item-key="id"
       ghost-class="ghost-class"
       handle=".handle"
-      class="space-y-6"
+      class="divide-y divide-gray-200"
       tag="transition-group"
       :component-data="{ tag: 'div', name: 'list', type: 'transition' }"
     >
@@ -17,14 +17,14 @@
     <n-button v-if="!active" @click="toggle" icon="plus" small>
       Ajouter un nouvel élément
     </n-button>
-    <div v-show="active" class="space-y-4 px-6 py-4 rounded-lg ring ring-indigo-200 shadow grid grid-cols-2 gap-2" ref="refAdd">
-      <h3 class="font-medium text-gray-800 text-lg">
+    <div v-show="active" class="space-y-4 px-6 py-4 rounded-lg ring ring-gray-200 ring-opacity-50 shadow-inner shadow grid grid-cols-2 gap-2" ref="refAdd">
+      <h3 class="font-bold text-gray-500 text-lg">
         Ajouter un nouvel élément
       </h3>
       <n-input
         v-for="item in model[stateKey].data"
-        :key="stateKey + '-' + item.key + '-' + model[stateKey].new.id"
-        :id="stateKey + '-' + item.key + '-' + model[stateKey].new.id"
+        :key="stateKey + '-' + item.key + '-new'"
+        :id="stateKey + '-' + item.key + '-new'"
         :type="item.type"
         v-model="model[stateKey].new[item.key]"
         :class="item.short ? '' : 'sm:col-span-2'"
@@ -81,9 +81,7 @@ export default {
     })
 
     watchEffect(() => {
-      if (!resume[stateKey]?.length) {
-        active.value = true
-      }
+      active.value = !resume[stateKey]?.length
     })
 
     return {

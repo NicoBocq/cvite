@@ -2,8 +2,8 @@
   <div class="relative h-screen flex flex-col bg-gradient-to-b from-gray-50 to-gray-200 overflow-hidden">
     <div class="h-20 w-full py-4 px-4 sm:px-6 lg:px-8 bg-gray-800 flex justify-between shadow flex-shrink-0">
       <n-button icon="chevron-left" @click="goTo({ name: 'Home'})" />
-      <n-button @click="addNicoBocq" icon="plus" />
-      <n-button @click="setNewResume" icon="plus" />
+      <n-button @click="addNicoBocq" icon="plus" label="NicoBocq" />
+      <n-button @click="setNewResume" icon="refresh" label="Nouveau" />
       <n-button icon="download" @click="exportToPdf">
         Télécharger
       </n-button>
@@ -34,7 +34,7 @@ import Preview from "../layout/Preview.vue";
 import NButton from "../ui/NButton.vue";
 import exportToPdf from '/src/composables/pdf'
 import goTo from "../../composables/helpers"
-import { addNicoBocq, clearState, initResume, setNewResume } from "../../store";
+import { addNicoBocq, clearState, setNewResume } from "../../store";
 import { onMounted } from "vue";
 
 export default {

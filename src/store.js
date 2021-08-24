@@ -19,7 +19,6 @@ const initialResume = {
 }
 
 const state = reactive({
-  isSlideOpen: false,
   model: {
     education: {
       title: 'Éducation',
@@ -67,10 +66,9 @@ const state = reactive({
       ]
     }
   },
-  resume: initialResume
+  resume: { ...initialResume }
 })
 
-const isSlideOpen = computed(() => state.isSlideOpen)
 const resume = computed(() => state.resume)
 const model = computed(() => state.model)
 
@@ -90,6 +88,7 @@ const saveItem = (type) => {
     id: Date.now(),
     ...state.model[type].new
   })
+  clearNew(type)
 }
 
 // const scrollTo = (type) => {
@@ -97,15 +96,8 @@ const saveItem = (type) => {
 //   ref.scrollIntoView()
 // }
 
-const initResume = async () => {
-  for (const type of await Object.keys(state.model)) {
-    if (resume[type] && !resume[type].length) addItem(type)
-  }
-}
-
 const setNewResume = async () => {
-  // await clearState()
-  // await initResume()
+  await clearState()
 }
 
 const isEmpty = (type) => {
@@ -119,12 +111,17 @@ const removeItem = (id, type) => {
   if (index !== -1) state.resume[type].splice(index, 1)
 }
 
-const clearState = (key) => {
+const clearNew = (type) => {
+  for (const item of Object.getOwnPropertyNames(state.model[type].new)) {
+    delete state.model[type].new[item]
+  }
+}
+
+const clearState = (key, customPath = resume) => {
   if (!key) {
     Object.assign(state.resume, initialResume)
-    // Object.assign(state.resume, initialResume)
   } else {
-    state.resume[key] = null
+    state[customPath][key] = null
   }
 }
 
@@ -142,7 +139,6 @@ const handleImage = (e) => {
 }
 
 export {
-  isSlideOpen,
   toggleSlide,
   resume,
   addItem,
@@ -151,7 +147,6 @@ export {
   handleImage,
   model,
   addNicoBocq,
-  initResume,
   isEmpty,
   setNewResume,
   saveItem

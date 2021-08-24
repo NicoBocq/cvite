@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .ghost-class {
-    @apply border border-dashed rounded-md border-gray-300
+    @apply border border-dashed rounded-md border-gray-500
 }
 
 .list-enter-active,
