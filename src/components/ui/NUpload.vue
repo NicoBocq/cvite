@@ -3,51 +3,110 @@
     Photo
   </label>
   <div class="mt-1 flex items-center space-x-2">
-    <img v-if="!!src" class="inline-block h-16 w-16 rounded-full shadow-sm" :src="src" alt="" />
-    <n-icon v-else icon="user-circle" size="h-16 w-16" type="outline" color="text-gray-300" />
+    <img v-if="!!image" class="inline-block h-16 w-16 shadow-sm" :src="image" alt="" />
+    <n-icon v-else icon="user-circle-outline" size="h-16 w-16" type="outline" color="text-gray-300" />
     <div class="flex space-x-2">
-      <div class="relative">
-        <n-button :label="src ? 'Remplacer' : 'Ajouter'" icon="upload" small />
-        <input id="user-photo" name="user-photo" type="file" @change="onChange" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md" accept="image/*" />
-      </div>
-      <n-button icon="trash" small label="Supprimer" @click="onDelete" />
+      <n-button @click="setIsOpen(true)" icon="upload" small :label="!!image ? 'Modifier' : 'Ajouter'"  />
+      <n-button icon="trash-outline" small @click="deleteImage" theme="transparent" />
     </div>
   </div>
+  <n-dialog v-model:open="open">
+    <template #header>
+      Gestion de l'avatar
+    </template>
+    <template #body>
+      <div
+        class="flex justify-center items-center p-6"
+        :class="!tempImage && 'h-72 border border-dashed rounded-lg border-gray-200'"
+      >
+        <div class="relative">
+          <n-button :label="tempImage ? 'Remplacer' : 'Ajouter'" icon="upload" small />
+          <input id="user-photo" name="user-photo" type="file" @change="uploadImage" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md" accept="image/*" />
+        </div>
+      </div>
+      <cropper
+        v-if="!!tempImage"
+        class="h-60 w-full"
+        ref="cropperRef"
+        :src="tempImage"
+        :stencil-props="{ aspectRatio: 9/9 }"
+      />
+    </template>
+    <template #footer>
+      <n-button label="Sauvegarder" icon="check" small @click="save" />
+      <n-button label="Annuler" theme="transparent" icon="x" small @click="abort" />
+    </template>
+  </n-dialog>
 </template>
 
 <script>
   import NButton from "./NButton.vue";
   import NIcon from "./NIcon.vue";
   import {ref, watch, toRefs} from "vue"
+  import NDialog from "./NDialog.vue";
+  import { Cropper } from 'vue-advanced-cropper';
+  import 'vue-advanced-cropper/dist/style.css';
+  import { useModelWrapper } from "../../composables/modelWrapper";
+
   export default {
     name: 'NUpload',
-    emits: ['delete', 'change'],
-    components: { NIcon, NButton },
+    components: { NDialog, NIcon, NButton, Cropper },
     props: {
-      src: {
+      modelValue: {
         type: String
       }
     },
     setup(props, { emit }) {
-      const onChange = (e) => {
-        emit('change', e)
+
+      const image = useModelWrapper(props, emit)
+      const tempImage = ref(null)
+      const cropperRef = ref(null)
+
+      const deleteImage = () => {
+        image.value = null
+        tempImage.value = null
       }
-      const onDelete = () => {
-        emit('delete')
+
+      const uploadImage = (e) => {
+        const file = e.target.files[0]
+        const reader = new FileReader()
+        reader.addEventListener("load",  () => {
+          tempImage.value = reader.result
+        }, false)
+        reader.readAsDataURL(file)
       }
 
-      const { src } = toRefs(props)
+      const resizeImage = (e) => {
+        const { canvas } = cropperRef.value.getResult()
+        image.value = canvas.toDataURL()
+      }
 
-      // const refreshId = ref(0)
+      const open = ref(false)
+      const setIsOpen = (value) => {
+        open.value = value
+      }
 
-      // watch(() => src, (val) => {
-      //   refreshId.value += 1
-      // })
+      const save = () => {
+        setIsOpen(false)
+        resizeImage()
+      }
+
+      const abort = () => {
+        setIsOpen(false)
+        deleteImage()
+      }
 
       return {
-        onDelete,
-        onChange,
-        src
+        deleteImage,
+        image,
+        tempImage,
+        open,
+        setIsOpen,
+        save,
+        abort,
+        uploadImage,
+        resizeImage,
+        cropperRef
       }
     }
   }

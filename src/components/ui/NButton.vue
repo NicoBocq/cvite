@@ -68,14 +68,14 @@ export default {
       let style
       switch (small.value) {
         case false:
-          if (!label.value || !slots.default) {
+          if (!!label.value || !!slots.default) {
             style = 'px-4 py-2 text-base space-x-2'
           } else {
             style = 'p-2'
           }
           break
         case true:
-          if (!label.value || !slots.default) {
+          if (!!label.value || !!slots.default) {
             style = 'px-2.5 py-1.5 text-sm space-x-1'
           } else {
             style = 'p-1.5'

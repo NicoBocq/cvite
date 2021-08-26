@@ -5,7 +5,7 @@
       <n-input id="lastName" v-model="resume.lastName" placeholder="Last Name" />
       <n-input id="title" v-model="resume.title" placeholder="Un titre" />
       <n-input id="description" type="textarea" v-model="resume.summary" placeholder="En bref..." />
-      <n-upload @change="handleImage" @delete="clearState('avatar')" :src="resume.avatar" />
+      <n-upload v-model="resume.avatar" />
       <n-input id="email" v-model="resume.email" placeholder="Email" />
       <n-input id="phone" v-model="resume.phone" placeholder="Téléphone" />
       <n-input id="address" v-model="resume.address" placeholder="Adresse" />
@@ -24,16 +24,14 @@ import NBoxForm from "../ui/NBoxForm.vue";
 import NInput from "../ui/NInput.vue";
 import NUpload from "../ui/NUpload.vue";
 import FormList from "./FormList.vue";
-import { resume, handleImage, clearState } from "../../store";
+import { resume } from "../../store";
 
 export default {
   name: "ResumeForm",
   components: { FormList, NUpload, NInput, NBoxForm },
   setup() {
     return {
-      resume,
-      handleImage,
-      clearState
+      resume
     }
   }
 }

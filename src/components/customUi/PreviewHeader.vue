@@ -1,7 +1,7 @@
 <template>
   <div v-if="resumeKey === 'title'" class="flex justify-between">
     <div class="flex space-x-4 items-center">
-      <img v-if="!!resume.avatar" :src="resume.avatar" alt="" class="w-16 h-16 rounded-full">
+      <img v-if="!!resume.avatar" :src="resume.avatar" alt="" class="w-16 h-16">
       <div class="min-w-full">
         <div class="text-xl" v-if="resume.firstName || resume.lastName">
           {{ resume.firstName }} {{ resume.lastName }}

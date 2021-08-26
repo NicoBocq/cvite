@@ -30,7 +30,7 @@
             </n-button>
           </div>
         </div>
-        <div class="relative h-full mx-4 overflow-y-auto">
+        <div class="relative h-full mx-4 overflow-y-auto pb-6">
           <resume-form />
         </div>
       </div>

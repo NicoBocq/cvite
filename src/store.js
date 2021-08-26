@@ -129,22 +129,12 @@ const addNicoBocq = () => {
   Object.assign(state.resume, nicoBocq)
 }
 
-const handleImage = (e) => {
-  const file = e.target.files[0]
-  const reader = new FileReader()
-  reader.addEventListener("load",  () => {
-    state.resume.avatar = reader.result
-  }, false)
-  reader.readAsDataURL(file)
-}
-
 export {
   toggleSlide,
   resume,
   addItem,
   removeItem,
   clearState,
-  handleImage,
   model,
   addNicoBocq,
   isEmpty,

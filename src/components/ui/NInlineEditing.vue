@@ -19,8 +19,10 @@
           class="flex-1 focus:outline-none border-b-2 border-transparent focus:border-blue-400 focus:bg-blue-50 focus:border"
           ref="inputRef"
         />
-        <n-button icon="check" small theme="transparent" @click="save" :disabled="isBlank" />
-        <n-button icon="x" small theme="transparent" @click="close" />
+        <div class="flex items-center space-x-2">
+          <n-button icon="check" small theme="transparent" @click="save" />
+          <n-button icon="x" small theme="transparent" @click="close" />
+        </div>
       </div>
   </div>
 </template>
@@ -39,7 +41,6 @@ export default {
       type: String
     },
   },
-  emits: ['update:modelValue'],
   components: { NIcon, NButton, NInput },
   setup(props, { emit }) {
     const active = ref(false)

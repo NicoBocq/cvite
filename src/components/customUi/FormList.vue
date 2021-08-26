@@ -14,11 +14,17 @@
         <form-list-item :element="element" />
       </template>
     </draggable>
-    <n-button v-if="!active" @click="toggle" theme="transparent" icon="plus" small>
+    <n-button
+      v-if="!active"
+      @click="toggle"
+      theme="transparent"
+      icon="plus"
+      small
+    >
       Ajouter un nouvel élément
     </n-button>
-    <div v-show="active" class="space-y-4 px-6 py-4 rounded-lg ring ring-gray-200 ring-opacity-50 shadow-inner shadow grid grid-cols-2 gap-2" ref="refAdd">
-      <h3 class="font-bold text-gray-500 text-lg">
+    <div v-if="active" class="space-y-4 px-6 py-4 rounded-lg ring ring-gray-200 ring-opacity-50 shadow-inner shadow grid grid-cols-2 gap-2" ref="refAdd">
+      <h3 class="font-medium text-gray-500 text-lg">
         Ajouter un nouvel élément
       </h3>
       <n-input
@@ -73,12 +79,6 @@ export default {
     const toggle = () => {
       active.value = !active.value
     }
-
-    watch(() => active, (val) => {
-      if (val) {
-        refAdd.value.scrollIntoView({behavior: 'smooth'})
-      }
-    })
 
     watchEffect(() => {
       active.value = !resume[stateKey]?.length
