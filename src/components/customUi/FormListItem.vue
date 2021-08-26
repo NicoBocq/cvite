@@ -7,9 +7,9 @@
       </div>
       <n-button icon="trash-outline" theme="transparent" small @click="removeItem(element.id, stateKey)" />
     </div>
-    <div v-if="active" class="flex flex-col space-y-2 px-6" :ref="'add' + stateKey">
+    <div v-if="active" class="flex flex-col space-y-2 px-2 md:px-6" :ref="'add' + stateKey">
 <!--      <form-item :element="element" />-->
-      <div class="space-y-4 grid gap-2 grid-cols-2" ref="add">
+      <div class="space-y-4 md:grid md:gap-2 md:grid-cols-2" ref="add">
         <n-input
           v-for="item in model[stateKey].data"
           :key="stateKey + '-' + item.key + '-' + element.id"

@@ -42,7 +42,7 @@
 <script>
   import NButton from "./NButton.vue";
   import NIcon from "./NIcon.vue";
-  import {ref, watch, toRefs} from "vue"
+  import {ref, watch, toRefs, onMounted, watchEffect} from "vue"
   import NDialog from "./NDialog.vue";
   import { Cropper } from 'vue-advanced-cropper';
   import 'vue-advanced-cropper/dist/style.css';
@@ -95,6 +95,10 @@
         setIsOpen(false)
         deleteImage()
       }
+
+      watchEffect(() => {
+        if (!!image.value && !tempImage.value) tempImage.value = image.value
+      })
 
       return {
         deleteImage,
