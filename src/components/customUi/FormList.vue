@@ -23,8 +23,8 @@
     >
       Ajouter un nouvel élément
     </n-button>
-    <div v-if="active" class="space-y-4 px-2 md:px-6 py-4 rounded-lg ring ring-gray-200 ring-opacity-50 shadow-inner shadow md:grid md:grid-cols-2 md:gap-2" ref="refAdd">
-      <h3 class="font-medium text-gray-500 text-lg">
+    <div v-if="active" class="space-y-4 px-2 bg-gradient-to-b from-white via-white to-gray-100 md:px-6 py-4 rounded-lg shadow-inner shadow md:grid md:grid-cols-2 md:gap-2" ref="refAdd">
+      <h3 class="text-gray-600 text-md">
         Ajouter un nouvel élément
       </h3>
       <n-input

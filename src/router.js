@@ -4,7 +4,7 @@ import Edit from './components/pages/Edit.vue'
 import About from './components/pages/About.vue'
 const history = createWebHistory();
 const routes = [
-  { path: "/", name: 'Home', component: Home },
+  { path: "/", name: 'Home', component: Edit },
   { path: "/edit", name: 'Edit', component: Edit },
   { path: "/about", name: 'About', component: About }
 ];

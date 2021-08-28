@@ -1,6 +1,6 @@
 <template>
   <button
-    class="inline-flex items-center border border-transparent font-semibold justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+    class="inline-flex items-center border border-transparent font-semibold justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500"
     @click="onClick"
     @change="onChange"
     v-bind="$attrs"
@@ -52,10 +52,10 @@ export default {
       let style
       switch (theme.value) {
         case 'primary':
-          style = 'text-white bg-blue-600 hover:bg-blue-700 shadow-sm'
+          style = 'text-white bg-gradient-to-r from-brand-500 to-brand-600 hover:bg-brand-700 shadow-sm'
           break
         case 'secondary':
-          style = 'text-white bg-blue-300 hover:bg-blue-400 shadow-sm'
+          style = 'text-white bg-brand-300 hover:bg-brand-400 shadow-sm'
           break
         case 'transparent':
           style = 'text-gray-400 hover:text-gray-500'
