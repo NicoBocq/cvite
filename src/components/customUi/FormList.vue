@@ -23,7 +23,7 @@
     >
       Ajouter un nouvel élément
     </n-button>
-    <div v-if="active" class="space-y-4 px-2 bg-gradient-to-b from-white via-white to-gray-100 md:px-6 py-4 rounded-lg shadow-inner shadow md:grid md:grid-cols-2 md:gap-2" ref="refAdd">
+    <div v-if="active" class="space-y-4 px-4 bg-gradient-to-b from-white via-white to-gray-100 md:px-6 py-4 rounded-lg shadow-inner shadow md:grid md:grid-cols-2 md:gap-2" ref="refAdd">
       <h3 class="text-gray-600 text-md">
         Ajouter un nouvel élément
       </h3>
@@ -39,7 +39,7 @@
 <!--      <form-item />-->
       <div class="flex space-x-4 justify-end col-span-2">
         <n-button label="Fermer" small icon="x" @click="toggle" theme="transparent" />
-        <n-button label="Sauver" small icon="check" @click="saveItem(stateKey)" />
+        <n-button label="Sauver" small icon="check" @click="save(stateKey)" />
       </div>
     </div>
   </n-box-form>
@@ -80,6 +80,11 @@ export default {
       active.value = !active.value
     }
 
+    const save = (key) => {
+      saveItem(key)
+      refAdd.value.scrollIntoView({ behavior: 'smooth'})
+    }
+
     watchEffect(() => {
       active.value = !resume[stateKey]?.length
     })
@@ -94,7 +99,8 @@ export default {
       active,
       toggle,
       saveItem,
-      refAdd
+      refAdd,
+      save
     }
   }
 }

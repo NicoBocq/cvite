@@ -3,21 +3,21 @@
     <div class="flex space-x-4 items-center">
       <img v-if="!!resume.avatar" :src="resume.avatar" alt="" class="w-16 h-16">
       <div class="min-w-full">
-        <div class="text-xl" v-if="resume.firstName || resume.lastName">
+        <div class="text-pxl" v-if="resume.firstName || resume.lastName">
           {{ resume.firstName }} {{ resume.lastName }}
         </div>
         <n-placeholder v-else :items="2" />
-        <div v-if="resume.title" class="text-xl font-bold">
+        <div v-if="resume.title" class="text-pxl font-bold">
           {{ resume.title }}
         </div>
         <n-placeholder v-else />
-        <div class="text-gray-600 text-sm">
+        <div class="text-gray-600 text-psm">
           {{ resume.summary }}
         </div>
       </div>
     </div>
   </div>
-  <div v-else-if="resumeKey === 'contact'" class="text-xs space-y-1">
+  <div v-else-if="resumeKey === 'contact'" class="text-pxs space-y-1">
     <template v-if="resume.phone || resume.email || resume.address || resume.more">
     <div v-if="resume.phone">{{ resume.phone }}</div>
     <div v-if="resume.email">{{ resume.email }}</div>

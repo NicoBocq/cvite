@@ -6,6 +6,9 @@ const uiStore = reactive({
     { id: 1, label: 'Contenu' },
     { id: 2, label: 'Design' },
   ],
+  options: {
+    colorList: ['']
+  },
   theme: {
     color: null
   }

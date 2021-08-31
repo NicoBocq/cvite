@@ -114,6 +114,7 @@ export default function exportToPdf () {
     !!stateResume.hobbies ? hobbiesSection : null
   ]
   const dd = {
+    pageSize: 'A4',
     defaultStyle: {
       font: 'Inter'
     },

@@ -12,7 +12,7 @@
 <!--      <n-button icon="chevron-left" @click="goTo({ name: 'Home'})" />-->
 <!--    </div>-->
     <div class="flex-grow w-full max-w-7xl mx-auto xl:px-8 flex overflow-hidden">
-      <div class="w-1/2 hidden lg:flex items-center justify-center overflow-scroll">
+      <div class="w-1/2 hidden md:flex md:flex-col md:items-center md:justify-center overflow-scroll">
         <preview />
       </div>
       <div class="w-full lg:w-1/2 flex flex-col flex-1 px-2 md:px-4">
@@ -25,7 +25,7 @@
 <!--          <n-menu />-->
           <div class="space-x-2">
             <n-button @click="addNicoBocq" icon="plus" />
-            <n-button @click="setNewResume" icon="refresh" />
+            <n-button @click="setNewResume" icon="x" />
             <n-button icon="download" @click="exportToPdf">
               Télécharger
             </n-button>
@@ -45,14 +45,27 @@ import Preview from "../layout/Preview.vue";
 import NButton from "../ui/NButton.vue";
 import exportToPdf from '/src/composables/pdf'
 import goTo from "../../composables/helpers"
-import { addNicoBocq, clearState, setNewResume } from "../../store";
-import { onMounted } from "vue";
+import { addNicoBocq, clearState, setNewResume, resume } from "../../store";
+import {nextTick, onMounted, ref, watch} from "vue";
 import NMenu from "../ui/NMenu.vue";
+import html2canvas from 'html2canvas'
+
 
 export default {
   name: "Edit",
   components: {NMenu, NButton, Preview, ResumeForm},
   setup() {
+    const setViewHeight = () => {
+      let vh = window.innerHeight * 0.01
+      document.documentElement.style.setProperty('--vh', `${vh}px`)
+    }
+
+    onMounted(async () => {
+      setViewHeight()
+      window.addEventListener('resize', () => {
+        setViewHeight()
+      })
+    })
     return {
       exportToPdf,
       goTo,

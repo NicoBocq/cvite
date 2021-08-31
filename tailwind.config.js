@@ -9,6 +9,34 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    height: theme => ({
+      auto: 'auto',
+      ...theme('spacing'),
+      full: '100%',
+      screen: 'calc(var(--vh) * 100)',
+    }),
+    minHeight: theme => ({
+      '0': '0',
+      ...theme('spacing'),
+      full: '100%',
+      screen: 'calc(var(--vh) * 100)',
+    }),
+    fontSize: {
+      'pxs': ['6px', '8px'],
+      'psm': ['8px', '10px'],
+      'plg': ['9px', '11px'],
+      'pxl': ['12', '14px'],
+      'xs': '.75rem',
+      'sm': '.875rem',
+      'base': '1rem',
+      'lg': '1.125rem',
+      'xl': '1.25rem',
+      '2xl': '1.5rem',
+      '3xl': '1.875rem',
+      '4xl': '2.25rem',
+      '5xl': '3rem',
+      '6xl': '4rem'
+    },
     colors: {
       transparent: 'transparent',
       gray: colors.blueGray,

@@ -1,17 +1,17 @@
 <template>
   <div class="space-y-3">
-    <div class="font-bold text-base">
+    <div class="font-bold text-pbase">
       {{ model[resumeKey].title }}
     </div>
     <transition-group name="list" v-if="!isEmpty(resumeKey)">
-      <div v-for="item in resume[resumeKey]" :key="item.id" class="text-xs">
+      <div v-for="item in resume[resumeKey]" :key="item.id" class="text-pxs">
         <template v-if="resumeKey === 'experience'">
-          <div class="text-gray-800 text-sm font-bold">{{ item.title }}, {{ item.company }}</div>
+          <div class="text-gray-800 text-psm font-bold">{{ item.title }}, {{ item.company }}</div>
           <div class="text-gray-500">{{ item.year }}</div>
           <div class="text-gray-500 whitespace-pre-line">{{ item.description }}</div>
         </template>
         <template v-else-if="resumeKey === 'education'">
-          <div class="text-gray-800 text-sm font-bold">{{ item.degree }}, {{ item.school }}</div>
+          <div class="text-gray-800 text-psm font-bold">{{ item.degree }}, {{ item.school }}</div>
           <div class="text-gray-500">{{ item.beginDate }} / {{ item.endDate }}</div>
           <div class="text-gray-500 whitespace-pre-line">{{ item.description }}</div>
         </template>
