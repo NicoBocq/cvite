@@ -59,6 +59,9 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+      },
+      gridAutoRows: {
+        '25/75': '25% 75%',
       }
     },
   },
