@@ -1,7 +1,7 @@
 <template>
 <div class="relative">
   <div
-    class="shadow-xl select-none cursor-move row-auto flex-shrink-0 grid grid-cols-3 bg-white relative"
+    class="shadow-xl select-none cursor-move auto-rows-25/75 flex-shrink-0 grid grid-cols-3 bg-white relative"
     style="width: 529px; min-height: 748px;"
     ref="preview"
   >

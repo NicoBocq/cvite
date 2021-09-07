@@ -16,7 +16,7 @@
         <preview />
       </div>
       <div class="w-full lg:w-1/2 flex flex-col flex-1 px-2 md:px-4">
-        <div class="h-16 flex items-center justify-between border-b border-gray-200">
+        <div class="h-16 flex items-center justify-between border-b border-gray-200 overflow-hidden">
           <div class="flex space-x-4">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Contenu</a>
@@ -48,8 +48,6 @@ import goTo from "../../composables/helpers"
 import { addNicoBocq, clearState, setNewResume, resume } from "../../store";
 import {nextTick, onMounted, ref, watch} from "vue";
 import NMenu from "../ui/NMenu.vue";
-import html2canvas from 'html2canvas'
-
 
 export default {
   name: "Edit",

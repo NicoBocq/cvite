@@ -10,6 +10,7 @@
   "dependencies": {
     "@headlessui/vue": "^1.2.0",
     "@heroicons/vue": "^1.0.1",
+    "@vueuse/core": "^6.1.0",
     "pdfmake": "^0.1.71",
     "vue": "^3.0.5",
     "vue-advanced-cropper": "^2.6.3",
