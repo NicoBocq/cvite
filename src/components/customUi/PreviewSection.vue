@@ -11,8 +11,8 @@
           <div class="text-gray-500 whitespace-pre-line">{{ item.description }}</div>
         </template>
         <template v-else-if="resumeKey === 'education'">
-          <div class="text-gray-800 text-psm font-bold">{{ item.degree }}, {{ item.school }}</div>
-          <div class="text-gray-500">{{ item.beginDate }} / {{ item.endDate }}</div>
+          <div class="text-gray-800 text-psm font-bold">{{ item.degree }}</div>
+          <div class="text-gray-500">{{ item.beginDate }} / {{ item.endDate }} - {{ item.school }}</div>
           <div class="text-gray-500 whitespace-pre-line">{{ item.description }}</div>
         </template>
         <template v-else-if="resumeKey === 'skill'">
@@ -23,15 +23,25 @@
             {{ item.label }}
           </a>
         </template>
+        <template v-else-if="resumeKey === 'hobby'">
+          {{ item }}
+        </template>
       </div>
     </transition-group>
     <div v-else class="space-y-4">
-      <div class="space-y-1">
+      <div v-if="resumeKey === 'link' || resumeKey === 'skill'" class="space-y-1">
         <div class="w-full h-2 bg-gray-200 rounded-md" />
         <div class="w-full h-2 bg-gray-200 rounded-md" />
         <div class="w-1/3 h-2 bg-gray-200 rounded-md" />
       </div>
-      <div class="space-y-1" v-if="resumeKey === 'experience'  || resumeKey === 'education'">
+      <div class="space-y-3" v-if="resumeKey === 'experience'">
+        <div v-for="n in 5" :key="'experience-' + n" class="space-y-1">
+          <div class="w-2/3 h-2 bg-gray-200 rounded-md" />
+          <div class="w-full h-2 bg-gray-200 rounded-md" />
+          <div class="w-1/3 h-2 bg-gray-200 rounded-md" />
+        </div>
+      </div>
+      <div class="space-y-1" v-if="resumeKey === 'education'">
         <div class="w-full h-2 bg-gray-200 rounded-md" />
         <div class="w-full h-2 bg-gray-200 rounded-md" />
         <div class="w-1/3 h-2 bg-gray-200 rounded-md" />
@@ -42,7 +52,7 @@
 
 <script>
 import {computed, toRefs} from "vue";
-import { resume, model, isEmpty } from '/src/store'
+import { model, resume, isEmpty } from '@/modules/resumeStore.js'
 
 export default {
   name: "PreviewSection",

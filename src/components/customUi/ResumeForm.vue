@@ -15,7 +15,10 @@
     <form-list state-key="education" title-key="degree" />
     <form-list state-key="link" />
     <form-list state-key="skill" />
-<!--    <context-form-list-item state-key="hobby" />-->
+    <n-box-form>
+      <n-inline-editing class="text-xl font-bold" v-model="model.hobby.title" />
+      <n-input id="hobby" type="textarea" v-model="resume.hobby" placeholder="Passions..." />
+    </n-box-form>
   </div>
 </template>
 
@@ -24,14 +27,16 @@ import NBoxForm from "../ui/NBoxForm.vue";
 import NInput from "../ui/NInput.vue";
 import NUpload from "../ui/NUpload.vue";
 import FormList from "./FormList.vue";
-import { resume } from "../../store";
+import { resume, model } from '@/modules/resumeStore.js'
+import NInlineEditing from "../ui/NInlineEditing.vue";
 
 export default {
   name: "ResumeForm",
-  components: { FormList, NUpload, NInput, NBoxForm },
+  components: {NInlineEditing, FormList, NUpload, NInput, NBoxForm },
   setup() {
     return {
-      resume
+      resume,
+      model
     }
   }
 }

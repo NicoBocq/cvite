@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { resume, model } from "../../store.js";
+import { model, resume } from '@/modules/resumeStore.js'
 import {toRefs, inject, watch, onMounted, ref, watchEffect, reactive, computed} from "vue";
 import NInput from "../ui/NInput.vue";
 import {useModelWrapper} from "../../composables/modelWrapper";

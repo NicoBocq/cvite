@@ -7,7 +7,7 @@
     <n-icon v-else icon="user-circle-outline" size="h-16 w-16" type="outline" color="text-gray-300" />
     <div class="flex space-x-2">
       <n-button @click="setIsOpen(true)" icon="upload" small :label="!!image ? 'Modifier' : 'Ajouter'"  />
-      <n-button icon="trash-outline" small @click="deleteImage" theme="transparent" />
+      <n-button v-if="!!image" icon="trash-outline" small @click="deleteImage" theme="transparent" />
     </div>
   </div>
   <n-dialog v-model:open="open">

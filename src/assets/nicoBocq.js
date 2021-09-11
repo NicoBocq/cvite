@@ -38,7 +38,7 @@ export const nicoBocq = {
     {
       id: 2,
       year: '2020',
-      title: 'Développeur Front-End, Marseille',
+      title: 'Développeur Front-End',
       company: 'Internethic',
       description: 'Développement d\'une app BtoB : conception UX/UI (Figma), développement de composants custom et de leurs store (Vuejs, Tailwind, Storybook).'
     },
@@ -93,36 +93,18 @@ export const nicoBocq = {
       school: 'Université des Pays du Vaucluse',
       degree: 'MST Communication : conception multimédias',
       city: 'Avignon',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
-    },
-    {
-      id: 2,
-      beginDate: '1999',
-      endDate: '2001',
-      school: 'Université des Pays du Vaucluse',
-      degree: 'MST Communication : conception multimédias',
-      city: 'Avignon',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
-    },
-    {
-      id: 3,
-      beginDate: '1999',
-      endDate: '2001',
-      school: 'Université des Pays du Vaucluse',
-      degree: 'MST Communication : conception multimédias',
-      city: 'Avignon',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
+      description: null
     }
   ],
   skill: [
     { id: 1, label: 'Javascript (ES6)'},
     { id: 2, label: 'Vuejs (Vue3, Vuex)' },
-    { id: 4, label: 'Tailwind, Headless UI, Vuetify, Quasar' },
+    { id: 4, label: 'UI : Tailwind, Headless UI, Vuetify, Quasar' },
     { id: 8, label: 'Datavisualisation : D3, OpenLayers' },
     { id: 3, label: 'Figma, Adobe XD' },
     { id: 5, label: 'Storybook, Bit' },
     { id: 6, label: 'Tests unitaires et fonctionnels' },
     { id: 7, label: 'Git' }
   ],
-  hobbies: 'Histoire, sports (course à pied, football et basket)'
+  hobby: 'Histoire, sports (course à pied, football)'
 }

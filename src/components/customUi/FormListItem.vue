@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { resume, model, removeItem } from "../../store.js";
+import { model, resume, removeItem } from '@/modules/resumeStore.js'
 import {ref, toRefs, inject} from "vue";
 import NDisclosure from "../ui/NDisclosure.vue";
 import NInput from "../ui/NInput.vue";

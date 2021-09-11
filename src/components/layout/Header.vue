@@ -33,7 +33,6 @@
 </template>
 
 <script>
-import { toggleSlide } from '/src/store'
 import NDropdown from "../ui/NDropdown.vue";
 import NButton from "../ui/NButton.vue";
 import { useRouter } from "vue-router";
@@ -44,9 +43,6 @@ export default {
     NDropdown
   },
   setup() {
-    return {
-      toggleSlide
-    }
   }
 }
 </script>

@@ -1,5 +1,5 @@
 import {computed, reactive, ref} from 'vue'
-import { nicoBocq } from "./assets/nicoBocq"
+import { nicoBocq } from "../assets/nicoBocq"
 
 const initialResume = {
     firstName: null,
@@ -15,7 +15,7 @@ const initialResume = {
     experience: [],
     education: [],
     skill: [],
-    hobbies: null
+    hobby: null
 }
 
 const state = reactive({

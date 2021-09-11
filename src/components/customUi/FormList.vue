@@ -50,7 +50,8 @@ import NDisclosure from "../ui/NDisclosure.vue";
 import NButton from "../ui/NButton.vue";
 import NIcon from "../ui/NIcon.vue";
 import NInput from "../ui/NInput.vue";
-import { addItem, resume, model, removeItem, saveItem } from "../../store.js";
+import { addItem, resume, model, removeItem, saveItem }  from '@/modules/resumeStore.js'
+
 import NBoxForm from "../ui/NBoxForm.vue";
 import NInlineEditing from "../ui/NInlineEditing.vue";
 import { onMounted, ref, toRefs, watch, watchEffect, provide} from "vue";

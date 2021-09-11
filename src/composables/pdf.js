@@ -1,6 +1,7 @@
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from '/src/assets/customVfs.js'
-import { resume, model } from '/src/store'
+import { resume, model } from '@/modules/resumeStore.js'
+
 
 const themeColor = '#1F2937'
 
@@ -99,7 +100,7 @@ export default function exportToPdf () {
   ]
   const hobbiesSection = [
     { text: stateModel.hobby.title, style: 'sectionTitle'},
-    { text: stateResume.hobbies, style: 'list' },
+    { text: stateResume.hobby, style: 'list' },
   ]
   const headerSide = [
     infosSection
