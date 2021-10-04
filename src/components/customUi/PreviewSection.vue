@@ -1,6 +1,6 @@
 <template>
   <div class="space-y-3">
-    <div class="font-bold text-pbase">
+    <div class="font-bold text-plg">
       {{ model[resumeKey].title }}
     </div>
     <transition-group name="list" v-if="!isEmpty(resumeKey)">
