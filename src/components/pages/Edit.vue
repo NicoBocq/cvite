@@ -16,16 +16,18 @@
         <preview />
       </div>
       <div class="w-full lg:w-1/2 flex flex-col flex-1 px-2 md:px-4">
-        <div class="h-16 flex items-center justify-between border-b border-gray-200 overflow-hidden">
-          <div class="flex space-x-4">
+        <div class="h-16 w-full flex items-center justify-between border-b border-gray-200">
+<!--          <div class="flex space-x-4">-->
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
 <!--            <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Contenu</a>-->
 <!--            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Design</a>-->
-          </div>
+<!--          </div>-->
 <!--          <n-menu />-->
-          <div class="space-x-2">
-            <n-button @click="addNicoBocq" icon="plus" />
-            <n-button @click="setNewResume" icon="x" />
+          <div class="flex space-x-2 w-full justify-between">
+            <div class="space-x-2">
+              <n-button @click="addNicoBocq" icon="fire" />
+              <n-button @click="setNewResume" icon="x" />
+            </div>
             <n-button icon="download" @click="exportToPdf">
               Télécharger
             </n-button>

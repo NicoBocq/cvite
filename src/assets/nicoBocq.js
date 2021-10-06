@@ -28,7 +28,8 @@ export const nicoBocq = {
   experience: [
     // {
     //   id: 1,
-    //   year: '2021',
+    //   beginDate: '2021',
+    //   endDate: '',
     //   title: 'Front End Lead',
     //   company: 'Oparédo',
     //   description: 'Développement d\'une librairie de composants (Vue, Tailwind, Storybook).\n' +
@@ -37,7 +38,8 @@ export const nicoBocq = {
     // },
     {
       id: 2,
-      year: '2020',
+      beginDate: '2020',
+      endDate: '',
       title: 'Développeur Front-End',
       company: 'Internethic',
       description: 'Développement d\'une app BtoB : \n' +
@@ -47,7 +49,8 @@ export const nicoBocq = {
     },
     {
       id: 3,
-      year: '2019 - 2020',
+      beginDate: '2019',
+      endDate: '2020',
       title: 'Développeur Front-End',
       company: 'Novazéo',
       description: 'Intégration et développement sur Django CMS / Symfony (VueJs, OpenLayers).' +
@@ -55,35 +58,40 @@ export const nicoBocq = {
     },
     {
       id: 4,
-      year: '2016 - 2018',
+      beginDate: '2016',
+      endDate: '2018',
       title: 'Journaliste web',
       company: 'La Provence',
       description: 'Rédaction, production de modules éditoriaux (Data journalisme, infographies).'
     },
     {
       id: 5,
-      year: '2011 - 2015',
+      beginDate: '2011',
+      endDate: '2015',
       title: 'Chef de Projet numérique',
       company: 'La Provence',
       description: 'En charge de projets numériques : web, mobiles, applications, réseaux sociaux...'
     },
     {
       id: 6,
-      year: '2007 - 2010',
+      beginDate: '2007',
+      endDate: '2010',
       title: 'Webmaster',
       company: 'La Provence',
       description: 'Développement et intégration, accompagnement de la rédaction au numérique.'
     },
     {
       id: 7,
-      year: '2005 - 2007',
+      beginDate: '2005',
+      endDate: '2007',
       title: 'Frontend developer',
       company: '3SC Global Services',
       description: 'HTML, CSS, JS'
     },
     {
       id: 8,
-      year: '2001 - 2004',
+      beginDate: '2001',
+      endDate: '2004',
       title: 'Développeur fullstack',
       company: 'Freelance',
       description: 'Création de sites web : graphisme, développement et intégration'
@@ -93,7 +101,7 @@ export const nicoBocq = {
     {
       id: 1,
       beginDate: '2019',
-      endDate: '2019',
+      endDate: '',
       school: 'Le Wagon',
       degree: 'Développeur Fullstack',
       city: 'Marseille',

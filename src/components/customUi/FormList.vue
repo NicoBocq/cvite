@@ -14,19 +14,24 @@
         <form-list-item :element="element" />
       </template>
     </draggable>
-    <n-button
-      v-if="!active"
-      @click="toggle"
-      theme="secondary"
-      icon="plus"
-      small
-    >
-      Ajouter un nouvel élément
-    </n-button>
-    <div v-if="active" class="space-y-4 px-4 bg-gradient-to-b from-white via-white to-gray-100 md:px-6 py-4 rounded-lg shadow-inner shadow md:grid md:grid-cols-2 md:gap-2" ref="refAdd">
-      <h3 class="text-gray-400 font-medium cursor-pointer" @click="toggle">
+    <transition name="fade-shrink" mode="out-in">
+      <n-button
+        v-if="!active"
+        key="add-close"
+        @click="toggle"
+        theme="secondary"
+        icon="plus"
+        small
+      >
         Ajouter un nouvel élément
-      </h3>
+      </n-button>
+      <div v-else key="add-open" class="space-y-4 px-4 bg-gradient-to-b from-white via-white to-gray-100 md:px-6 py-4 rounded-lg shadow-inner shadow md:grid md:grid-cols-2 md:gap-2" ref="refAdd">
+      <div class="flex space-x-2 items-center">
+        <n-icon icon="plus" small />
+        <h3 class="text-sm font-semibold cursor-pointer" @click="toggle">
+          Ajouter un nouvel élément
+        </h3>
+      </div>
       <n-input
         v-for="item in model[stateKey].data"
         :key="stateKey + '-' + item.key + '-new'"
@@ -42,6 +47,7 @@
         <n-button label="Sauver" small icon="check" @click="save(stateKey)" />
       </div>
     </div>
+    </transition>
   </n-box-form>
 </template>
 <script>

@@ -7,12 +7,12 @@
       <div v-for="item in resume[resumeKey]" :key="item.id" class="text-pxs">
         <template v-if="resumeKey === 'experience'">
           <div class="text-gray-800 text-psm font-bold">{{ item.title }}, {{ item.company }}</div>
-          <div class="text-gray-500">{{ item.year }}</div>
+          <div class="text-gray-500">{{ item.beginDate }}<span v-if="!!item.endDate"> - {{ item.endDate}}</span></div>
           <div class="text-gray-500 whitespace-pre-line">{{ item.description }}</div>
         </template>
         <template v-else-if="resumeKey === 'education'">
           <div class="text-gray-800 text-psm font-bold">{{ item.degree }}</div>
-          <div class="text-gray-500">{{ item.beginDate }} / {{ item.endDate }} - {{ item.school }}</div>
+          <div class="text-gray-500">{{ item.beginDate }}<span v-if="!!item.endDate"> / {{ item.endDate }}</span> {{ item.school }} ({{ item.city }})</div>
           <div class="text-gray-500 whitespace-pre-line">{{ item.description }}</div>
         </template>
         <template v-else-if="resumeKey === 'skill'">

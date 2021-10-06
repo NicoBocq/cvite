@@ -25,8 +25,11 @@ export default function exportToPdf () {
       {
         stack: [
           {text: i.title, style: 'listItemHeader'},
-          {text: i.year.toUpperCase() + ' / ' + i.company.toUpperCase(), style: 'listItemSubHeader'},
-          {text: i.description, style: 'listItemDesc' }
+          {
+            text: `${i.beginDate} ${i.endDate && `- ${i.endDate}`} / ${i.company.toUpperCase()}`,
+            style: 'listItemSubHeader'
+          },
+          { text: i.description, style: 'listItemDesc' }
         ], style: 'listItem'
       })
     return r
@@ -35,8 +38,10 @@ export default function exportToPdf () {
     r.push(
       { stack: [
           { text: i.degree, style: 'listItemHeader' },
-          { text: i.beginDate + ' - ' + i.endDate + ' / ' + i.school + ' - ' + i.city, style: 'listItemSubHeader'},
-          { text: i.school + ' - ' + i.city, style: 'listItemSubHeader'},
+          {
+            text: `${i.beginDate} ${ i.endDate && `- ${i.endDate}`} / ${i.school} (${i.city})`,
+            style: 'listItemSubHeader'
+          },
           { text: i.description, style: 'listItemDesc' }
         ], style: 'listItem'
       })

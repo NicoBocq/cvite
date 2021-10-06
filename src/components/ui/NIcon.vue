@@ -8,16 +8,20 @@ import {
   ChevronLeftIcon as ChevronLeftIconSolid,
   ChevronRightIcon as ChevronRightIconSolid,
   DownloadIcon as DownloadIconSolid,
+  FireIcon as FireIconSolid,
   PencilIcon as PencilIconSolid,
   PlusIcon as PlusIconSolid,
+  QuestionMarkCircleIcon as QuestionMarkCircleIconSolid,
   RefreshIcon as RefreshIconSolid,
   SelectorIcon as SelectorIconSolid,
+  StarIcon as StarIconSolid,
   SwitchVerticalIcon as SwitchVerticalIconSolid,
   TrashIcon as TrashIconSolid,
   UploadIcon as UploadIconSolid,
   XIcon as XIconSolid
 } from '@heroicons/vue/solid'
 import {
+  QuestionMarkCircleIcon as QuestionMarkCircleIconOutline,
   UserCircleIcon as UserCircleIconOutline,
   TrashIcon as TrashIconOutline
 } from '@heroicons/vue/outline'
@@ -29,12 +33,16 @@ export default {
     ChevronLeftIconSolid,
     ChevronRightIconSolid,
     DownloadIconSolid,
+    FireIconSolid,
     PencilIconSolid,
     PlusIconSolid,
+    QuestionMarkCircleIconSolid,
+    QuestionMarkCircleIconOutline,
     RefreshIconSolid,
     TrashIconOutline,
     TrashIconSolid,
     SelectorIconSolid,
+    StarIconSolid,
     SwitchVerticalIconSolid,
     UserCircleIconOutline,
     UploadIconSolid,

@@ -43,3 +43,24 @@
 .fade-leave-to {
     opacity: 0;
 }
+
+.fade-shrink-enter-active {
+    transition: all .3s ease-out;
+}
+
+.fade-shrink-enter,
+.fade-shrink-enter-from,
+.fade-shrink-leave-to {
+    opacity: 0;
+    transform: translateY(0) scale(.95);
+}
+
+.fade-shrink-leave-from,
+.fade-shrink-enter-to {
+    opacity: 100;
+    transform: translateY(0) scale(1);
+}
+
+.fade-shrink-leave-active {
+    transition: all .2s ease-in;
+}
