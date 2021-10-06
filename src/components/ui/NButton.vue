@@ -49,19 +49,12 @@ export default {
     }
 
     const themeStyle = computed(() => {
-      let style
-      switch (theme.value) {
-        case 'primary':
-          style = 'text-white bg-gradient-to-r from-brand-500 to-brand-600 hover:bg-brand-700 shadow-sm'
-          break
-        case 'secondary':
-          style = 'text-brand-500 hover:text-brand-600 hover:bg-brand-50'
-          break
-        case 'transparent':
-          style = 'text-gray-400 hover:text-gray-500 hover:bg-gray-50'
-          break
+      const mappedClasses = {
+        primary: 'text-white bg-gradient-to-r from-brand-500 to-brand-600 hover:bg-brand-700 shadow-sm',
+        secondary: 'text-brand-500 hover:text-brand-600 hover:bg-brand-50',
+        transparent: 'text-gray-400 hover:text-gray-500 hover:bg-gray-50'
       }
-      return style
+      return mappedClasses[theme.value]
     })
 
     const styleSize = computed(() => {

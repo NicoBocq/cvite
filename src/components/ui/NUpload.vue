@@ -4,7 +4,7 @@
   </label>
   <div class="mt-1 flex items-center space-x-2">
     <img v-if="!!image" class="inline-block h-16 w-16 shadow-sm" :src="image" alt="" />
-    <n-icon v-else icon="user-circle-outline" size="h-16 w-16" type="outline" color="text-gray-300" />
+    <n-icon v-else icon="user-circle-outline" size="h-12 w-12" color="text-gray-300" />
     <div class="flex space-x-2">
       <n-button @click="setIsOpen(true)" icon="upload" small :label="!!image ? 'Modifier' : 'Ajouter'"  />
       <n-button v-if="!!image" icon="trash-outline" small @click="deleteImage" theme="transparent" />
@@ -33,8 +33,8 @@
       />
     </template>
     <template #footer>
-      <n-button label="Sauvegarder" icon="check" small @click="save" />
       <n-button label="Annuler" theme="transparent" icon="x" small @click="abort" />
+      <n-button label="Sauvegarder" icon="check" small @click="save" />
     </template>
   </n-dialog>
 </template>

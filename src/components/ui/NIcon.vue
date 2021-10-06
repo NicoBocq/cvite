@@ -48,17 +48,16 @@ export default {
       type: Boolean,
       default: false
     },
-    type: {
-      type: String,
-      default: 'solid'
-    },
     color: {
       type: String,
       default: ''
+    },
+    size: {
+      type: String
     }
   },
   setup(props) {
-    const { icon, color, type, small } = toRefs(props)
+    const { icon, color, small, size } = toRefs(props)
     const processedIcon = computed(() => {
       const type = icon.value.includes('-outline') ? 'outline' : 'solid'
       const iconValue = icon.value.includes('-outline') ? icon.value.replace('-outline', '') : icon.value
@@ -66,7 +65,9 @@ export default {
     })
 
     const sizeStyle = computed(() => {
-      return small.value ? 'h-4 w-4' : 'h-5 w-5'
+      return small.value ? 'h-4 w-4'
+        : size.value ? size.value
+          : 'h-5 w-5'
     })
 
     return {

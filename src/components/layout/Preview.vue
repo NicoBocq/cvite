@@ -18,8 +18,8 @@
     <div class="text-white row-span-4 bg-gray-800 p-4 space-y-4">
     <preview-section resume-key="link" />
     <preview-section resume-key="skill" />
-    <div v-if="resume.hobby">
-      <div class="font-bold text-pbase">
+    <div v-if="resume.hobby" class="space-y-2">
+      <div class="font-bold text-plg">
         {{ model.hobby.title }}
       </div>
       <div v-if="resume.hobby" class="text-pxs">
