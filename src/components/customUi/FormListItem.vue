@@ -3,30 +3,35 @@
     <div class="flex justify-between space-x-4">
       <div class="flex items-center space-x-2 min-w-0">
         <n-icon v-if="resume[stateKey].length > 1" color="text-gray-200" icon="selector" class="handle cursor-move hover:text-gray-800" />
-        <span @click="toggle" class="cursor-pointer truncate">{{ element[titleKey] ? element[titleKey] : '[Provisoire]' }}</span>
+        <span @click="toggle" class="cursor-pointer truncate hover:text-gray-500">
+          {{ element[titleKey] ? element[titleKey] : '[Provisoire]' }}
+        </span>
       </div>
       <n-button icon="trash-outline" theme="transparent" small @click="removeItem(element.id, stateKey)" />
     </div>
-    <div v-if="active" class="flex flex-col space-y-2 px-4 md:px-6" :ref="'add' + stateKey">
-<!--      <form-item :element="element" />-->
-      <div class="space-y-4 md:grid md:gap-2 md:grid-cols-2" ref="add">
-        <n-input
-          v-for="item in model[stateKey].data"
-          :key="stateKey + '-' + item.key + '-' + element.id"
-          :id="stateKey + '-' + item.key + '-' + element.id"
-          :type="item.type"
-          v-model="element[item.key]"
-          :class="item.short ? '' : 'col-span-2'"
-          :placeholder="item.placeholder"
-        />
+    <transition name="fade-shrink" tag="div">
+      <div v-if="active" class="flex flex-col space-y-2 px-4 md:px-6" :ref="'add' + stateKey">
+        <div class="space-y-4 md:grid md:gap-2 md:grid-cols-2" ref="add">
+          <component
+            :is="isComponent(item.component)"
+            v-for="item in model[stateKey].data"
+            :key="stateKey + '-' + item.key + '-' + element.id"
+            :id="stateKey + '-' + item.key + '-' + element.id"
+            :type="item.type"
+            v-model="element[item.key]"
+            :class="item.short ? '' : 'col-span-2'"
+            :placeholder="item.placeholder"
+            :required="isRequired(item)"
+          />
+        </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
 <script>
 import { model, resume, removeItem } from '@/modules/resumeStore.js'
-import {ref, toRefs, inject} from "vue";
+import {ref, toRefs, inject, computed} from "vue";
 import NDisclosure from "../ui/NDisclosure.vue";
 import NInput from "../ui/NInput.vue";
 import NButton from "../ui/NButton.vue";
@@ -50,6 +55,14 @@ export default {
     const toggle = () => {
       active.value = !active.value
     }
+    const isComponent = (type) => {
+      return 'n-' + type
+    }
+
+    const isRequired = (item) => {
+      if (!item.rules) return
+      return item.rules.includes('required')
+    }
 
     return {
       active,
@@ -59,7 +72,9 @@ export default {
       stateKey,
       element,
       toggle,
-      titleKey
+      titleKey,
+      isComponent,
+      isRequired
     }
   }
 }

@@ -24,45 +24,45 @@ const state = reactive({
       title: 'Éducation',
       new: {},
       data: [
-        { key: 'degree', type: 'text', placeholder: 'Diplôme' },
-        { key: 'beginDate', type: 'text', placeholder: 'Année de début', short: true },
-        { key: 'endDate', type: 'text', placeholder: 'Année de fin', short: true },
-        { key: 'school', type: 'text', placeholder: 'École' },
-        { key: 'city', type: 'text', placeholder: ' Ville' },
-        { key: 'description', type: 'textarea', placeholder: 'Description' },
+        { component: 'input', key: 'degree', type: 'text', placeholder: 'Diplôme', rules: ['required'] },
+        { component: 'input', key: 'beginDate', type: 'text', placeholder: 'Année de début', short: true, rules: ['required'] },
+        { component: 'input', key: 'endDate', type: 'text', placeholder: 'Année de fin', short: true },
+        { component: 'input', key: 'school', type: 'text', placeholder: 'École', rules: ['required'] },
+        { component: 'input', key: 'city', type: 'text', placeholder: ' Ville' },
+        { component: 'input', key: 'description', type: 'textarea', placeholder: 'Description' },
       ]
     },
     experience: {
       title: 'Expériences',
       new: {},
       data: [
-        { key: 'title', type: 'text', placeholder: 'Poste' },
-        { key: 'beginDate', type: 'text', placeholder: 'Année de début', short: true },
-        { key: 'endDate', type: 'text', placeholder: 'Année de fin', short: true },
-        { key: 'company', type: 'text', placeholder: 'Société' },
-        { key: 'description', type: 'textarea', placeholder: 'Description' },
+        { component: 'input', key: 'title', type: 'text', placeholder: 'Poste', rules: ['required'] },
+        { component: 'input', key: 'beginDate', type: 'text', placeholder: 'Année de début', short: true, rules: ['required'] },
+        { component: 'input', key: 'endDate', type: 'text', placeholder: 'Année de fin', short: true },
+        { component: 'input', key: 'company', type: 'text', placeholder: 'Société', rules: ['required'] },
+        { component: 'input', key: 'description', type: 'textarea', placeholder: 'Description' },
       ]
     },
     link: {
       title: 'Liens',
       new: {},
       data: [
-        { key: 'label', type: 'text', placeholder: 'Titre' },
-        { key: 'url', type: 'text', placeholder: 'URL' }
+        { component: 'input', key: 'label', type: 'text', placeholder: 'Titre', rules: ['required'] },
+        { component: 'input', key: 'url', type: 'text', placeholder: 'URL', rules: ['required'] }
       ]
     },
     skill: {
       title: 'Compétences',
       new: {},
       data: [
-        { key: 'label', type: 'text', placeholder: 'Compétence' }
+        { component: 'input', key: 'label', type: 'text', placeholder: 'Compétence', rules: ['required'] }
       ]
     },
     hobby: {
       title: 'Passions',
       new: {},
       data: [
-        { key: 'label', type: 'textarea', placeholder: 'Passions' }
+        { component: 'input', key: 'label', type: 'textarea', placeholder: 'Passions' }
       ]
     }
   },
