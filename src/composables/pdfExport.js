@@ -1,6 +1,7 @@
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from '/src/assets/customVfs.js'
 import { resume, model } from '@/modules/resumeStore.js'
+import { readonly } from 'vue'
 
 
 const themeColor = '#1F2937'
@@ -18,8 +19,8 @@ export default function exportToPdf () {
     }
   }
 
-  const stateResume = resume.value
-  const stateModel = model.value
+  const stateResume = readonly(resume.value)
+  const stateModel = readonly(model.value)
   const experienceList = stateResume.experience.reduce((r, i) => {
     r.push(
       {

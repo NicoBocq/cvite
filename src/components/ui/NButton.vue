@@ -1,10 +1,10 @@
 <template>
   <button
-    class="inline-flex items-center border border-transparent font-semibold justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500"
+    class="inline-flex items-center border border-transparent font-semibold justify-center rounded-full"
     @click="onClick"
     @change="onChange"
     v-bind="$attrs"
-    :class="[themeStyle, styleSize]"
+    :class="[themeStyle, sizeStyle, rootStyle]"
   >
     <n-icon v-if="!!icon" :icon="icon" :small="small" />
     <span v-if="!!$slots.default || !!label">
@@ -57,25 +57,18 @@ export default {
       return mappedClasses[theme.value]
     })
 
-    const styleSize = computed(() => {
-      let style
-      switch (small.value) {
-        case false:
-          if (!!label.value || !!slots.default) {
-            style = 'px-4 py-2 text-base space-x-2'
-          } else {
-            style = 'p-2'
-          }
-          break
-        case true:
-          if (!!label.value || !!slots.default) {
-            style = 'px-2.5 py-1.5 text-sm space-x-1'
-          } else {
-            style = 'p-1.5'
-          }
-          break
+    const rootStyle = computed(() => {
+      return [
+        disabled.value ? 'cursor-default opacity-50' : 'cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500'
+      ]
+    })
+
+    const sizeStyle = computed(() => {
+      const mappedClasses = {
+        false: !!label.value || !!slots.default ? 'px-4 py-2 text-base space-x-2' : 'p-2',
+        true: !!label.value || !!slots.default ? 'px-2.5 py-1.5 text-sm space-x-1' : 'p-1.5',
       }
-      return style
+      return mappedClasses[small.value]
     })
 
     const onChange = (e) => {
@@ -85,7 +78,8 @@ export default {
       onClick,
       onChange,
       themeStyle,
-      styleSize
+      sizeStyle,
+      rootStyle
     }
   }
 }
