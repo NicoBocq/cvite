@@ -12,7 +12,7 @@
     "@heroicons/vue": "^1.0.1",
     "@vueuse/core": "^6.1.0",
     "pdfmake": "^0.1.71",
-    "vue": "^3.0.5",
+    "vue": "3.2.19",
     "vue-advanced-cropper": "^2.6.3",
     "vue-router": "^4.0.6",
     "vuedraggable": "^4.0.3"
