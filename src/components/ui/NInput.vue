@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="relative">
     <label :for="id" class="sr-only">{{ label }}</label>
     <input
       v-if="type !== 'textarea'"
@@ -17,12 +17,16 @@
       :value="modelValue"
       @input="onInput"
       :type="type"
+      rows="6"
       :name="id"
       :id="id"
       v-bind="$attrs"
       :class="rootClasses"
       :placeholder="placeholder"
     />
+    <div v-if="required" :class="isEmpty ? 'text-gray-100' : 'text-gray-300'" class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none font-semibold">
+      <n-icon icon="check" />
+    </div>
   </div>
 </template>
 
@@ -30,9 +34,11 @@
 
 import {toRefs} from "@vueuse/core";
 import {computed} from "vue";
+import NIcon from "./NIcon.vue";
 
 export default {
 name: "NInput",
+  components: {NIcon},
   emits: ['update:modelValue'],
   props: {
     id: {
@@ -57,20 +63,24 @@ name: "NInput",
     }
   },
   setup(props, { emit }) {
-    const { required } = toRefs(props)
+    const { required, modelValue } = toRefs(props)
     const onInput = (e) => {
       emit('update:modelValue', e.target.value)
     }
 
+    const isEmpty = computed(() => {
+      return !modelValue.value
+    })
+
     const rootClasses = computed(() => {
-      const computedClass = required.value ? 'border-gray-400' : 'border-gray-300'
-      return 'shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md placeholder-gray-300 ' + computedClass
+      return 'shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md placeholder-gray-300 border-gray-300'
     })
 
     return {
       onInput,
       required,
-      rootClasses
+      rootClasses,
+      isEmpty
     }
   }
 }
