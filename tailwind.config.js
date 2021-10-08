@@ -59,14 +59,13 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
-      },
-      gridAutoRows: {
-        '25/75': '25% 75%',
       }
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      rotate: ['group-hover']
+    },
   },
   plugins: [
     require('@tailwindcss/forms'),
