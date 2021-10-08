@@ -20,6 +20,19 @@ const initialResume = {
 
 const state = reactive({
   model: {
+    main: {
+      title: null,
+      data: [
+        { component: 'input', key: 'firstName', type: 'text', placeholder: 'Prénom', rules: ['required'] },
+        { component: 'input', key: 'lastName', type: 'text', placeholder: 'Nom', rules: ['required'] },
+        { component: 'input', key: 'title', type: 'text', placeholder: 'Un titre', rules: ['required'] },
+        { component: 'input', key: 'summary', type: 'textarea', placeholder: 'En bref...' },
+        { component: 'input', key: 'email', type: 'text', placeholder: 'Email', rules: ['required', 'email'] },
+        { component: 'input', key: 'phone', type: 'text', placeholder: 'Téléphone', rules: ['required', 'phone'] },
+        { component: 'input', key: 'address', type: 'text', placeholder: 'Adresse' },
+        { component: 'input', key: 'more', type: 'textarea', placeholder: 'Infos complémentaires' },
+      ]
+    },
     education: {
       title: 'Éducation',
       new: {},
@@ -55,14 +68,14 @@ const state = reactive({
       title: 'Compétences',
       new: {},
       data: [
-        { component: 'input', key: 'label', type: 'text', placeholder: 'Compétence', rules: ['required'] }
+        { component: 'input', key: 'label', type: 'textarea', placeholder: 'Compétence', rules: ['required'] }
       ]
     },
     hobby: {
       title: 'Passions',
       new: {},
       data: [
-        { component: 'input', key: 'label', type: 'textarea', placeholder: 'Passions' }
+        { component: 'input', key: 'hobby', type: 'textarea', placeholder: 'Passions' }
       ]
     }
   },
