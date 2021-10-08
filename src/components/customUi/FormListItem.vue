@@ -1,11 +1,11 @@
 <template>
   <div class="space-y-4 py-3">
     <div class="flex justify-between space-x-4">
-      <div class="flex items-center space-x-2 min-w-0">
+      <div class="flex items-center space-x-2 min-w-0 flex-1">
         <n-icon v-if="resume[stateKey].length > 1" color="text-gray-200" icon="selector" class="handle cursor-move hover:text-gray-800" />
-        <span @click="toggle" class="cursor-pointer truncate hover:text-gray-500">
-          {{ element[titleKey] ? element[titleKey] : '[Provisoire]' }}
-        </span>
+        <div @click="toggle" class="cursor-pointer truncate hover:text-gray-500 flex-1">
+          {{ element[titleKey] }}
+        </div>
       </div>
       <n-button icon="trash-outline" theme="transparent" small @click="removeItem(element.id, stateKey)" />
     </div>

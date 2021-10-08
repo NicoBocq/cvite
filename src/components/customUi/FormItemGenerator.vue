@@ -33,7 +33,7 @@ export default {
       default: () => {}
     }
   },
-  setup(props, { emit }) {
+  setup(props) {
     const { schemeItem, isCreate, editItem } = toRefs(props)
     const stateKey = inject('stateKey')
 
