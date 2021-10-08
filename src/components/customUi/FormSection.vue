@@ -1,5 +1,6 @@
 <template>
   <n-box-form>
+    <template v-if="isList">
     <n-inline-editing class="text-xl font-bold" v-model="model[stateKey].title" />
     <draggable
       v-model="resume[stateKey]"
@@ -28,7 +29,7 @@
       <div v-else key="add-open" class="space-y-4 px-4 bg-gradient-to-b from-white via-white to-gray-100 md:px-6 py-4 rounded-lg shadow-inner shadow md:grid md:grid-cols-2 md:gap-2" ref="refAdd">
       <div class="flex space-x-2 items-center">
         <n-icon icon="plus" small />
-        <h3 class="text-sm font-semibold cursor-pointer" @click="toggle">
+        <h3 class="text-sm cursor-pointer" @click="toggle">
           Ajouter un nouvel élément
         </h3>
       </div>
@@ -43,6 +44,14 @@
       </div>
     </div>
     </transition>
+    </template>
+    <template v-else>
+      <form-item-generator
+        v-for="item in model[stateKey].data"
+        :scheme-item="item"
+        :edit-item="resume"
+      />
+    </template>
   </n-box-form>
 </template>
 <script>
@@ -71,6 +80,10 @@ export default {
     titleKey: {
       type: String,
       default: 'label'
+    },
+    isList: {
+      type: Boolean,
+      default: true
     }
   },
   setup(props) {
@@ -88,10 +101,6 @@ export default {
       saveItem(key)
       refAdd.value.scrollIntoView({ behavior: 'smooth'})
     }
-
-    // watchEffect(() => {
-    //   active.value = !resume[stateKey]?.length
-    // })
 
     return {
       stateKey,

@@ -17,14 +17,14 @@
       :value="modelValue"
       @input="onInput"
       :type="type"
-      rows="6"
+      rows="5"
       :name="id"
       :id="id"
       v-bind="$attrs"
       :class="rootClasses"
       :placeholder="placeholder"
     />
-    <div v-if="required" :class="isEmpty ? 'text-gray-100' : 'text-gray-300'" class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none font-semibold">
+    <div v-if="required" :class="[isEmpty ? 'text-gray-100' : 'text-gray-300', type === 'textarea' ? 'top-2' : 'flex items-center']" class="absolute inset-y-0 right-0 pr-3 pointer-events-none font-semibold">
       <n-icon icon="check" />
     </div>
   </div>
