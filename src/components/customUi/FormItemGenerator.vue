@@ -1,11 +1,13 @@
 <template>
-  <n-input
-    v-for="item in model[stateKey].data"
-    :key="stateKey + '-' + item.key + '-' + id"
-    :id="stateKey + '-' + item.key + '-' + id"
-    :type="item.type"
-    v-model="bindObj[item.key]"
-    :placeholder="item.placeholder"
+  <component
+    :is="isComponent"
+    :key="id"
+    :id="id"
+    :type="schemeItem.type"
+    v-model="bindObject"
+    :class="schemeItem.short ? '' : 'md:col-span-2'"
+    :placeholder="schemeItem.placeholder"
+    :required="isRequired"
   />
 </template>
 
@@ -13,72 +15,55 @@
 import { model, resume } from '@/modules/resumeStore.js'
 import {toRefs, inject, watch, onMounted, ref, watchEffect, reactive, computed} from "vue";
 import NInput from "../ui/NInput.vue";
-import {useModelWrapper} from "../../composables/modelWrapper";
 
 export default {
-  name: "FormItem",
+  name: "FormItemGenerator",
   components: { NInput },
   props: {
-    element: {
+    schemeItem: {
+      type: Object,
+      default: () => {}
+    },
+    isCreate: {
+      type: Boolean,
+      default: false
+    },
+    editItem: {
       type: Object,
       default: () => {}
     }
   },
-  emits: ['update:element'],
   setup(props, { emit }) {
-    const { element } = toRefs(props)
+    const { schemeItem, isCreate, editItem } = toRefs(props)
     const stateKey = inject('stateKey')
-    const titleKey = inject('titleKey')
-    const id = ref(Date.now())
-    const bindObj = useModelWrapper(props, emit)
-    // const bindObj = ref({})
-    // const isElement = computed(() => element)
-    // const bindObj = computed({
-    //   get: () => isElement ? element : model[stateKey].new,
-    //   set: (val) => isElement ? emit('update:element', val) : emit('update:element', val)
-    // })
 
-    // watchEffect(() => {
-    //   if (!element) {
-    //     console.log('new')
-    //     Object.assign(bindObj.value, model[stateKey].new)
-    //   } else {
-    //     Object.assign(bindObj.value, element)
-    //   }
-    // })
-
-    watch(() => element, (val) => {
-      if (val) {
-        bindObj.value = model[stateKey].new
-      } else {
-        bindObj.value = element.value
-      }
+    const isRequired = computed(() => {
+      if (!schemeItem.value.rules) return
+      return schemeItem.value.rules.includes('required')
     })
-    // const vModelBinding = () => {
-    //   if (!element) {
-    //     console.log(element)
-    //     return model[stateKey].new
-    //   } else {
-    //     return element
-    //   }
-    // }
-    // onMounted(() => {
-    //   if (!element.value) {
-    //     bindObj.value = model[stateKey]?.new
-    //   } else {
-    //     console.log('element ok')
-    //     bindObj.value = element.value
-    //   }
-    // })
+
+    const isComponent = computed(() => {
+      return 'n-' + schemeItem.value.component
+    })
+
+    const id = computed(() => {
+      return `${stateKey.value}-${schemeItem.value.key}-${ !editItem.value ? 'new' : `${editItem.value.id}` }`
+    })
+
+    const bindObject = computed({
+      get: () => isCreate.value ? model.value[stateKey.value].new[schemeItem.value.key] : editItem.value[schemeItem.value.key],
+      set: (val) => isCreate.value ? model.value[stateKey.value].new[schemeItem.value.key] = val : editItem.value[schemeItem.value.key] = val
+    })
+
 
     return {
       resume,
       model,
       stateKey,
-      element,
-      titleKey,
-      bindObj,
-      id
+      id,
+      isRequired,
+      isComponent,
+      bindObject
     }
   }
 }

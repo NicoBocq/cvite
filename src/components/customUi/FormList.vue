@@ -32,19 +32,14 @@
           Ajouter un nouvel élément
         </h3>
       </div>
-      <n-input
+      <form-item-generator
         v-for="item in model[stateKey].data"
-        :key="stateKey + '-' + item.key + '-new'"
-        :id="stateKey + '-' + item.key + '-new'"
-        :type="item.type"
-        v-model="model[stateKey].new[item.key]"
-        :class="item.short ? '' : 'md:col-span-2'"
-        :placeholder="item.placeholder"
+        :scheme-item="item"
+        is-create
       />
-<!--      <form-item />-->
       <div class="flex space-x-4 justify-end col-span-2">
         <n-button label="Fermer" small icon="x" @click="toggle" theme="transparent" />
-        <n-button label="Sauver" small icon="check" @click="save(stateKey)" />
+        <n-button label="Sauver" small icon="check" @click="save(stateKey)" :disabled="isValid(stateKey)" />
       </div>
     </div>
     </transition>
@@ -56,17 +51,19 @@ import NDisclosure from "../ui/NDisclosure.vue";
 import NButton from "../ui/NButton.vue";
 import NIcon from "../ui/NIcon.vue";
 import NInput from "../ui/NInput.vue";
-import { addItem, resume, model, removeItem, saveItem }  from '@/modules/resumeStore.js'
+import { addItem, resume, model, removeItem, saveItem, isValid }  from '@/modules/resumeStore.js'
 
 import NBoxForm from "../ui/NBoxForm.vue";
 import NInlineEditing from "../ui/NInlineEditing.vue";
 import { onMounted, ref, toRefs, watch, watchEffect, provide} from "vue";
 import FormListItem from "./FormListItem.vue";
-import FormItem from "./FormItem.vue";
+import FormItemGenerator from "./FormItemGenerator.vue";
 
 export default {
   name: "FormList",
-  components: {FormItem, FormListItem, NInlineEditing, NBoxForm, NInput, NIcon, NButton, NDisclosure, draggable },
+  components: {
+    FormItemGenerator,
+    FormListItem, NInlineEditing, NBoxForm, NInput, NIcon, NButton, NDisclosure, draggable },
   props: {
     stateKey: {
       type: String
@@ -107,7 +104,8 @@ export default {
       toggle,
       saveItem,
       refAdd,
-      save
+      save,
+      isValid
     }
   }
 }

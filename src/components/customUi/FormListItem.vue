@@ -10,18 +10,12 @@
       <n-button icon="trash-outline" theme="transparent" small @click="removeItem(element.id, stateKey)" />
     </div>
     <transition name="fade-shrink" tag="div">
-      <div v-if="active" class="flex flex-col space-y-2 px-4 md:px-6" :ref="'add' + stateKey">
-        <div class="space-y-4 md:grid md:gap-2 md:grid-cols-2" ref="add">
-          <component
-            :is="isComponent(item.component)"
+      <div v-if="active" class="flex flex-col space-y-2 py-4 px-4 md:px-6" :ref="'add' + stateKey">
+        <div class="space-y-4 md:grid md:gap-2 md:grid-cols-2">
+          <form-item-generator
             v-for="item in model[stateKey].data"
-            :key="stateKey + '-' + item.key + '-' + element.id"
-            :id="stateKey + '-' + item.key + '-' + element.id"
-            :type="item.type"
-            v-model="element[item.key]"
-            :class="item.short ? '' : 'col-span-2'"
-            :placeholder="item.placeholder"
-            :required="isRequired(item)"
+            :scheme-item="item"
+            :edit-item="element"
           />
         </div>
       </div>
@@ -31,16 +25,16 @@
 
 <script>
 import { model, resume, removeItem } from '@/modules/resumeStore.js'
-import {ref, toRefs, inject, computed} from "vue";
+import { ref, toRefs, inject, computed } from "vue";
 import NDisclosure from "../ui/NDisclosure.vue";
 import NInput from "../ui/NInput.vue";
 import NButton from "../ui/NButton.vue";
 import NIcon from "../ui/NIcon.vue";
-import FormItem from "./FormItem.vue";
+import FormItemGenerator from "./FormItemGenerator.vue";
 
 export default {
   name: "FormListItem",
-  components: {FormItem, NIcon, NButton, NInput, NDisclosure},
+  components: {FormItemGenerator, NIcon, NButton, NInput, NDisclosure},
   props: {
     element: {
       type: Object,
@@ -55,14 +49,6 @@ export default {
     const toggle = () => {
       active.value = !active.value
     }
-    const isComponent = (type) => {
-      return 'n-' + type
-    }
-
-    const isRequired = (item) => {
-      if (!item.rules) return
-      return item.rules.includes('required')
-    }
 
     return {
       active,
@@ -72,9 +58,7 @@ export default {
       stateKey,
       element,
       toggle,
-      titleKey,
-      isComponent,
-      isRequired
+      titleKey
     }
   }
 }
