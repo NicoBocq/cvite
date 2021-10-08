@@ -28,7 +28,7 @@
               <n-button @click="addNicoBocq" icon="fire" />
               <n-button @click="setNewResume" icon="x" />
             </div>
-            <n-button icon="download" @click="exportToPdf">
+            <n-button icon="download" @click="useExportToPdf">
               Télécharger
             </n-button>
           </div>
@@ -45,7 +45,7 @@
 import ResumeForm from "../customUi/ResumeForm.vue";
 import Preview from "../layout/Preview.vue";
 import NButton from "../ui/NButton.vue";
-import exportToPdf from '/src/composables/pdf'
+import useExportToPdf from '/src/composables/pdfExport'
 import goTo from "../../composables/helpers"
 import { addNicoBocq, clearState, setNewResume, resume } from '@/modules/resumeStore.js'
 import {nextTick, onMounted, ref, watch} from "vue";
@@ -67,7 +67,7 @@ export default {
       })
     })
     return {
-      exportToPdf,
+      useExportToPdf,
       goTo,
       addNicoBocq,
       clearState,

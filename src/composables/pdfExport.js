@@ -6,7 +6,7 @@ import { readonly } from 'vue'
 
 const themeColor = '#1F2937'
 
-export default function exportToPdf () {
+export default function useExportToPdf () {
   pdfMake.vfs = pdfFonts
 
   pdfMake.fonts = {
