@@ -80,7 +80,6 @@ const addItem = (type) => {
   state.resume[type].push({
     id: Date.now()
   })
-  // scrollTo(type)
 }
 
 const saveItem = (type) => {
@@ -91,11 +90,6 @@ const saveItem = (type) => {
   clearNew(type)
 }
 
-// const scrollTo = (type) => {
-//   const ref = 'add-' + type
-//   ref.scrollIntoView()
-// }
-
 const setNewResume = async () => {
   await clearState()
 }
@@ -103,6 +97,14 @@ const setNewResume = async () => {
 const isEmpty = (type) => {
   const { id, ...obj } = state.resume[type]
   return Object.values(obj).every((i) => !i)
+}
+
+const isValid = (type) => {
+   const requiredArr = state.model[type].data.reduce((acc, i) => {
+     if (i.rules?.includes('required')) acc.push(i.key)
+     return acc
+    }, [])
+    return !requiredArr.every((i) => state.model[type].new[i])
 }
 
 const removeItem = (id, type) => {
@@ -139,5 +141,6 @@ export {
   addNicoBocq,
   isEmpty,
   setNewResume,
-  saveItem
+  saveItem,
+  isValid
 }
