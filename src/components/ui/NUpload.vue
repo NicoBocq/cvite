@@ -1,5 +1,5 @@
 <template>
-  <label for="photo" class="block text-sm font-medium text-gray-800">
+  <label for="photo" class="block text-xl font-bold">
     Photo
   </label>
   <div class="mt-1 flex items-center space-x-2">
