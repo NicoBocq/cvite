@@ -201,7 +201,6 @@ const state = reactive({
     },
     hobby: {
       title: 'Passions',
-      new: {},
       data: [
         {
           component: 'input',

@@ -113,7 +113,7 @@ export default {
       reader.readAsDataURL(file)
     }
 
-    const resizeImage = (e) => {
+    const resizeImage = () => {
       const { canvas } = cropperRef.value.getResult()
       image.value = canvas.toDataURL()
     }

@@ -131,7 +131,7 @@ export default function useExportToPdf () {
   const side = [
     linksSection,
     skillsSection,
-    stateResume.hobbies ? hobbiesSection : null
+    ...(stateResume.hobby && [hobbiesSection])
   ]
   const dd = {
     pageSize: 'A4',
