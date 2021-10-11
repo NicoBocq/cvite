@@ -1,58 +1,60 @@
 <template>
-  <RadioGroup v-model="plan">
-    <RadioGroupLabel class="sr-only">Plan</RadioGroupLabel>
+  <radio-group v-model="plan">
+    <radio-group-label class="sr-only"> Plan </radio-group-label>
     <div class="bg-white rounded-md">
-      <RadioGroupOption value="startup" as="template" v-slot="{ checked }">
+      <radio-group-option v-slot="{ checked }" value="startup" as="template">
         <div
-          :class='checked ? "bg-indigo-50 border-indigo-200" : "border-gray-200"'
+          :class="
+            checked ? 'bg-indigo-50 border-indigo-200' : 'border-gray-200'
+          "
           class="relative flex p-4 border"
         >
           <div class="flex flex-col">
             <!-- This Label is for the `RadioGroupOption` -->
-            <RadioGroupLabel as="template">
+            <radio-group-label as="template">
               <span
-                :class='checked ? "text-indigo-900" : "text-gray-900"'
+                :class="checked ? 'text-indigo-900' : 'text-gray-900'"
                 class="block text-sm font-medium"
-              >Startup</span
+                >Startup</span
               >
-            </RadioGroupLabel>
+            </radio-group-label>
 
             <!-- This Description is for the `RadioGroupOption` -->
-            <RadioGroupDescription as="template">
+            <radio-group-description as="template">
               <span
-                :class='checked ? "text-indigo-700" : "text-gray-500"'
+                :class="checked ? 'text-indigo-700' : 'text-gray-500'"
                 class="block text-sm"
               >
                 Up to 5 active job postings
               </span>
-            </RadioGroupDescription>
+            </radio-group-description>
           </div>
         </div>
-      </RadioGroupOption>
-    <RadioGroupOption v-slot="{ active, checked }" value="startup">
-      <span
-        :class="[
-          checked ? 'bg-indigo-600' : '',
-          active ? 'ring-2 ring-indigo-500' : ''
-        ]"
-        class="w-4 h-4 rounded-full"
-      >
-        Startup
-      </span>
-    </RadioGroupOption>
-    <RadioGroupOption v-slot="{ active, checked }" value="startup">
-      <span
-        :class="[
-          checked ? 'bg-indigo-600' : '',
-          active ? 'ring-2 ring-indigo-500' : ''
-        ]"
-        class="w-4 h-4 rounded-full"
-      >
-        Startup
-      </span>
-    </RadioGroupOption>
+      </radio-group-option>
+      <radio-group-option v-slot="{ active, checked }" value="startup">
+        <span
+          :class="[
+            checked ? 'bg-indigo-600' : '',
+            active ? 'ring-2 ring-indigo-500' : '',
+          ]"
+          class="w-4 h-4 rounded-full"
+        >
+          Startup
+        </span>
+      </radio-group-option>
+      <radio-group-option v-slot="{ active, checked }" value="startup">
+        <span
+          :class="[
+            checked ? 'bg-indigo-600' : '',
+            active ? 'ring-2 ring-indigo-500' : '',
+          ]"
+          class="w-4 h-4 rounded-full"
+        >
+          Startup
+        </span>
+      </radio-group-option>
     </div>
-  </RadioGroup>
+  </radio-group>
 </template>
 
 <script>
@@ -65,12 +67,17 @@ import {
 } from '@headlessui/vue'
 
 export default {
-  components: { RadioGroup, RadioGroupLabel, RadioGroupOption, RadioGroupDescription },
+  components: {
+    RadioGroup,
+    RadioGroupLabel,
+    RadioGroupOption,
+    RadioGroupDescription
+  },
 
-  setup() {
+  setup () {
     const plan = ref('startup')
 
     return { plan }
-  },
+  }
 }
 </script>

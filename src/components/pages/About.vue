@@ -10,10 +10,10 @@
 </template>
 
 <script>
-import ResumeForm from "../customUi/ResumeForm.vue";
-import Preview from "../layout/Preview.vue";
+import ResumeForm from '../customUi/ResumeForm.vue'
+import Preview from '../layout/Preview.vue'
 export default {
-  name: "About",
-  components: {Preview, ResumeForm}
+  name: 'About',
+  components: { Preview, ResumeForm }
 }
 </script>

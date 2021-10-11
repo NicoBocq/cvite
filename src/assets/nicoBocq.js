@@ -1,20 +1,22 @@
-import {avatar} from "./avatar";
+import { avatar } from './avatar'
 
 export const nicoBocq = {
   firstName: 'Nicolas',
   lastName: 'Bocquet',
   title: 'Développeur Front-End',
-  summary: '20 ans d\'expériences sur le web et toujours la même passion : mettre en forme les données.',
+  summary:
+    "20 ans d'expériences sur le web et toujours la même passion : mettre en forme les données.",
   email: 'nicolas.fow@gmail.com',
   phone: '06 21 02 31 65',
   address: '29 rue Wulfram Puget - 13008 Marseille',
   avatar: avatar,
   more: null,
-  link: [{
-    id: 1,
-    label: 'gitHub',
-    url: 'https://github.com/NicoBocq'
-  },
+  link: [
+    {
+      id: 1,
+      label: 'gitHub',
+      url: 'https://github.com/NicoBocq'
+    },
     {
       id: 2,
       label: 'Linkedin',
@@ -24,7 +26,8 @@ export const nicoBocq = {
       id: 3,
       label: 'Twitter',
       url: 'https://twitter.com/_nicolasbocquet'
-    }],
+    }
+  ],
   experience: [
     // {
     //   id: 1,
@@ -42,7 +45,8 @@ export const nicoBocq = {
       endDate: '',
       title: 'Développeur Front-End',
       company: 'Internethic',
-      description: 'Développement d\'une app BtoB : \n' +
+      description:
+        "Développement d'une app BtoB : \n" +
         '- développement de composants (UI et custom) et de stores : Vuejs, Vuex, Tailwind, Storybook\n' +
         '- spécifications fonctionnelles et ergonomiques\n' +
         '- test unitaires'
@@ -53,7 +57,8 @@ export const nicoBocq = {
       endDate: '2020',
       title: 'Développeur Front-End',
       company: 'Novazéo',
-      description: 'Intégration et développement sur Django CMS / Symfony (VueJs, OpenLayers).' +
+      description:
+        'Intégration et développement sur Django CMS / Symfony (VueJs, OpenLayers).' +
         'Conception UX/UI (Figma).'
     },
     {
@@ -62,7 +67,8 @@ export const nicoBocq = {
       endDate: '2018',
       title: 'Journaliste web',
       company: 'La Provence',
-      description: 'Rédaction, production de modules éditoriaux (Data journalisme, infographies).'
+      description:
+        'Rédaction, production de modules éditoriaux (Data journalisme, infographies).'
     },
     {
       id: 5,
@@ -70,7 +76,8 @@ export const nicoBocq = {
       endDate: '2015',
       title: 'Chef de Projet numérique',
       company: 'La Provence',
-      description: 'En charge de projets numériques : web, mobiles, applications, réseaux sociaux...'
+      description:
+        'En charge de projets numériques : web, mobiles, applications, réseaux sociaux...'
     },
     {
       id: 6,
@@ -78,7 +85,8 @@ export const nicoBocq = {
       endDate: '2010',
       title: 'Webmaster',
       company: 'La Provence',
-      description: 'Développement et intégration, accompagnement de la rédaction au numérique.'
+      description:
+        'Développement et intégration, accompagnement de la rédaction au numérique.'
     },
     {
       id: 7,
@@ -94,7 +102,8 @@ export const nicoBocq = {
       endDate: '2004',
       title: 'Développeur fullstack',
       company: 'Freelance',
-      description: 'Création de sites web : graphisme, développement et intégration'
+      description:
+        'Création de sites web : graphisme, développement et intégration'
     }
   ],
   education: [
@@ -105,7 +114,7 @@ export const nicoBocq = {
       school: 'Le Wagon',
       degree: 'Développeur Fullstack',
       city: 'Marseille',
-      description: "Ruby, Ruby & Rails, React"
+      description: 'Ruby, Ruby & Rails, React'
     },
     {
       id: 2,
@@ -118,14 +127,17 @@ export const nicoBocq = {
     }
   ],
   skill: [
-    { id: 1, label: 'Javascript (ES6) ***'},
+    { id: 1, label: 'Javascript (ES6) ***' },
     { id: 2, label: 'Vuejs (Vue3, Vuex) ***' },
     { id: 9, label: 'React *' },
     { id: 4, label: 'UI : Tailwind, Headless UI, Vuetify, Quasar ***' },
     { id: 8, label: 'Datavisualisation : D3, OpenLayers **' },
     { id: 3, label: 'Figma, Adobe XD **' },
     { id: 5, label: 'Storybook, Bit ***' },
-    { id: 6, label: 'Tests unitaires et fonctionnels (Behat, Gherkin, Cypress) **' },
+    {
+      id: 6,
+      label: 'Tests unitaires et fonctionnels (Behat, Gherkin, Cypress) **'
+    },
     { id: 7, label: 'Git **' }
   ],
   hobby: 'Histoire, sports (course à pied, football)'

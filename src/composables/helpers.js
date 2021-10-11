@@ -1,6 +1,5 @@
-import router from "../router";
+import router from '../router'
 
-export default function goTo(page) {
+export default function goTo (page) {
   router.push(page)
 }
-

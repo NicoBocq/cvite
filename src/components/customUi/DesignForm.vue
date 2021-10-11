@@ -1,5 +1,7 @@
 <template>
-  <div class="bg-white grid grid-cols-3 w-full shadow rounded-lg h-30 overflow-hidden">
+  <div
+    class="bg-white grid grid-cols-3 w-full shadow rounded-lg h-30 overflow-hidden"
+  >
     <div class="col-span-2 flex flex-col p-2 space-y-2">
       <div class="flex space-x-2 items-center">
         <div class="bg-gray-200 h-4 w-4 rounded-full" />
@@ -20,6 +22,6 @@
 
 <script>
 export default {
-  name: "DesignForm"
+  name: 'DesignForm'
 }
 </script>

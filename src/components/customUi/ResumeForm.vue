@@ -13,17 +13,17 @@
 </template>
 
 <script>
-import NBoxForm from "../ui/NBoxForm.vue";
-import NInput from "../ui/NInput.vue";
-import NUpload from "../ui/NUpload.vue";
-import FormSection from "./FormSection.vue";
+import NBoxForm from '../ui/NBoxForm.vue'
+import NInput from '../ui/NInput.vue'
+import NUpload from '../ui/NUpload.vue'
+import FormSection from './FormSection.vue'
 import { resume, model } from '@/modules/resumeStore.js'
-import NInlineEditing from "../ui/NInlineEditing.vue";
+import NInlineEditing from '../ui/NInlineEditing.vue'
 
 export default {
-  name: "ResumeForm",
+  name: 'ResumeForm',
   components: { NInlineEditing, FormSection, NUpload, NInput, NBoxForm },
-  setup() {
+  setup () {
     return {
       resume,
       model

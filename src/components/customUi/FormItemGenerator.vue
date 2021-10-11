@@ -1,10 +1,10 @@
 <template>
   <component
     :is="isComponent"
-    :key="id"
     :id="id"
-    :type="schemeItem.type"
+    :key="id"
     v-model="bindObject"
+    :type="schemeItem.type"
     :class="schemeItem.short ? '' : 'md:col-span-2'"
     :placeholder="schemeItem.placeholder"
     :required="isRequired"
@@ -13,11 +13,11 @@
 
 <script>
 import { model, resume } from '@/modules/resumeStore.js'
-import {toRefs, inject, watch, onMounted, ref, watchEffect, reactive, computed} from "vue";
-import NInput from "../ui/NInput.vue";
+import { toRefs, inject, computed } from 'vue'
+import NInput from '../ui/NInput.vue'
 
 export default {
-  name: "FormItemGenerator",
+  name: 'FormItemGenerator',
   components: { NInput },
   props: {
     schemeItem: {
@@ -33,7 +33,7 @@ export default {
       default: () => {}
     }
   },
-  setup(props) {
+  setup (props) {
     const { schemeItem, isCreate, editItem } = toRefs(props)
     const stateKey = inject('stateKey')
 
@@ -47,14 +47,21 @@ export default {
     })
 
     const id = computed(() => {
-      return `${stateKey.value}-${schemeItem.value.key}-${ !editItem.value ? 'new' : `${editItem.value.id}` }`
+      return `${stateKey.value}-${schemeItem.value.key}-${
+        !editItem.value ? 'new' : `${editItem.value.id}`
+      }`
     })
 
     const bindObject = computed({
-      get: () => isCreate.value ? model.value[stateKey.value].new[schemeItem.value.key] : editItem.value[schemeItem.value.key],
-      set: (val) => isCreate.value ? model.value[stateKey.value].new[schemeItem.value.key] = val : editItem.value[schemeItem.value.key] = val
+      get: () =>
+        isCreate.value
+          ? model.value[stateKey.value].new[schemeItem.value.key]
+          : editItem.value[schemeItem.value.key],
+      set: (val) =>
+        isCreate.value
+          ? (model.value[stateKey.value].new[schemeItem.value.key] = val)
+          : (editItem.value[schemeItem.value.key] = val)
     })
-
 
     return {
       resume,

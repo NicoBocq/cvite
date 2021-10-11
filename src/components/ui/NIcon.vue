@@ -1,5 +1,10 @@
 <template>
- <component :is="processedIcon" :class="[sizeStyle, color]" class="inline-block" aria-hidden="true" />
+  <component
+    :is="processedIcon"
+    :class="[sizeStyle, color]"
+    class="inline-block"
+    aria-hidden="true"
+  />
 </template>
 
 <script>
@@ -25,7 +30,7 @@ import {
   UserCircleIcon as UserCircleIconOutline,
   TrashIcon as TrashIconOutline
 } from '@heroicons/vue/outline'
-import {computed, toRefs} from "vue"
+import { computed, toRefs } from 'vue'
 export default {
   name: 'NIcon',
   components: {
@@ -64,18 +69,18 @@ export default {
       type: String
     }
   },
-  setup(props) {
+  setup (props) {
     const { icon, color, small, size } = toRefs(props)
     const processedIcon = computed(() => {
       const type = icon.value.includes('-outline') ? 'outline' : 'solid'
-      const iconValue = icon.value.includes('-outline') ? icon.value.replace('-outline', '') : icon.value
+      const iconValue = icon.value.includes('-outline')
+        ? icon.value.replace('-outline', '')
+        : icon.value
       return `${iconValue}-icon-${type}`
     })
 
     const sizeStyle = computed(() => {
-      return small.value ? 'h-4 w-4'
-        : size.value ? size.value
-          : 'h-5 w-5'
+      return small.value ? 'h-4 w-4' : size.value ? size.value : 'h-5 w-5'
     })
 
     return {

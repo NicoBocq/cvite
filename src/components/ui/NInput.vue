@@ -3,43 +3,47 @@
     <label :for="id" class="sr-only">{{ label }}</label>
     <input
       v-if="type !== 'textarea'"
+      :id="id"
       :value="modelValue"
-      @input="onInput"
       :type="type"
       :name="id"
-      :id="id"
       v-bind="$attrs"
       :class="rootClasses"
       :placeholder="placeholder"
-    >
+      @input="onInput"
+    />
     <textarea
       v-else
+      :id="id"
       :value="modelValue"
-      @input="onInput"
       :type="type"
       rows="5"
       :name="id"
-      :id="id"
       v-bind="$attrs"
       :class="rootClasses"
       :placeholder="placeholder"
+      @input="onInput"
     />
-    <div v-if="required" :class="[isEmpty ? 'text-gray-100' : 'text-gray-300', type === 'textarea' ? 'top-2' : 'flex items-center']" class="absolute inset-y-0 right-0 pr-3 pointer-events-none font-semibold">
+    <div
+      v-if="required"
+      :class="[
+        isEmpty ? 'text-gray-100' : 'text-gray-300',
+        type === 'textarea' ? 'top-2' : 'flex items-center',
+      ]"
+      class="absolute inset-y-0 right-0 pr-3 pointer-events-none font-semibold"
+    >
       <n-icon icon="check" />
     </div>
   </div>
 </template>
 
 <script>
-
-import {toRefs} from "@vueuse/core";
-import {computed} from "vue";
-import NIcon from "./NIcon.vue";
+import { computed, toRefs } from 'vue'
+import NIcon from './NIcon.vue'
 
 export default {
-name: "NInput",
-  components: {NIcon},
-  emits: ['update:modelValue'],
+  name: 'NInput',
+  components: { NIcon },
   props: {
     id: {
       type: String,
@@ -53,7 +57,7 @@ name: "NInput",
       type: [String, Number]
     },
     placeholder: {
-      type: String,
+      type: String
     },
     label: {
       type: String
@@ -62,7 +66,8 @@ name: "NInput",
       type: Boolean
     }
   },
-  setup(props, { emit }) {
+  emits: ['update:modelValue'],
+  setup (props, { emit }) {
     const { required, modelValue } = toRefs(props)
     const onInput = (e) => {
       emit('update:modelValue', e.target.value)

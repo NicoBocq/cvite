@@ -1,10 +1,10 @@
-import {computed, reactive} from "vue";
+import { computed, reactive } from 'vue'
 
 const uiStore = reactive({
   activeTab: 1,
   tabs: [
     { id: 1, label: 'Contenu' },
-    { id: 2, label: 'Design' },
+    { id: 2, label: 'Design' }
   ],
   options: {
     colorList: ['']
@@ -21,8 +21,4 @@ const setTab = (id) => {
   uiStore.activeTab = id
 }
 
-export {
-  activeTab,
-  tabs,
-  setTab
-}
+export { activeTab, tabs, setTab }

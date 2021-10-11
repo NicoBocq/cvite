@@ -3,18 +3,17 @@ import pdfFonts from '/src/assets/customVfs.js'
 import { resume, model } from '@/modules/resumeStore.js'
 import { readonly } from 'vue'
 
-
 const themeColor = '#1F2937'
 
 export default function useExportToPdf () {
   pdfMake.vfs = pdfFonts
 
   pdfMake.fonts = {
-    Inter : {
+    Inter: {
       normal: 'Inter-Regular.ttf',
       // medium: 'Inter-Medium.ttf',
       // semiBold: 'Inter-SemiBold.ttf',
-      bold: 'Inter-Bold.ttf',
+      bold: 'Inter-Bold.ttf'
       // extraBold: 'Inter-ExtraBold.ttf'
     }
   }
@@ -22,30 +21,35 @@ export default function useExportToPdf () {
   const stateResume = readonly(resume.value)
   const stateModel = readonly(model.value)
   const experienceList = stateResume.experience.reduce((r, i) => {
-    r.push(
-      {
-        stack: [
-          {text: i.title, style: 'listItemHeader'},
-          {
-            text: `${i.beginDate} ${i.endDate && `- ${i.endDate}`} / ${i.company.toUpperCase()}`,
-            style: 'listItemSubHeader'
-          },
-          { text: i.description, style: 'listItemDesc' }
-        ], style: 'listItem'
-      })
+    r.push({
+      stack: [
+        { text: i.title, style: 'listItemHeader' },
+        {
+          text: `${i.beginDate} ${
+            i.endDate && `- ${i.endDate}`
+          } / ${i.company.toUpperCase()}`,
+          style: 'listItemSubHeader'
+        },
+        { text: i.description, style: 'listItemDesc' }
+      ],
+      style: 'listItem'
+    })
     return r
   }, [])
   const educationList = stateResume.education.reduce((r, i) => {
-    r.push(
-      { stack: [
-          { text: i.degree, style: 'listItemHeader' },
-          {
-            text: `${i.beginDate} ${ i.endDate && `- ${i.endDate}`} / ${i.school} (${i.city})`,
-            style: 'listItemSubHeader'
-          },
-          { text: i.description, style: 'listItemDesc' }
-        ], style: 'listItem'
-      })
+    r.push({
+      stack: [
+        { text: i.degree, style: 'listItemHeader' },
+        {
+          text: `${i.beginDate} ${i.endDate && `- ${i.endDate}`} / ${
+            i.school
+          } (${i.city})`,
+          style: 'listItemSubHeader'
+        },
+        { text: i.description, style: 'listItemDesc' }
+      ],
+      style: 'listItem'
+    })
     return r
   }, [])
   const skillList = stateResume.skill.reduce((r, i) => {
@@ -57,68 +61,77 @@ export default function useExportToPdf () {
     return r
   }, [])
   const infosList = [
-    ...(stateResume.email ? [{ text: stateResume.email, style: 'headerListItem' }] : []),
-    ...(stateResume.phone ? [{ text: stateResume.phone, style: 'headerListItem' }] : []),
-    ...(stateResume.address ? [{ text: stateResume.address, style: 'headerListItem' }] : []),
-    ...(stateResume.more ? [{ text: stateResume.more, style: 'headerListItem' }] : [])
+    ...(stateResume.email
+      ? [{ text: stateResume.email, style: 'headerListItem' }]
+      : []),
+    ...(stateResume.phone
+      ? [{ text: stateResume.phone, style: 'headerListItem' }]
+      : []),
+    ...(stateResume.address
+      ? [{ text: stateResume.address, style: 'headerListItem' }]
+      : []),
+    ...(stateResume.more
+      ? [{ text: stateResume.more, style: 'headerListItem' }]
+      : [])
   ]
 
   const header = [
-    { columns:
-      [
-        ...( stateResume.avatar ? [{
-        width: 75,
-        image: stateResume.avatar,
-        fit: [75, 75],
-      }] : []),
-      {
-        width: '*',
-        stack: [
-          { text: `${stateResume.firstName} ${stateResume.lastName}`, style: 'name' },
-          { text: stateResume.title, style: 'title' },
-          { text: stateResume.summary, style: 'summary' }
-        ]
-      }],
+    {
+      columns: [
+        ...(stateResume.avatar
+          ? [
+              {
+                width: 75,
+                image: stateResume.avatar,
+                fit: [75, 75]
+              }
+            ]
+          : []),
+        {
+          width: '*',
+          stack: [
+            {
+              text: `${stateResume.firstName} ${stateResume.lastName}`,
+              style: 'name'
+            },
+            { text: stateResume.title, style: 'title' },
+            { text: stateResume.summary, style: 'summary' }
+          ]
+        }
+      ],
       columnGap: 16
-      }
-    ]
+    }
+  ]
 
   const arrSection = ['link', 'skill', 'education', 'experience', 'hobby']
 
   const linksSection = [
-    { text: stateModel.link.title, style: 'sectionTitle'},
-    { stack: linkList, style: 'list'}
+    { text: stateModel.link.title, style: 'sectionTitle' },
+    { stack: linkList, style: 'list' }
   ]
-  const infosSection = [
-    { stack: infosList, style: 'headerLinks'}
-  ]
+  const infosSection = [{ stack: infosList, style: 'headerLinks' }]
   const skillsSection = [
-    { text: stateModel.skill.title, style: 'sectionTitle'},
+    { text: stateModel.skill.title, style: 'sectionTitle' },
     { stack: skillList, style: 'list' }
   ]
   const educationSection = [
-    { text: stateModel.education.title, style: 'sectionTitle'},
+    { text: stateModel.education.title, style: 'sectionTitle' },
     { stack: educationList, style: 'list' }
   ]
   const experienceSection = [
-    { text: stateModel.experience.title, style: 'sectionTitle'},
-    { stack: experienceList, style: 'list' },
+    { text: stateModel.experience.title, style: 'sectionTitle' },
+    { stack: experienceList, style: 'list' }
   ]
   const hobbiesSection = [
-    { text: stateModel.hobby.title, style: 'sectionTitle'},
-    { text: stateResume.hobby, style: 'list' },
+    { text: stateModel.hobby.title, style: 'sectionTitle' },
+    { text: stateResume.hobby, style: 'list' }
   ]
-  const headerSide = [
-    infosSection
-  ]
-  const main = [
-    experienceSection,
-    educationSection
-  ]
+  const headerSide = [infosSection]
+  const main = [experienceSection, educationSection]
   const side = [
     linksSection,
     skillsSection,
-    !!stateResume.hobbies ? hobbiesSection : null
+    stateResume.hobbies ? hobbiesSection : null
   ]
   const dd = {
     pageSize: 'A4',
@@ -130,11 +143,14 @@ export default function useExportToPdf () {
         canvas: [
           {
             type: 'rect',
-            x: 395, y: 0, w: 200.28, h: 841.89,
+            x: 395,
+            y: 0,
+            w: 200.28,
+            h: 841.89,
             color: themeColor
           }
         ]
-      };
+      }
     },
     content: [
       {
@@ -235,16 +251,16 @@ export default function useExportToPdf () {
       },
       listItemDesc: {
         lineHeight: 1.1,
-        fontSize: 9,
+        fontSize: 9
       },
       headerListLinks: {
         decoration: 'underline',
         margin: [0, 0, 0, 3],
-        lineHeight: 1.2,
+        lineHeight: 1.2
       },
       headerListItem: {
         lineHeight: 1.2,
-        margin: [0, 0, 0, 3],
+        margin: [0, 0, 0, 3]
       }
     }
   }
