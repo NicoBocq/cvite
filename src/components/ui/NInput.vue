@@ -68,7 +68,7 @@ export default {
   },
   emits: ['update:modelValue'],
   setup (props, { emit }) {
-    const { required, modelValue } = toRefs(props)
+    const { modelValue } = toRefs(props)
     const onInput = (e) => {
       emit('update:modelValue', e.target.value)
     }
@@ -83,7 +83,6 @@ export default {
 
     return {
       onInput,
-      required,
       rootClasses,
       isEmpty
     }

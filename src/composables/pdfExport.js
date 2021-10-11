@@ -1,11 +1,11 @@
 import pdfMake from 'pdfmake/build/pdfmake'
-import pdfFonts from '/src/assets/customVfs.js'
+import pdfFonts from '@/assets/customVfs.js'
 import { resume, model } from '@/modules/resumeStore.js'
 import { readonly } from 'vue'
 
 const themeColor = '#1F2937'
 
-export default function useExportToPdf () {
+export default async function useExportToPdf () {
   pdfMake.vfs = pdfFonts
 
   pdfMake.fonts = {
@@ -265,5 +265,5 @@ export default function useExportToPdf () {
     }
   }
   // pdfMake.createPdf(dd, null, fonts).open()
-  pdfMake.createPdf(dd).open()
+  await pdfMake.createPdf(dd).open()
 }

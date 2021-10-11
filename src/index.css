@@ -63,3 +63,16 @@
 .fade-shrink-leave-active {
   transition: all 0.2s ease-in;
 }
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -30,9 +30,10 @@
       >
         <div class="space-y-4 md:grid md:gap-2 md:grid-cols-2">
           <form-item-generator
-            v-for="item in model[stateKey].data"
+            v-for="(item, idx) in model[stateKey].data"
             :scheme-item="item"
             :edit-item="element"
+            :key="'edit-' + model[stateKey] + idx"
           />
         </div>
       </div>
@@ -42,25 +43,22 @@
 
 <script>
 import { model, resume, removeItem } from '@/modules/resumeStore.js'
-import { ref, toRefs, inject } from 'vue'
-import NDisclosure from '../ui/NDisclosure.vue'
-import NInput from '../ui/NInput.vue'
+import { ref, inject } from 'vue'
 import NButton from '../ui/NButton.vue'
 import NIcon from '../ui/NIcon.vue'
 import FormItemGenerator from './FormItemGenerator.vue'
 
 export default {
   name: 'FormListItem',
-  components: { FormItemGenerator, NIcon, NButton, NInput, NDisclosure },
+  components: { FormItemGenerator, NIcon, NButton },
   props: {
     element: {
       type: Object,
       default: () => {}
     }
   },
-  setup (props) {
+  setup () {
     const active = ref(false)
-    const { element } = toRefs(props)
     const stateKey = inject('stateKey')
     const titleKey = inject('titleKey')
     const toggle = () => {
@@ -73,7 +71,6 @@ export default {
       model,
       removeItem,
       stateKey,
-      element,
       toggle,
       titleKey
     }

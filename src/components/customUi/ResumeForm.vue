@@ -1,28 +1,33 @@
 <template>
-  <div class="space-y-6 py-6">
-    <form-section state-key="main" :is-list="false" :has-title="false" />
-    <n-box-form>
+  <transition-group tag="div" name="list" class="space-y-6 py-6">
+    <form-section key="main" state-key="main" :is-list="false" :has-title="false" />
+    <n-box-form key="photo">
       <n-upload v-model="resume.avatar" />
     </n-box-form>
-    <form-section state-key="experience" title-key="title" />
-    <form-section state-key="education" title-key="degree" />
-    <form-section state-key="link" />
-    <form-section state-key="skill" />
-    <form-section state-key="hobby" :is-list="false" />
-  </div>
+    <form-section key="experience" state-key="experience" title-key="title" />
+    <form-section key="education" state-key="education" title-key="degree" />
+    <form-section key="link" state-key="link" />
+    <form-section key="skill" state-key="skill" />
+    <form-section key="hobby" state-key="hobby" :is-list="false" />
+  </transition-group>
 </template>
 
 <script>
 import NBoxForm from '../ui/NBoxForm.vue'
-import NInput from '../ui/NInput.vue'
-import NUpload from '../ui/NUpload.vue'
-import FormSection from './FormSection.vue'
 import { resume, model } from '@/modules/resumeStore.js'
-import NInlineEditing from '../ui/NInlineEditing.vue'
+import { defineAsyncComponent } from 'vue'
+
+const FormSection = defineAsyncComponent({
+  loader: () => import('./FormSection.vue')
+})
+
+const NUpload = defineAsyncComponent({
+  loader: () => import('../ui/NUpload.vue')
+})
 
 export default {
   name: 'ResumeForm',
-  components: { NInlineEditing, FormSection, NUpload, NInput, NBoxForm },
+  components: { FormSection, NUpload, NBoxForm },
   setup () {
     return {
       resume,

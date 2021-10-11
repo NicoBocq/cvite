@@ -49,10 +49,10 @@
             </h3>
           </div>
           <form-item-generator
-            v-for="item in model[stateKey].data"
+            v-for="(item, idx) in model[stateKey].data"
             :scheme-item="item"
             is-create
-            :key="'add-' + model[stateKey]"
+            :key="'add-' + model[stateKey] + idx"
           />
           <div class="flex space-x-4 justify-end col-span-2">
             <n-button
@@ -80,20 +80,18 @@
         class="text-xl font-bold"
       />
       <form-item-generator
-        v-for="item in model[stateKey].data"
+        v-for="(item, idx) in model[stateKey].data"
         :scheme-item="item"
         :edit-item="resume"
-        :key="'new-' + model[stateKey]"
+        :key="'new-' + model[stateKey] + idx"
       />
     </template>
   </n-box-form>
 </template>
 <script>
 import draggable from 'vuedraggable'
-import NDisclosure from '../ui/NDisclosure.vue'
 import NButton from '../ui/NButton.vue'
 import NIcon from '../ui/NIcon.vue'
-import NInput from '../ui/NInput.vue'
 import {
   addItem,
   resume,
@@ -104,14 +102,24 @@ import {
 } from '@/modules/resumeStore.js'
 
 import NBoxForm from '../ui/NBoxForm.vue'
-import NInlineEditing from '../ui/NInlineEditing.vue'
+
 import {
   ref,
   toRefs,
-  provide
+  provide, defineAsyncComponent
 } from 'vue'
-import FormListItem from './FormListItem.vue'
-import FormItemGenerator from './FormItemGenerator.vue'
+
+const NInlineEditing = defineAsyncComponent({
+  loader: () => import('../ui/NInlineEditing.vue')
+})
+
+const FormListItem = defineAsyncComponent({
+  loader: () => import('./FormListItem.vue')
+})
+
+const FormItemGenerator = defineAsyncComponent({
+  loader: () => import('./FormItemGenerator.vue')
+})
 
 export default {
   name: 'FormSection',
@@ -120,10 +128,8 @@ export default {
     FormListItem,
     NInlineEditing,
     NBoxForm,
-    NInput,
     NIcon,
     NButton,
-    NDisclosure,
     draggable
   },
   props: {
@@ -160,8 +166,6 @@ export default {
     }
 
     return {
-      stateKey,
-      titleKey,
       addItem,
       resume,
       model,

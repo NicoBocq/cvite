@@ -7,23 +7,7 @@
     <div class="flex items-center justify-center min-h-screen">
       <Dialog-overlay class="fixed inset-0 bg-blue-900 opacity-30" />
       <div
-        class="
-          relative
-          inline-block
-          bg-white
-          sm:rounded-lg
-          px-4
-          pt-5
-          pb-4
-          text-left
-          overflow-hidden
-          shadow-xl
-          sm:my-8
-          w-screen
-          h-screen
-          sm:h-auto sm:max-w-lg sm:w-full sm:p-6
-          space-y-4
-        "
+        class="relative inline-block bg-white sm:rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl sm:my-8 w-screen h-screen sm:h-auto sm:max-w-lg sm:w-full sm:p-6 space-y-4"
       >
         <n-button
           icon="x"

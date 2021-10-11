@@ -56,15 +56,13 @@ export default {
   },
   setup (props, { slots }) {
     const hasSlot = computed(() => !!slots.default)
-    const resumeKey = props.resumeKey
     const { title, items } = toRefs(props)
     return {
       hasSlot,
       title,
       items,
       resume,
-      model,
-      resumeKey
+      model
     }
   }
 }

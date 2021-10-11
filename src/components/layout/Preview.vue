@@ -61,7 +61,7 @@
 import { model, resume } from '@/modules/resumeStore.js'
 import PreviewSection from '../customUi/PreviewSection.vue'
 import PreviewHeader from '../customUi/PreviewHeader.vue'
-import { nextTick, onMounted, ref, watch, watchEffect } from 'vue'
+import { ref, watchEffect } from 'vue'
 
 export default {
   name: 'Preview',
@@ -70,7 +70,6 @@ export default {
     const preview = ref(null)
     const isPageBreak = ref(false)
     const calcHeight = (el) => {
-      // console.log(el.clientHeight)
       isPageBreak.value = el.clientHeight > 748
     }
     watchEffect(

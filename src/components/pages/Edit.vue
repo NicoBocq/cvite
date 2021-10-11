@@ -50,22 +50,33 @@
 </template>
 
 <script>
-import ResumeForm from '../customUi/ResumeForm.vue'
-import Preview from '../layout/Preview.vue'
-import NButton from '../ui/NButton.vue'
-import useExportToPdf from '/src/composables/pdfExport'
-import goTo from '../../composables/helpers'
 import {
   addNicoBocq,
   clearState,
-  setNewResume
+  setNewResume,
+  isValid
 } from '@/modules/resumeStore.js'
-import { onMounted } from 'vue'
-import NMenu from '../ui/NMenu.vue'
+import { onMounted, defineAsyncComponent } from 'vue'
+import NLoading from '../ui/NLoading.vue'
+import useExportToPdf from '../../composables/pdfExport'
 
+const NButton = defineAsyncComponent({
+  loader: () => import('../ui/NButton.vue')
+})
+const ResumeForm = defineAsyncComponent({
+  loader: () => import('../customUi/ResumeForm.vue')
+})
+const Preview = defineAsyncComponent({
+  loader: () => import('../layout/Preview.vue'),
+  loadingComponent: NLoading
+})
 export default {
   name: 'Edit',
-  components: { NMenu, NButton, Preview, ResumeForm },
+  components: {
+    NButton,
+    Preview,
+    ResumeForm
+  },
   setup () {
     const setViewHeight = () => {
       const vh = window.innerHeight * 0.01
@@ -80,10 +91,10 @@ export default {
     })
     return {
       useExportToPdf,
-      goTo,
       addNicoBocq,
       clearState,
-      setNewResume
+      setNewResume,
+      isValid
     }
   }
 }

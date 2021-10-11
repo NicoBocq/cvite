@@ -67,7 +67,6 @@
 </template>
 
 <script>
-import { toRefs } from 'vue'
 import { model, resume, isEmpty } from '@/modules/resumeStore.js'
 
 export default {
@@ -77,10 +76,8 @@ export default {
       type: String
     }
   },
-  setup (props) {
-    const { resumeKey } = toRefs(props)
+  setup () {
     return {
-      resumeKey,
       model,
       resume,
       isEmpty

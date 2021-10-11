@@ -245,6 +245,7 @@ const isValid = (type) => {
     if (i.rules?.includes('required')) acc.push(i.key)
     return acc
   }, [])
+  console.log(requiredArr)
   return !requiredArr.every((i) => state.model[type].new[i])
 }
 
