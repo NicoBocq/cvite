@@ -14,11 +14,13 @@
     "pdfmake": "^0.1.71",
     "vue": "3.2.19",
     "vue-advanced-cropper": "^2.6.3",
+    "vue-i18n": "^9.2.0-beta.11",
     "vue-router": "^4.0.6",
     "vuedraggable": "^4.0.3"
   },
   "devDependencies": {
     "@headlessui/vue": "^1.4.1",
+    "@intlify/vite-plugin-vue-i18n": "^2.4.0",
     "@tailwindcss/forms": "^0.3.2",
     "@vitejs/plugin-vue": "^1.1.5",
     "@vue/compiler-sfc": "^3.0.5",
