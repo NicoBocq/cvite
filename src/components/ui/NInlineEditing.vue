@@ -9,7 +9,10 @@
       <div v-bind="$attrs">
         {{ sectionTitle }}
       </div>
-      <n-icon icon="pencil" color="text-gray-300" />
+      <n-icon
+        icon="pencil"
+        color="text-gray-300"
+      />
     </div>
     <div
       v-show="active"
@@ -24,10 +27,20 @@
         ref="inputRef"
         v-model="sectionTitle"
         class="flex-1 focus:outline-none border-b-2 border-transparent focus:border-blue-400 focus:bg-blue-50 focus:border"
-      />
+      >
       <div class="flex items-center space-x-2">
-        <n-button icon="check" small theme="secondary" @click="save" />
-        <n-button icon="x" small theme="transparent" @click="close" />
+        <n-button
+          icon="check"
+          small
+          theme="secondary"
+          @click="save"
+        />
+        <n-button
+          icon="x"
+          small
+          theme="transparent"
+          @click="close"
+        />
       </div>
     </div>
   </div>
@@ -41,17 +54,17 @@ import {
   nextTick,
   computed
 } from 'vue'
-import NInput from './NInput.vue'
 import NButton from './NButton.vue'
 import NIcon from './NIcon.vue'
 import { useModelWrapper } from '../../composables/modelWrapper'
 
 export default {
   name: 'NInlineEditing',
-  components: { NIcon, NButton, NInput },
+  components: { NIcon, NButton },
   props: {
     modelValue: {
-      type: String
+      type: String,
+      default: ''
     }
   },
   setup (props, { emit }) {

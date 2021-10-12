@@ -18,7 +18,10 @@
           <form-list-item :element="element" />
         </template>
       </draggable>
-      <transition name="fade-shrink" mode="out-in">
+      <transition
+        name="fade-shrink"
+        mode="out-in"
+      >
         <n-button
           v-if="!active"
           key="add-close"
@@ -27,7 +30,7 @@
           small
           @click="toggle"
         >
-          Ajouter un nouvel élément
+          {{ t('ui.addElement') }}
         </n-button>
         <div
           v-else
@@ -45,25 +48,25 @@
               class="group-hover:rotate-45 group-hover:text-gray-500 transform transition duration-300"
             />
             <h3 class="text-sm group-hover:text-gray-500 flex-1">
-              Ajouter un nouvel élément
+              {{ t('ui.addElement') }}
             </h3>
           </div>
           <form-item-generator
             v-for="(item, idx) in model[stateKey].data"
+            :key="'add-' + model[stateKey] + idx"
             :scheme-item="item"
             is-create
-            :key="'add-' + model[stateKey] + idx"
           />
           <div class="flex space-x-4 justify-end col-span-2">
             <n-button
-              label="Fermer"
+              :label="t('ui.close')"
               small
               icon="x"
               theme="transparent"
               @click="toggle"
             />
             <n-button
-              label="Sauver"
+              :label="t('ui.save')"
               small
               icon="check"
               :disabled="isValid(stateKey)"
@@ -81,9 +84,9 @@
       />
       <form-item-generator
         v-for="(item, idx) in model[stateKey].data"
+        :key="'new-' + model[stateKey] + idx"
         :scheme-item="item"
         :edit-item="resume"
-        :key="'new-' + model[stateKey] + idx"
       />
     </template>
   </n-box-form>
@@ -108,6 +111,7 @@ import {
   toRefs,
   provide, defineAsyncComponent
 } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 const NInlineEditing = defineAsyncComponent({
   loader: () => import('../ui/NInlineEditing.vue')
@@ -134,7 +138,8 @@ export default {
   },
   props: {
     stateKey: {
-      type: String
+      type: String,
+      default: ''
     },
     titleKey: {
       type: String,
@@ -151,7 +156,7 @@ export default {
   },
   setup (props) {
     const { stateKey, titleKey } = toRefs(props)
-
+    const { t } = useI18n()
     provide('stateKey', stateKey)
     provide('titleKey', titleKey)
     const active = ref(false)
@@ -175,7 +180,8 @@ export default {
       saveItem,
       refAdd,
       save,
-      isValid
+      isValid,
+      t
     }
   }
 }

@@ -1,5 +1,8 @@
 import { computed, reactive } from 'vue'
 import { nicoBocq } from '../assets/nicoBocq'
+import { i18n } from '../composables/i18n'
+
+const { t } = i18n.global
 
 const initialResume = {
   firstName: null,
@@ -27,73 +30,73 @@ const state = reactive({
           component: 'input',
           key: 'firstName',
           type: 'text',
-          placeholder: 'Prénom',
+          placeholder: t('resume.firstName'),
           rules: ['required']
         },
         {
           component: 'input',
           key: 'lastName',
           type: 'text',
-          placeholder: 'Nom',
+          placeholder: t('resume.lastName'),
           rules: ['required']
         },
         {
           component: 'input',
           key: 'title',
           type: 'text',
-          placeholder: 'Un titre',
+          placeholder: t('resume.title'),
           rules: ['required']
         },
         {
           component: 'input',
           key: 'summary',
           type: 'textarea',
-          placeholder: 'En bref...'
+          placeholder: t('resume.summary')
         },
         {
           component: 'input',
           key: 'email',
           type: 'text',
-          placeholder: 'Email',
+          placeholder: t('resume.email'),
           rules: ['required', 'email']
         },
         {
           component: 'input',
           key: 'phone',
           type: 'text',
-          placeholder: 'Téléphone',
+          placeholder: t('resume.phone'),
           rules: ['required', 'phone']
         },
         {
           component: 'input',
           key: 'address',
           type: 'text',
-          placeholder: 'Adresse'
+          placeholder: t('resume.address')
         },
         {
           component: 'input',
           key: 'more',
           type: 'textarea',
-          placeholder: 'Infos complémentaires'
+          placeholder: t('resume.more')
         }
       ]
     },
     education: {
-      title: 'Éducation',
+      title: t('resume.section.title.education'),
       new: {},
       data: [
         {
           component: 'input',
           key: 'degree',
           type: 'text',
-          placeholder: 'Diplôme',
+          placeholder: t('resume.section.fields.degree'),
           rules: ['required']
         },
         {
           component: 'input',
           key: 'beginDate',
           type: 'text',
-          placeholder: 'Année de début',
+          placeholder: t('resume.section.fields.beginDate'),
           short: true,
           rules: ['required']
         },
@@ -101,46 +104,46 @@ const state = reactive({
           component: 'input',
           key: 'endDate',
           type: 'text',
-          placeholder: 'Année de fin',
+          placeholder: t('resume.section.fields.endDate'),
           short: true
         },
         {
           component: 'input',
           key: 'school',
           type: 'text',
-          placeholder: 'École',
+          placeholder: t('resume.section.fields.school'),
           rules: ['required']
         },
         {
           component: 'input',
           key: 'city',
           type: 'text',
-          placeholder: ' Ville'
+          placeholder: t('resume.section.fields.city')
         },
         {
           component: 'input',
           key: 'description',
           type: 'textarea',
-          placeholder: 'Description'
+          placeholder: t('resume.section.fields.description')
         }
       ]
     },
     experience: {
-      title: 'Expériences',
+      title: t('resume.section.title.employmentHistory'),
       new: {},
       data: [
         {
           component: 'input',
           key: 'title',
           type: 'text',
-          placeholder: 'Poste',
+          placeholder: t('resume.section.fields.jobTitle'),
           rules: ['required']
         },
         {
           component: 'input',
           key: 'beginDate',
           type: 'text',
-          placeholder: 'Année de début',
+          placeholder: t('resume.section.fields.beginDate'),
           short: true,
           rules: ['required']
         },
@@ -148,65 +151,65 @@ const state = reactive({
           component: 'input',
           key: 'endDate',
           type: 'text',
-          placeholder: 'Année de fin',
+          placeholder: t('resume.section.fields.endDate'),
           short: true
         },
         {
           component: 'input',
           key: 'company',
           type: 'text',
-          placeholder: 'Société',
+          placeholder: t('resume.section.fields.employer'),
           rules: ['required']
         },
         {
           component: 'input',
           key: 'description',
           type: 'textarea',
-          placeholder: 'Description'
+          placeholder: t('resume.section.fields.description')
         }
       ]
     },
     link: {
-      title: 'Liens',
+      title: t('resume.section.title.links'),
       new: {},
       data: [
         {
           component: 'input',
           key: 'label',
           type: 'text',
-          placeholder: 'Titre',
+          placeholder: t('resume.section.fields.label'),
           rules: ['required']
         },
         {
           component: 'input',
           key: 'url',
           type: 'text',
-          placeholder: 'URL',
+          placeholder: t('resume.section.fields.link'),
           rules: ['required']
         }
       ]
     },
     skill: {
-      title: 'Compétences',
+      title: t('resume.section.title.skills'),
       new: {},
       data: [
         {
           component: 'input',
           key: 'label',
           type: 'textarea',
-          placeholder: 'Compétence',
+          placeholder: t('resume.section.fields.skill'),
           rules: ['required']
         }
       ]
     },
     hobby: {
-      title: 'Passions',
+      title: t('resume.section.title.hobbies'),
       data: [
         {
           component: 'input',
           key: 'hobby',
           type: 'textarea',
-          placeholder: 'Passions'
+          placeholder: t('resume.section.fields.hobbies')
         }
       ]
     }
@@ -245,7 +248,6 @@ const isValid = (type) => {
     if (i.rules?.includes('required')) acc.push(i.key)
     return acc
   }, [])
-  console.log(requiredArr)
   return !requiredArr.every((i) => state.model[type].new[i])
 }
 

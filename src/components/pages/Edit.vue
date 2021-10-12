@@ -33,11 +33,20 @@
           <!--          <n-menu />-->
           <div class="flex space-x-2 w-full justify-between">
             <div class="space-x-2">
-              <n-button icon="fire" @click="addNicoBocq" />
-              <n-button icon="x" @click="setNewResume" />
+              <n-button
+                icon="fire"
+                @click="addNicoBocq"
+              />
+              <n-button
+                icon="x"
+                @click="setNewResume"
+              />
             </div>
-            <n-button icon="download" @click="useExportToPdf">
-              Télécharger
+            <n-button
+              icon="download"
+              @click="useExportToPdf"
+            >
+              {{ t('ui.download') }}
             </n-button>
           </div>
         </div>
@@ -59,6 +68,7 @@ import {
 import { onMounted, defineAsyncComponent } from 'vue'
 import NLoading from '../ui/NLoading.vue'
 import useExportToPdf from '../../composables/pdfExport'
+import { useI18n } from 'vue-i18n'
 
 const NButton = defineAsyncComponent({
   loader: () => import('../ui/NButton.vue')
@@ -82,6 +92,7 @@ export default {
       const vh = window.innerHeight * 0.01
       document.documentElement.style.setProperty('--vh', `${vh}px`)
     }
+    const { t } = useI18n()
 
     onMounted(async () => {
       setViewHeight()
@@ -94,7 +105,8 @@ export default {
       addNicoBocq,
       clearState,
       setNewResume,
-      isValid
+      isValid,
+      t
     }
   }
 }

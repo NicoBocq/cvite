@@ -22,7 +22,10 @@
         @click="removeItem(element.id, stateKey)"
       />
     </div>
-    <transition name="fade-shrink" tag="div">
+    <transition
+      name="fade-shrink"
+      tag="div"
+    >
       <div
         v-if="active"
         :ref="'add' + stateKey"
@@ -31,9 +34,9 @@
         <div class="space-y-4 md:grid md:gap-2 md:grid-cols-2">
           <form-item-generator
             v-for="(item, idx) in model[stateKey].data"
+            :key="'edit-' + model[stateKey] + idx"
             :scheme-item="item"
             :edit-item="element"
-            :key="'edit-' + model[stateKey] + idx"
           />
         </div>
       </div>

@@ -13,7 +13,11 @@
     @click="onClick"
     @change="onChange"
   >
-    <n-icon v-if="!!icon" :icon="icon" :small="small" />
+    <n-icon
+      v-if="!!icon"
+      :icon="icon"
+      :small="small"
+    />
     <span v-if="!!$slots.default || !!label">
       <slot>{{ label }}</slot>
     </span>
@@ -36,7 +40,8 @@ export default {
       default: false
     },
     icon: {
-      type: String
+      type: String,
+      default: ''
     },
     theme: {
       type: String,

@@ -103,8 +103,6 @@ export default async function useExportToPdf () {
     }
   ]
 
-  const arrSection = ['link', 'skill', 'education', 'experience', 'hobby']
-
   const linksSection = [
     { text: stateModel.link.title, style: 'sectionTitle' },
     { stack: linkList, style: 'list' }
@@ -131,7 +129,7 @@ export default async function useExportToPdf () {
   const side = [
     linksSection,
     skillsSection,
-    ...(stateResume.hobby && [hobbiesSection])
+    ...(stateResume.hobby ? [hobbiesSection] : [])
   ]
   const dd = {
     pageSize: 'A4',

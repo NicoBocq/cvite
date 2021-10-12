@@ -1,21 +1,19 @@
+import en from '../locales/en.json'
 import { createI18n } from 'vue-i18n'
+// import { lang } from '@/modules/uiStore'
 
 const i18n = createI18n({
   legacy: false,
-  locale: 'fr',
+  locale: 'en',
   fallbackLocale: 'en',
-  messages: {
-    en: {
-      message: {
-        download: 'Download'
-      }
-    },
-    fr: {
-      message: {
-        download: 'Télécharger'
-      }
+  globalInjection: true,
+  messages:
+    {
+      en,
+      fr: () => import('../locales/fr.json')
     }
-  }
 })
 
-export default i18n
+export {
+  i18n
+}

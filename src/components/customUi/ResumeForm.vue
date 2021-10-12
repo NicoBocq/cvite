@@ -1,14 +1,41 @@
 <template>
-  <transition-group tag="div" name="list" class="space-y-6 py-6">
-    <form-section key="main" state-key="main" :is-list="false" :has-title="false" />
+  <transition-group
+    tag="div"
+    name="list"
+    class="space-y-6 py-6"
+  >
+    <form-section
+      key="main"
+      state-key="main"
+      :is-list="false"
+      :has-title="false"
+    />
     <n-box-form key="photo">
       <n-upload v-model="resume.avatar" />
     </n-box-form>
-    <form-section key="experience" state-key="experience" title-key="title" />
-    <form-section key="education" state-key="education" title-key="degree" />
-    <form-section key="link" state-key="link" />
-    <form-section key="skill" state-key="skill" />
-    <form-section key="hobby" state-key="hobby" :is-list="false" />
+    <form-section
+      key="experience"
+      state-key="experience"
+      title-key="title"
+    />
+    <form-section
+      key="education"
+      state-key="education"
+      title-key="degree"
+    />
+    <form-section
+      key="link"
+      state-key="link"
+    />
+    <form-section
+      key="skill"
+      state-key="skill"
+    />
+    <form-section
+      key="hobby"
+      state-key="hobby"
+      :is-list="false"
+    />
   </transition-group>
 </template>
 

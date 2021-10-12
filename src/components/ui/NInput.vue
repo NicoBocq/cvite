@@ -1,6 +1,11 @@
 <template>
   <div class="relative">
-    <label :for="id" class="sr-only">{{ label }}</label>
+    <label
+      :for="id"
+      class="sr-only"
+    >
+      {{ label }}
+    </label>
     <input
       v-if="type !== 'textarea'"
       :id="id"
@@ -11,7 +16,7 @@
       :class="rootClasses"
       :placeholder="placeholder"
       @input="onInput"
-    />
+    >
     <textarea
       v-else
       :id="id"
@@ -54,13 +59,16 @@ export default {
       default: 'text'
     },
     modelValue: {
-      type: [String, Number]
+      type: [String, Number],
+      default: null
     },
     placeholder: {
-      type: String
+      type: String,
+      default: ''
     },
     label: {
-      type: String
+      type: String,
+      default: ''
     },
     required: {
       type: Boolean

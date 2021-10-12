@@ -1,5 +1,44 @@
 {
   "ui": {
-    "download": "Download"
+    "download": "Download",
+    "edit": "Edit",
+    "add": "Add",
+    "addElement": "Add another element",
+    "close": "Close",
+    "save": "Save"
+  },
+  "resume": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "title": "Job Title",
+    "summary": "Summary",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "more": "More Details",
+    "section": {
+      "title": {
+        "employmentHistory": "Employment History",
+        "links": "Links",
+        "skills": "Skills",
+        "education": "Education",
+        "hobbies": "Hobbies",
+        "photo": "Photo"
+      },
+      "fields": {
+        "beginDate": "Start Date",
+        "endDate": "End Date",
+        "employer": "Employer",
+        "city": "City",
+        "description": "Description",
+        "jobTitle": "Job Title",
+        "school": "School",
+        "label": "Label",
+        "link": "Link",
+        "degree": "Degree",
+        "hobbies": "Hobbies",
+        "skill": "Skill"
+      }
+    }
   }
 }

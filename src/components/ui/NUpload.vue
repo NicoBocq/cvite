@@ -1,12 +1,14 @@
 <template>
-  <h3 class="block text-xl font-bold">Photo</h3>
+  <h3 class="block text-xl font-bold">
+    {{ t('resume.section.title.photo') }}
+  </h3>
   <div class="mt-1 flex items-center space-x-2">
     <img
       v-if="!!image"
       class="inline-block h-16 w-16 shadow-sm"
       :src="image"
       alt=""
-    />
+    >
     <n-icon
       v-else
       icon="user-circle-outline"
@@ -17,7 +19,7 @@
       <n-button
         icon="upload"
         small
-        :label="!!image ? 'Modifier' : 'Ajouter'"
+        :label="!!image ? t('ui.edit') : t('ui.add')"
         @click="setIsOpen(true)"
       />
       <n-button
@@ -30,7 +32,9 @@
     </div>
   </div>
   <n-dialog v-model:open="open">
-    <template #header>Gestion de de votre photo</template>
+    <template #header>
+      Gestion de de votre photo
+    </template>
     <template #body>
       <div
         class="flex justify-center items-center p-6"
@@ -49,7 +53,7 @@
             class="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
             accept="image/*"
             @change="uploadImage"
-          />
+          >
         </div>
       </div>
       <cropper
@@ -68,7 +72,12 @@
         small
         @click="abort"
       />
-      <n-button label="Sauvegarder" icon="check" small @click="save" />
+      <n-button
+        label="Sauvegarder"
+        icon="check"
+        small
+        @click="save"
+      />
     </template>
   </n-dialog>
 </template>
@@ -81,19 +90,22 @@ import NDialog from './NDialog.vue'
 import { Cropper } from 'vue-advanced-cropper'
 import 'vue-advanced-cropper/dist/style.css'
 import { useModelWrapper } from '../../composables/modelWrapper'
+import { useI18n } from 'vue-i18n'
 
 export default {
   name: 'NUpload',
   components: { NDialog, NIcon, NButton, Cropper },
   props: {
     modelValue: {
-      type: String
+      type: String,
+      default: ''
     }
   },
   setup (props, { emit }) {
     const image = useModelWrapper(props, emit)
     const tempImage = ref(null)
     const cropperRef = ref(null)
+    const { t } = useI18n()
 
     const deleteImage = () => {
       image.value = null
@@ -147,7 +159,8 @@ export default {
       abort,
       uploadImage,
       resizeImage,
-      cropperRef
+      cropperRef,
+      t
     }
   }
 }

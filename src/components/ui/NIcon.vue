@@ -55,7 +55,8 @@ export default {
   },
   props: {
     icon: {
-      type: String
+      type: String,
+      default: ''
     },
     small: {
       type: Boolean,
@@ -66,11 +67,12 @@ export default {
       default: ''
     },
     size: {
-      type: String
+      type: String,
+      default: ''
     }
   },
   setup (props) {
-    const { icon, color, small, size } = toRefs(props)
+    const { icon, small, size } = toRefs(props)
     const processedIcon = computed(() => {
       const type = icon.value.includes('-outline') ? 'outline' : 'solid'
       const iconValue = icon.value.includes('-outline')
@@ -85,7 +87,6 @@ export default {
 
     return {
       processedIcon,
-      color,
       sizeStyle
     }
   }
