@@ -10,10 +10,14 @@
 <script>
 import {
   CheckIcon as CheckIconSolid,
+  ChevronDownIcon as ChevronDownIconSolid,
   ChevronLeftIcon as ChevronLeftIconSolid,
   ChevronRightIcon as ChevronRightIconSolid,
+  CogIcon as CogIconSolid,
   DownloadIcon as DownloadIconSolid,
   FireIcon as FireIconSolid,
+  GlobeAltIcon as GlobeIconSolid,
+  LightningBoltIcon as LightningBoltIconSolid,
   PencilIcon as PencilIconSolid,
   PlusIcon as PlusIconSolid,
   QuestionMarkCircleIcon as QuestionMarkCircleIconSolid,
@@ -26,7 +30,6 @@ import {
   XIcon as XIconSolid
 } from '@heroicons/vue/solid'
 import {
-  QuestionMarkCircleIcon as QuestionMarkCircleIconOutline,
   UserCircleIcon as UserCircleIconOutline,
   TrashIcon as TrashIconOutline
 } from '@heroicons/vue/outline'
@@ -35,14 +38,17 @@ export default {
   name: 'NIcon',
   components: {
     CheckIconSolid,
+    ChevronDownIconSolid,
     ChevronLeftIconSolid,
     ChevronRightIconSolid,
+    CogIconSolid,
     DownloadIconSolid,
     FireIconSolid,
+    GlobeIconSolid,
+    LightningBoltIconSolid,
     PencilIconSolid,
     PlusIconSolid,
     QuestionMarkCircleIconSolid,
-    QuestionMarkCircleIconOutline,
     RefreshIconSolid,
     TrashIconOutline,
     TrashIconSolid,

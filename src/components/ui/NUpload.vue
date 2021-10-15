@@ -32,9 +32,6 @@
     </div>
   </div>
   <n-dialog v-model:open="open">
-    <template #header>
-      Gestion de de votre photo
-    </template>
     <template #body>
       <div
         class="flex justify-center items-center p-6"
@@ -42,7 +39,7 @@
       >
         <div class="relative">
           <n-button
-            :label="tempImage ? 'Remplacer' : 'Ajouter'"
+            :label="tempImage ? t('ui.replace') : t('ui.add')"
             icon="upload"
             small
           />
@@ -66,14 +63,14 @@
     </template>
     <template #footer>
       <n-button
-        label="Annuler"
+        :label="t('ui.close')"
         theme="transparent"
         icon="x"
         small
         @click="abort"
       />
       <n-button
-        label="Sauvegarder"
+        :label="t('ui.save')"
         icon="check"
         small
         @click="save"

@@ -5,9 +5,9 @@
     @close="onClose"
   >
     <div class="flex items-center justify-center min-h-screen">
-      <Dialog-overlay class="fixed inset-0 bg-blue-900 opacity-30" />
+      <Dialog-overlay class="fixed inset-0 bg-gray-800 opacity-75" />
       <div
-        class="relative inline-block bg-white sm:rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl sm:my-8 w-screen h-screen sm:h-auto sm:max-w-lg sm:w-full sm:p-6 space-y-4"
+        class="relative flex flex-col inline-block bg-white sm:rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl sm:my-8 w-screen h-screen sm:h-auto sm:max-w-lg sm:w-full sm:p-6 space-y-4"
       >
         <n-button
           icon="x"
@@ -21,9 +21,12 @@
         >
           <slot name="header" />
         </Dialog-title>
-        <Dialog-description v-if="hasSlot('body')">
+        <div
+          v-if="hasSlot('body')"
+          class="flex-grow"
+        >
           <slot name="body" />
-        </Dialog-description>
+        </div>
         <div
           v-if="hasSlot('footer')"
           class="flex items-center justify-end space-x-2"
@@ -39,8 +42,7 @@
 import {
   Dialog,
   DialogOverlay,
-  DialogTitle,
-  DialogDescription
+  DialogTitle
 } from '@headlessui/vue'
 import { useModelWrapper } from '../../composables/modelWrapper'
 import NButton from './NButton.vue'
@@ -51,8 +53,7 @@ export default {
     NButton,
     Dialog,
     DialogOverlay,
-    DialogTitle,
-    DialogDescription
+    DialogTitle
   },
   props: {
     open: {

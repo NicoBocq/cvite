@@ -1,25 +1,34 @@
 <template>
-  <menu as="div">
-    <menu-button>Télécharger</menu-button>
+  <Menu as="div">
+    <Menu-button>Télécharger</Menu-button>
     <!--    <MenuButton as="template">-->
     <!--      <n-button icon="download" label="Télécharger" />-->
     <!--    </MenuButton>-->
-    <menu-items as="ul">
-      <menu-item v-slot="{ active }" as="li">
-        <a :class="{ 'bg-blue-500': active }" href="/account-settings">
+    <Menu-items as="ul">
+      <Menu-item
+        v-slot="{ active }"
+        as="li"
+      >
+        <a
+          :class="{ 'bg-blue-500': active }"
+          href="/account-settings"
+        >
           Account settings
         </a>
-      </menu-item>
-      <menu-item v-slot="{ active }">
-        <a :class="{ 'bg-blue-500': active }" href="/account-settings">
+      </Menu-item>
+      <Menu-item v-slot="{ active }">
+        <a
+          :class="{ 'bg-blue-500': active }"
+          href="/account-settings"
+        >
           Documentation
         </a>
-      </menu-item>
-      <menu-item disabled>
+      </Menu-item>
+      <Menu-item disabled>
         <span class="opacity-75">Invite a friend (coming soon!)</span>
-      </menu-item>
-    </menu-items>
-  </menu>
+      </Menu-item>
+    </Menu-items>
+  </Menu>
 </template>
 
 <script>

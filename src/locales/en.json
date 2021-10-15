@@ -3,9 +3,14 @@
     "download": "Download",
     "edit": "Edit",
     "add": "Add",
-    "addElement": "Add another element",
+    "addElement": "Add Additional Element",
     "close": "Close",
-    "save": "Save"
+    "save": "Save",
+    "addPhoto": "Upload your photo",
+    "replace": "Replace",
+    "switchLang": "FR",
+    "about": "About",
+    "startOver": "Start Over"
   },
   "resume": {
     "firstName": "First Name",

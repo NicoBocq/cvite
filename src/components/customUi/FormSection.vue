@@ -47,7 +47,7 @@
               small
               class="group-hover:rotate-45 group-hover:text-gray-500 transform transition duration-300"
             />
-            <h3 class="text-sm group-hover:text-gray-500 flex-1">
+            <h3 class="text-sm font-medium group-hover:text-gray-500 flex-1">
               {{ t('ui.addElement') }}
             </h3>
           </div>

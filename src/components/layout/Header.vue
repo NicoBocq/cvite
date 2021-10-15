@@ -1,61 +1,52 @@
 <template>
-  <header class="bg-white">
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
-      <div
-        class="
-          w-full
-          py-6
-          flex
-          items-center
-          justify-between
-          border-b border-indigo-500
-          lg:border-none
-        "
+  <header class="h-16 w-full py-2 px-4 sm:px-6 lg:px-8 bg-white shadow-sm flex flex-col sm:flex-row justify-start sm:justify-between sm:items-center shadow z-10">
+    <div class="flex space-x-1 items-center group cursor-pointer">
+      <n-icon
+        icon="lightning-bolt"
+        class="text-brand-600 group-hover:text-gray-800"
+      />
+      <div class="text-brand-600 font-extrabold text-3xl group-hover:text-gray-800">
+        CV<span class="text-gray-800 font-normal group-hover:text-brand-600">ite</span>
+      </div>
+    </div>
+    <div class="space-x-2 flex items-center">
+      <n-button
+        icon="download"
+        @click="useExportToPdf"
       >
-        <div class="flex items-center">
-          <a href="#">
-            <span class="sr-only">Workflow</span>
-            <h1 class="text-4xl font-extralight">
-              <span class="font-extrabold text-gray-600">CV</span>ite
-            </h1>
-          </a>
-          <div class="hidden ml-10 space-x-8 lg:block">
-            <a
-              v-for="link in navigation"
-              :key="link.name"
-              :href="link.href"
-              class="text-base font-medium text-white hover:text-indigo-50"
-            >
-              {{ link.name }}
-            </a>
-          </div>
-        </div>
-        <div class="ml-10 space-x-4">
-          <n-button icon="download" @click="printToPdf"> Télécharger </n-button>
-          <n-button @click="toggleSlide"> Ouvrir </n-button>
-          <!--          <a href="#" class="inline-block bg-indigo-500 py-2 px-4 border border-transparent rounded-md text-base font-medium text-white hover:bg-opacity-75">Sign in</a>-->
-          <!--          <a href="#" class="inline-block bg-white py-2 px-4 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50">Sign up</a>-->
-        </div>
-      </div>
-      <div class="py-4 flex flex-wrap justify-center space-x-6 lg:hidden">
-        <!--        <a v-for="link in navigation" :key="link.name" :href="link.href" class="text-base font-medium text-white hover:text-indigo-50">-->
-        <!--          {{ link.name }}-->
-        <!--        </a>-->
-      </div>
-    </nav>
+        {{ t('ui.download') }}
+      </n-button>
+      <n-dropdown
+        icon="cog"
+      />
+    </div>
   </header>
 </template>
 
 <script>
-import NDropdown from '../ui/NDropdown.vue'
 import NButton from '../ui/NButton.vue'
-import { useRouter } from 'vue-router'
+import useExportToPdf from '../../composables/pdfExport'
+import { setNewResume, addNicoBocq } from '../../modules/resumeStore'
+import { useI18n } from 'vue-i18n'
+import NIcon from '../ui/NIcon.vue'
+import NDropdown from '../ui/NDropdown.vue'
+
 export default {
   name: 'Header',
   components: {
-    NButton,
-    NDropdown
+    NDropdown,
+    NIcon,
+    NButton
   },
-  setup () {}
+  setup () {
+    const { t } = useI18n()
+
+    return {
+      useExportToPdf,
+      setNewResume,
+      addNicoBocq,
+      t
+    }
+  }
 }
 </script>

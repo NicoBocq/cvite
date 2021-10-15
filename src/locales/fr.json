@@ -1,5 +1,50 @@
 {
   "ui": {
-    "download": "Télécharger"
+    "download": "Télécharger",
+    "edit": "Éditer",
+    "add": "Ajouter",
+    "addElement": "Ajouter un autre élément",
+    "close": "Fermer",
+    "save": "Sauver",
+    "addPhoto": "Uploader votre photo",
+    "replace": "Remplacer",
+    "switchLang": "EN",
+    "about": "À propos",
+    "startOver": "Recommencer"
+
+  },
+  "resume": {
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "title": "Poste",
+    "summary": "Résumé",
+    "email": "Email",
+    "phone": "Téléphone",
+    "address": "Adresse",
+    "more": "Plus d'informations",
+    "section": {
+      "title": {
+        "employmentHistory": "Expériences",
+        "links": "Liens",
+        "skills": "Compétences",
+        "education": "Formations",
+        "hobbies": "Passions",
+        "photo": "Photo"
+      },
+      "fields": {
+        "beginDate": "Date de début",
+        "endDate": "Date de fin",
+        "employer": "Employeur",
+        "city": "Ville",
+        "description": "Description",
+        "jobTitle": "Poste",
+        "school": "École",
+        "label": "Titre",
+        "link": "Lien",
+        "degree": "Diplôme",
+        "hobbies": "Passions",
+        "skill": "Compétences"
+      }
+    }
   }
 }

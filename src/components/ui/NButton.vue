@@ -1,13 +1,6 @@
 <template>
   <button
-    class="
-      inline-flex
-      items-center
-      border border-transparent
-      font-semibold
-      justify-center
-      rounded-full
-    "
+    class="inline-flex items-center border border-transparent font-semibold justify-center rounded-full"
     v-bind="$attrs"
     :class="[themeStyle, sizeStyle, rootStyle]"
     @click="onClick"
@@ -63,7 +56,7 @@ export default {
     const themeStyle = computed(() => {
       const mappedClasses = {
         primary:
-          'text-white bg-gradient-to-r from-brand-500 to-brand-600 hover:bg-brand-700 shadow-sm',
+          'text-white bg-brand-600 hover:bg-brand-700 shadow-sm',
         secondary: 'text-brand-500 hover:text-brand-600 hover:bg-brand-50',
         transparent: 'text-gray-400 hover:text-gray-500 hover:bg-gray-50'
       }

@@ -11,9 +11,9 @@ export default async function useExportToPdf () {
   pdfMake.fonts = {
     Inter: {
       normal: 'Inter-Regular.ttf',
+      bold: 'Inter-Bold.ttf'
       // medium: 'Inter-Medium.ttf',
       // semiBold: 'Inter-SemiBold.ttf',
-      bold: 'Inter-Bold.ttf'
       // extraBold: 'Inter-ExtraBold.ttf'
     }
   }
@@ -262,6 +262,6 @@ export default async function useExportToPdf () {
       }
     }
   }
-  // pdfMake.createPdf(dd, null, fonts).open()
-  await pdfMake.createPdf(dd).open()
+  const filename = `${stateResume.firstName}-${stateResume.lastName}.pdf`
+  pdfMake.createPdf(dd).download(filename)
 }

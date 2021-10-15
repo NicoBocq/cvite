@@ -30,73 +30,73 @@ const state = reactive({
           component: 'input',
           key: 'firstName',
           type: 'text',
-          placeholder: t('resume.firstName'),
+          placeholder: computed(() => t('resume.firstName')),
           rules: ['required']
         },
         {
           component: 'input',
           key: 'lastName',
           type: 'text',
-          placeholder: t('resume.lastName'),
+          placeholder: computed(() => t('resume.lastName')),
           rules: ['required']
         },
         {
           component: 'input',
           key: 'title',
           type: 'text',
-          placeholder: t('resume.title'),
+          placeholder: computed(() => t('resume.title')),
           rules: ['required']
         },
         {
           component: 'input',
           key: 'summary',
           type: 'textarea',
-          placeholder: t('resume.summary')
+          placeholder: computed(() => t('resume.summary'))
         },
         {
           component: 'input',
           key: 'email',
           type: 'text',
-          placeholder: t('resume.email'),
+          placeholder: computed(() => t('resume.email')),
           rules: ['required', 'email']
         },
         {
           component: 'input',
           key: 'phone',
           type: 'text',
-          placeholder: t('resume.phone'),
+          placeholder: computed(() => t('resume.phone')),
           rules: ['required', 'phone']
         },
         {
           component: 'input',
           key: 'address',
           type: 'text',
-          placeholder: t('resume.address')
+          placeholder: computed(() => t('resume.address'))
         },
         {
           component: 'input',
           key: 'more',
           type: 'textarea',
-          placeholder: t('resume.more')
+          placeholder: computed(() => t('resume.more'))
         }
       ]
     },
     education: {
-      title: t('resume.section.title.education'),
+      title: computed(() => t('resume.section.title.education')),
       new: {},
       data: [
         {
           component: 'input',
           key: 'degree',
           type: 'text',
-          placeholder: t('resume.section.fields.degree'),
+          placeholder: computed(() => t('resume.section.fields.degree')),
           rules: ['required']
         },
         {
           component: 'input',
           key: 'beginDate',
           type: 'text',
-          placeholder: t('resume.section.fields.beginDate'),
+          placeholder: computed(() => t('resume.section.fields.beginDate')),
           short: true,
           rules: ['required']
         },
@@ -104,46 +104,46 @@ const state = reactive({
           component: 'input',
           key: 'endDate',
           type: 'text',
-          placeholder: t('resume.section.fields.endDate'),
+          placeholder: computed(() => t('resume.section.fields.endDate')),
           short: true
         },
         {
           component: 'input',
           key: 'school',
           type: 'text',
-          placeholder: t('resume.section.fields.school'),
+          placeholder: computed(() => t('resume.section.fields.school')),
           rules: ['required']
         },
         {
           component: 'input',
           key: 'city',
           type: 'text',
-          placeholder: t('resume.section.fields.city')
+          placeholder: computed(() => t('resume.section.fields.city'))
         },
         {
           component: 'input',
           key: 'description',
           type: 'textarea',
-          placeholder: t('resume.section.fields.description')
+          placeholder: computed(() => t('resume.section.fields.description'))
         }
       ]
     },
     experience: {
-      title: t('resume.section.title.employmentHistory'),
+      title: computed(() => t('resume.section.title.employmentHistory')),
       new: {},
       data: [
         {
           component: 'input',
           key: 'title',
           type: 'text',
-          placeholder: t('resume.section.fields.jobTitle'),
+          placeholder: computed(() => t('resume.section.fields.jobTitle')),
           rules: ['required']
         },
         {
           component: 'input',
           key: 'beginDate',
           type: 'text',
-          placeholder: t('resume.section.fields.beginDate'),
+          placeholder: computed(() => t('resume.section.fields.beginDate')),
           short: true,
           rules: ['required']
         },
@@ -151,65 +151,65 @@ const state = reactive({
           component: 'input',
           key: 'endDate',
           type: 'text',
-          placeholder: t('resume.section.fields.endDate'),
+          placeholder: computed(() => t('resume.section.fields.endDate')),
           short: true
         },
         {
           component: 'input',
           key: 'company',
           type: 'text',
-          placeholder: t('resume.section.fields.employer'),
+          placeholder: computed(() => t('resume.section.fields.employer')),
           rules: ['required']
         },
         {
           component: 'input',
           key: 'description',
           type: 'textarea',
-          placeholder: t('resume.section.fields.description')
+          placeholder: computed(() => t('resume.section.fields.description'))
         }
       ]
     },
     link: {
-      title: t('resume.section.title.links'),
+      title: computed(() => t('resume.section.title.links')),
       new: {},
       data: [
         {
           component: 'input',
           key: 'label',
           type: 'text',
-          placeholder: t('resume.section.fields.label'),
+          placeholder: computed(() => t('resume.section.fields.label')),
           rules: ['required']
         },
         {
           component: 'input',
           key: 'url',
           type: 'text',
-          placeholder: t('resume.section.fields.link'),
+          placeholder: computed(() => t('resume.section.fields.link')),
           rules: ['required']
         }
       ]
     },
     skill: {
-      title: t('resume.section.title.skills'),
+      title: computed(() => t('resume.section.title.skills')),
       new: {},
       data: [
         {
           component: 'input',
           key: 'label',
           type: 'textarea',
-          placeholder: t('resume.section.fields.skill'),
+          placeholder: computed(() => t('resume.section.fields.skill')),
           rules: ['required']
         }
       ]
     },
     hobby: {
-      title: t('resume.section.title.hobbies'),
+      title: computed(() => t('resume.section.title.hobbies')),
       data: [
         {
           component: 'input',
           key: 'hobby',
           type: 'textarea',
-          placeholder: t('resume.section.fields.hobbies')
+          placeholder: computed(() => t('resume.section.fields.hobbies'))
         }
       ]
     }

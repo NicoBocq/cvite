@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { computed, toRefs } from 'vue'
+import { computed, onMounted, toRefs } from 'vue'
 import NIcon from './NIcon.vue'
 
 export default {
