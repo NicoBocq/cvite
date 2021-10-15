@@ -1,5 +1,5 @@
 <template>
-  <header class="h-16 w-full py-2 px-4 sm:px-6 lg:px-8 bg-white shadow-sm flex flex-col sm:flex-row justify-start sm:justify-between sm:items-center shadow z-10">
+  <header class="h-16 w-full py-2 px-4 sm:px-6 lg:px-8 bg-white shadow-sm flex justify-between sm:justify-between sm:items-center shadow z-10">
     <div class="flex space-x-1 items-center group cursor-pointer">
       <n-icon
         icon="lightning-bolt"
