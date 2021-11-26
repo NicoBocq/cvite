@@ -243,13 +243,24 @@ const isEmpty = (type) => {
   return Object.values(obj).every((i) => !i)
 }
 
-const isValid = (type) => {
-  const requiredArr = state.model[type].data.reduce((acc, i) => {
+const requiredKey = (type) => {
+  return state.model[type].data.reduce((acc, i) => {
     if (i.rules?.includes('required')) acc.push(i.key)
     return acc
   }, [])
-  return !requiredArr.every((i) => state.model[type].new[i])
 }
+
+const isValid = (type) => {
+  return requiredKey(type).every((i) => !!state.model[type].new[i])
+}
+
+const isValidResume = computed(() => {
+  const isMainValid = requiredKey('main').every((i) => !!state.resume[i])
+  return isMainValid && !!state.resume.education.length &&
+    !!state.resume.experience.length &&
+    !!state.resume.skill.length &&
+    !!state.resume.link.length
+})
 
 const removeItem = (id, type) => {
   if (!id) return
@@ -285,5 +296,6 @@ export {
   isEmpty,
   setNewResume,
   saveItem,
-  isValid
+  isValid,
+  isValidResume
 }

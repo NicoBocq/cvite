@@ -41,7 +41,7 @@
 
 <script>
 import NBoxForm from '../ui/NBoxForm.vue'
-import { resume, model } from '@/modules/resumeStore.js'
+import { resume, model } from '../../modules/resumeStore.js'
 import { defineAsyncComponent } from 'vue'
 
 const FormSection = defineAsyncComponent({
