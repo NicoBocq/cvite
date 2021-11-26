@@ -69,7 +69,7 @@
               :label="t('ui.save')"
               small
               icon="check"
-              :disabled="isValid(stateKey)"
+              :disabled="!isValid(stateKey)"
               @click="save(stateKey)"
             />
           </div>
