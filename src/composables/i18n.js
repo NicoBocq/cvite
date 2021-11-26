@@ -11,7 +11,6 @@ const i18n = createI18n({
     {
       en,
       fr
-      // fr: () => import('../locales/fr.json')
     }
 })
 

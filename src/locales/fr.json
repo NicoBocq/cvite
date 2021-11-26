@@ -10,8 +10,10 @@
     "replace": "Remplacer",
     "switchLang": "EN",
     "about": "À propos",
-    "startOver": "Recommencer"
-
+    "startOver": "Recommencer",
+    "design": "Design",
+    "content": "Contenu",
+    "languageLabel": "Changer la langue"
   },
   "resume": {
     "firstName": "Prénom",

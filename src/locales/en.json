@@ -10,7 +10,10 @@
     "replace": "Replace",
     "switchLang": "FR",
     "about": "About",
-    "startOver": "Start Over"
+    "startOver": "Start Over",
+    "design": "Design",
+    "content": "Content",
+    "languageLabel": "Change Language"
   },
   "resume": {
     "firstName": "First Name",

@@ -140,5 +140,5 @@ export const nicoBocq = {
     },
     { id: 7, label: 'Git **' }
   ],
-  hobby: 'Histoire, sports (course à pied, football)'
+  hobby: 'Side projects, histoire, sports (course à pied, football)'
 }

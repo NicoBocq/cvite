@@ -1,29 +1,21 @@
 <template>
   <Listbox
-    v-model="selected"
     as="div"
   >
-    <ListboxLabel class="sr-only">
-      Change published status
-    </ListboxLabel>
     <div class="relative">
       <div class="inline-flex shadow-sm rounded-md divide-x divide-brand-600">
-        <div class="relative z-0 inline-flex shadow-sm rounded-md divide-x divide-brand-600">
-          <div class="relative inline-flex items-center bg-brand-500 py-2 pl-3 pr-4 border border-transparent rounded-l-md shadow-sm text-white">
-            <div
-              class="ml-2.5 text-sm font-medium flex"
-              @click=""
-            >
-              <span>Download</span>
-              <n-icon icon="download" />
-            </div>
-          </div>
+        <div class="relative z-0 inline-flex shadow-sm rounded-lg divide-x divide-brand-600">
+          <button
+            class="relative inline-flex items-center text-sm font-medium flex space-x-2 py-2 pl-3 pr-4 border border-transparent rounded-l-md shadow-sm text-white"
+            :disabled="!isValidResume"
+            :class="isValidResume ? 'cursor-pointer bg-brand-500 hover:bg-brand-600' : 'cursor-default bg-brand-400'"
+            @click="useExportToPdf"
+          >
+            <n-icon icon="download" />
+            <span>{{ t('ui.download') }}</span>
+          </button>
           <ListboxButton class="relative inline-flex items-center bg-brand-500 p-2 rounded-l-none rounded-r-md text-sm font-medium text-white hover:bg-brand-600 focus:outline-none focus:z-10 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-brand-500">
-            <span class="sr-only">Change published status</span>
-            <ChevronDownIcon
-              class="h-5 w-5 text-white"
-              aria-hidden="true"
-            />
+            <n-icon icon="chevron-down" />
           </ListboxButton>
         </div>
       </div>
@@ -33,32 +25,56 @@
         leave-from-class="opacity-100"
         leave-to-class="opacity-0"
       >
-        <ListboxOptions class="origin-top-right absolute z-10 right-0 mt-2 w-72 rounded-md shadow-lg overflow-hidden bg-white divide-y divide-gray-200 ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <ListboxOptions
+          class="origin-top-right absolute z-10 right-0 mt-2 w-72 rounded-md shadow-lg overflow-hidden bg-white divide-y divide-gray-200 ring-1 ring-black ring-opacity-5 focus:outline-none"
+        >
           <ListboxOption
-            v-for="option in publishingOptions"
-            :key="option.title"
-            v-slot="{ active, selected }"
+            v-for="option in items"
+            :key="option.label"
             as="template"
-            :value="option"
           >
-            <li :class="[active ? 'text-white bg-brand-500' : 'text-gray-900', 'cursor-default select-none relative p-4 text-sm']">
+            <li
+              class="cursor-pointer select-none relative p-4 text-sm text-white text-brand-500 hover:text-white hover:bg-brand-500"
+              @click="option.action"
+            >
               <div class="flex flex-col">
-                <div class="flex justify-between">
-                  <p :class="selected ? 'font-semibold' : 'font-normal'">
-                    {{ option.title }}
+                <div class="flex space-x-2 items-center">
+                  <n-icon :icon="option.icon" />
+                  <p>
+                    {{ option.label }}
                   </p>
-                  <span
-                    v-if="selected"
-                    :class="active ? 'text-white' : 'text-brand-500'"
-                  >
-                    <CheckIcon
-                      class="h-5 w-5"
-                      aria-hidden="true"
-                    />
-                  </span>
                 </div>
               </div>
             </li>
+          </ListboxOption>
+          <ListboxOption class="p-4">
+            <RadioGroup
+              v-model="locale"
+              class="space-y-2"
+            >
+              <RadioGroupLabel class="text-sm text-gray-500">
+                {{ t('ui.languageLabel') }}
+              </RadioGroupLabel>
+              <div class="grid grid-cols-2 gap-2">
+                <RadioGroupOption
+                  v-for="option in languages"
+                  :key="option.label"
+                  v-slot="{ checked }"
+                  as="template"
+                  :value="option.value"
+                >
+                  <div
+                    class="cursor-pointer border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium uppercase sm:flex-1"
+                    :class="[
+                      checked ? 'bg-brand-600 border-transparent text-white hover:bg-brand-700' : 'bg-white border-gray-200 text-gray-900 hover:bg-gray-50']"
+                  >
+                    <RadioGroupLabel as="p">
+                      {{ option.label }}
+                    </RadioGroupLabel>
+                  </div>
+                </RadioGroupOption>
+              </div>
+            </RadioGroup>
           </ListboxOption>
         </ListboxOptions>
       </transition>
@@ -67,34 +83,47 @@
 </template>
 
 <script>
-import { ref } from 'vue'
-import { Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions } from '@headlessui/vue'
-import { CheckIcon, ChevronDownIcon } from '@heroicons/vue/solid'
+import { Listbox, ListboxButton, ListboxOption, ListboxOptions, RadioGroup, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
 import NIcon from '../ui/NIcon.vue'
-
-const publishingOptions = [
-  { title: 'Published', description: 'This job posting can be viewed by anyone who has the link.', current: true },
-  { title: 'Draft', description: 'This job posting will no longer be publicly accessible.', current: false }
-]
+import useExportToPdf from '../../composables/pdfExport'
+import { setNewResume, addNicoBocq, isValidResume } from '../../modules/resumeStore'
+import { useI18n } from 'vue-i18n'
+import { computed } from 'vue'
 
 export default {
-  name: 'Menu',
+  name: 'NMenu',
   components: {
     NIcon,
     Listbox,
     ListboxButton,
-    ListboxLabel,
     ListboxOption,
     ListboxOptions,
-    CheckIcon,
-    ChevronDownIcon
+    RadioGroup,
+    RadioGroupLabel,
+    RadioGroupOption
   },
   setup () {
-    const selected = ref(publishingOptions[0])
+    const { t, locale } = useI18n()
+    const items = computed(() => {
+      return [
+        { label: t('ui.startOver'), icon: 'refresh', action: setNewResume },
+        { label: t('ui.about'), icon: 'question-mark-circle', action: addNicoBocq }
+      ]
+    })
+    const languages = [
+      { label: 'EN', value: 'en' },
+      { label: 'FR', value: 'fr' }
+    ]
 
     return {
-      publishingOptions,
-      selected
+      items,
+      useExportToPdf,
+      t,
+      locale,
+      languages,
+      setNewResume,
+      addNicoBocq,
+      isValidResume
     }
   }
 }
