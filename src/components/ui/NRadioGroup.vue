@@ -1,60 +1,31 @@
 <template>
-  <radio-group v-model="plan">
-    <radio-group-label class="sr-only"> Plan </radio-group-label>
-    <div class="bg-white rounded-md">
-      <radio-group-option v-slot="{ checked }" value="startup" as="template">
-        <div
-          :class="
-            checked ? 'bg-indigo-50 border-indigo-200' : 'border-gray-200'
-          "
-          class="relative flex p-4 border"
-        >
-          <div class="flex flex-col">
-            <!-- This Label is for the `RadioGroupOption` -->
-            <radio-group-label as="template">
-              <span
-                :class="checked ? 'text-indigo-900' : 'text-gray-900'"
-                class="block text-sm font-medium"
-                >Startup</span
-              >
-            </radio-group-label>
-
-            <!-- This Description is for the `RadioGroupOption` -->
-            <radio-group-description as="template">
-              <span
-                :class="checked ? 'text-indigo-700' : 'text-gray-500'"
-                class="block text-sm"
-              >
-                Up to 5 active job postings
-              </span>
-            </radio-group-description>
-          </div>
+  <RadioGroup v-model="selectedColor">
+    <RadioGroupLabel class="block text-sm font-medium text-gray-700">
+      Choose a label color
+    </RadioGroupLabel>
+    <div class="mt-4 flex items-center space-x-3">
+      <RadioGroupOption
+        v-for="color in colors"
+        :key="color.name"
+        v-slot="{ active, checked }"
+        as="template"
+        :value="color"
+      >
+        <div :class="[color.selectedColor, active && checked ? 'ring ring-offset-1' : '', !active && checked ? 'ring-2' : '', '-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none']">
+          <RadioGroupLabel
+            as="p"
+            class="sr-only"
+          >
+            {{ color.name }}
+          </RadioGroupLabel>
+          <span
+            aria-hidden="true"
+            :class="[color.bgColor, 'h-8 w-8 border border-black border-opacity-10 rounded-full']"
+          />
         </div>
-      </radio-group-option>
-      <radio-group-option v-slot="{ active, checked }" value="startup">
-        <span
-          :class="[
-            checked ? 'bg-indigo-600' : '',
-            active ? 'ring-2 ring-indigo-500' : '',
-          ]"
-          class="w-4 h-4 rounded-full"
-        >
-          Startup
-        </span>
-      </radio-group-option>
-      <radio-group-option v-slot="{ active, checked }" value="startup">
-        <span
-          :class="[
-            checked ? 'bg-indigo-600' : '',
-            active ? 'ring-2 ring-indigo-500' : '',
-          ]"
-          class="w-4 h-4 rounded-full"
-        >
-          Startup
-        </span>
-      </radio-group-option>
+      </RadioGroupOption>
     </div>
-  </radio-group>
+  </RadioGroup>
 </template>
 
 <script>
@@ -65,7 +36,13 @@ import {
   RadioGroupOption,
   RadioGroupDescription
 } from '@headlessui/vue'
-
+const colors = [
+  { name: 'Pink', bgColor: 'bg-pink-500', selectedColor: 'ring-pink-500' },
+  { name: 'Purple', bgColor: 'bg-purple-500', selectedColor: 'ring-purple-500' },
+  { name: 'Blue', bgColor: 'bg-blue-500', selectedColor: 'ring-blue-500' },
+  { name: 'Green', bgColor: 'bg-green-500', selectedColor: 'ring-green-500' },
+  { name: 'Yellow', bgColor: 'bg-yellow-500', selectedColor: 'ring-yellow-500' }
+]
 export default {
   components: {
     RadioGroup,
@@ -77,7 +54,7 @@ export default {
   setup () {
     const plan = ref('startup')
 
-    return { plan }
+    return { plan, colors }
   }
 }
 </script>

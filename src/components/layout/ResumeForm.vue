@@ -1,9 +1,5 @@
 <template>
-  <transition-group
-    tag="div"
-    name="list"
-    class="space-y-6 py-6"
-  >
+  <div class="space-y-6 py-6">
     <form-section
       key="main"
       state-key="main"
@@ -36,7 +32,7 @@
       state-key="hobby"
       :is-list="false"
     />
-  </transition-group>
+  </div>
 </template>
 
 <script>
@@ -45,7 +41,7 @@ import { resume, model } from '../../modules/resumeStore.js'
 import { defineAsyncComponent } from 'vue'
 
 const FormSection = defineAsyncComponent({
-  loader: () => import('./FormSection.vue')
+  loader: () => import('../customUi/FormSection.vue')
 })
 
 const NUpload = defineAsyncComponent({

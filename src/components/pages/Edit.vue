@@ -9,22 +9,31 @@
       <div
         class="w-1/2 hidden md:flex md:flex-col md:items-center md:justify-center overflow-scroll"
       >
-        <preview />
+        <resume-preview
+          :resume="resume"
+          :model="model"
+        />
       </div>
       <div class="w-full lg:w-1/2 flex flex-col flex-1">
-        <!--        <div-->
-        <!--          class="w-full flex items-center justify-between border-b border-gray-200 px-4 md:px-6 py-4"-->
-        <!--        >-->
-        <!--          &lt;!&ndash;          <div class="flex space-x-4">&ndash;&gt;-->
-        <!--          &lt;!&ndash; Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" &ndash;&gt;-->
-        <!--          &lt;!&ndash;            <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Contenu</a>&ndash;&gt;-->
-        <!--          &lt;!&ndash;            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Design</a>&ndash;&gt;-->
-        <!--          &lt;!&ndash;          </div>&ndash;&gt;-->
-        <!--          &lt;!&ndash;          <n-menu />&ndash;&gt;-->
-        <!--        </div>-->
-        <div class="relative h-full overflow-y-auto">
-          <resume-form />
-        </div>
+        <n-tabs
+          :active-tab="activeTab"
+          :tabs="tabs"
+          @click="setTab"
+        />
+        <transition-group
+          name="fade"
+          tag="div"
+          class="relative h-full overflow-y-auto"
+        >
+          <resume-form
+            v-if="activeTab === 1"
+            key="form"
+          />
+          <design-form
+            v-if="activeTab === 2"
+            key="design"
+          />
+        </transition-group>
       </div>
     </div>
   </div>
@@ -32,25 +41,36 @@
 
 <script>
 import { onMounted, defineAsyncComponent } from 'vue'
+import { tabs, activeTab, setTab } from '../../modules/uiStore'
+import { resume, model } from '../../modules/resumeStore'
+
 import NLoading from '../ui/NLoading.vue'
+import NTabs from '../ui/NTabs.vue'
+
+const DesignForm = defineAsyncComponent({
+  loader: () => import('../layout/DesignForm.vue'),
+  loadingComponent: NLoading
+})
 
 const NHeader = defineAsyncComponent({
   loader: () => import('../layout/Header.vue'),
   loadingComponent: NLoading
 })
 const ResumeForm = defineAsyncComponent({
-  loader: () => import('../customUi/ResumeForm.vue'),
+  loader: () => import('../layout/ResumeForm.vue'),
   loadingComponent: NLoading
 })
-const Preview = defineAsyncComponent({
-  loader: () => import('../layout/Preview.vue'),
+const ResumePreview = defineAsyncComponent({
+  loader: () => import('../layout/ResumePreview.vue'),
   loadingComponent: NLoading
 })
 export default {
   name: 'Edit',
   components: {
+    DesignForm,
+    NTabs,
     NHeader,
-    Preview,
+    ResumePreview,
     ResumeForm
   },
   setup () {
@@ -65,6 +85,13 @@ export default {
         setViewHeight()
       })
     })
+    return {
+      tabs,
+      activeTab,
+      setTab,
+      resume,
+      model
+    }
   }
 }
 </script>

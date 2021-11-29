@@ -58,7 +58,7 @@
         ref="cropperRef"
         class="h-60 w-full"
         :src="tempImage"
-        :stencil-props="{ aspectRatio: 9 / 9 }"
+        :stencil-component="$options.components.Stencil"
       />
     </template>
     <template #footer>
@@ -88,10 +88,11 @@ import { Cropper } from 'vue-advanced-cropper'
 import 'vue-advanced-cropper/dist/style.css'
 import { useModelWrapper } from '../../composables/modelWrapper'
 import { useI18n } from 'vue-i18n'
+import Stencil from './Stencil.vue'
 
 export default {
   name: 'NUpload',
-  components: { NDialog, NIcon, NButton, Cropper },
+  components: { NDialog, NIcon, NButton, Cropper, Stencil },
   props: {
     modelValue: {
       type: String,

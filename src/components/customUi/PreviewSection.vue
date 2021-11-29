@@ -96,7 +96,7 @@
 </template>
 
 <script>
-import { model, resume, isEmpty } from '@/modules/resumeStore.js'
+import { isEmpty } from '@/modules/resumeStore.js'
 
 export default {
   name: 'PreviewSection',
@@ -104,12 +104,18 @@ export default {
     resumeKey: {
       type: String,
       default: ''
+    },
+    resume: {
+      type: Object,
+      default: () => ({})
+    },
+    model: {
+      type: Object,
+      default: () => ({})
     }
   },
   setup () {
     return {
-      model,
-      resume,
       isEmpty
     }
   }

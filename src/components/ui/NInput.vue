@@ -21,7 +21,7 @@
       v-else
       :id="id"
       :value="modelValue"
-      :type="type"
+      type="textarea"
       rows="5"
       :name="id"
       v-bind="$attrs"
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { computed, onMounted, toRefs } from 'vue'
+import { computed, toRefs } from 'vue'
 import NIcon from './NIcon.vue'
 
 export default {
