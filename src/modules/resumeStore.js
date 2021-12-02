@@ -1,7 +1,7 @@
 import { computed, reactive } from 'vue'
 import { nicoBocq } from '../assets/nicoBocq'
 import { i18n } from '../composables/i18n'
-
+import axios from 'axios'
 const { t } = i18n.global
 
 const initialResume = {
@@ -214,11 +214,23 @@ const state = reactive({
       ]
     }
   },
-  resume: { ...initialResume }
+  resume: { ...initialResume },
+  theme: {
+    options: {
+      colors: [
+        { name: 'grey', value: '#3730A3' },
+        { name: 'indigo', value: '#1F2937' },
+        { name: 'pink', value: '#9D174D' },
+        { name: 'red', value: '#991B1B' }
+      ]
+    },
+    color: '#1F2937'
+  }
 })
 
 const resume = computed(() => state.resume)
 const model = computed(() => state.model)
+const theme = computed(() => state.theme)
 
 const addItem = (type) => {
   state.resume[type].push({
@@ -286,9 +298,21 @@ const addNicoBocq = () => {
   Object.assign(state.resume, nicoBocq)
 }
 
+const exportToPdf = () => {
+  axios.post('https://cvite-pdfserver.herokuapp.com/pdf/', { resume: state.resume, model: state.model, theme: state.theme }, {
+    responseType: 'arraybuffer'
+  })
+    .then((res) => {
+      const file = new Blob([res.data], { type: 'application/pdf' })
+      const fileURL = URL.createObjectURL(file)
+      window.open(fileURL)
+    })
+}
+
 export {
   resume,
   model,
+  theme,
   addItem,
   removeItem,
   clearState,
@@ -297,5 +321,6 @@ export {
   setNewResume,
   saveItem,
   isValid,
-  isValidResume
+  isValidResume,
+  exportToPdf
 }
