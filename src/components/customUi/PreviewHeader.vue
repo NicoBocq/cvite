@@ -8,12 +8,12 @@
         v-if="!!resume.avatar"
         :src="resume.avatar"
         alt=""
-        class="w-16 h-16"
+        class="w-16 h-16 print:w-24 print:h-24 rounded-full"
       >
-      <div class="space-y-1 flex-1">
+      <div class="flex-1">
         <div
           v-if="resume.firstName || resume.lastName"
-          class="text-pxl w-full"
+          class="text-pxl font-semibold print:text-xl w-full print:leading-5"
         >
           {{ resume.firstName }} {{ resume.lastName }}
         </div>
@@ -23,7 +23,8 @@
         />
         <div
           v-if="resume.title"
-          class="text-pxl font-bold w-full"
+          class="text-pxl print:text-3xl font-extrabold w-full"
+          :style="'color:' + theme.color"
         >
           {{ resume.title }}
         </div>
@@ -31,7 +32,7 @@
           v-else
           type="title"
         />
-        <div class="text-gray-600 text-psm">
+        <div class="text-gray-600 text-psm print:text-sm print:leading-5">
           {{ resume.summary }}
         </div>
       </div>
@@ -39,7 +40,7 @@
   </div>
   <div
     v-else-if="resumeKey === 'contact'"
-    class="text-pxs w-full"
+    class="text-pxs print:text-sm w-full"
   >
     <div
       v-if="resume.phone || resume.email || resume.address || resume.more"
@@ -84,6 +85,10 @@ export default {
     model: {
       type: Object,
       default: () => ({})
+    },
+    theme: {
+      type: Object,
+      default: () => {}
     }
   },
   setup (props, { slots }) {

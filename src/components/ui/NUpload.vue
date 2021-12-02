@@ -5,7 +5,7 @@
   <div class="mt-1 flex items-center space-x-2">
     <img
       v-if="!!image"
-      class="inline-block h-16 w-16 shadow-sm"
+      class="inline-block h-16 w-16 shadow-sm rounded-full"
       :src="image"
       alt=""
     >

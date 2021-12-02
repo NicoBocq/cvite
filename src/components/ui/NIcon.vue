@@ -25,6 +25,7 @@ import {
   SelectorIcon as SelectorIconSolid,
   StarIcon as StarIconSolid,
   SwitchVerticalIcon as SwitchVerticalIconSolid,
+  TranslateIcon as TranslateIconSolid,
   TrashIcon as TrashIconSolid,
   UploadIcon as UploadIconSolid,
   XIcon as XIconSolid
@@ -50,11 +51,12 @@ export default {
     PlusIconSolid,
     QuestionMarkCircleIconSolid,
     RefreshIconSolid,
-    TrashIconOutline,
-    TrashIconSolid,
     SelectorIconSolid,
     StarIconSolid,
     SwitchVerticalIconSolid,
+    TranslateIconSolid,
+    TrashIconOutline,
+    TrashIconSolid,
     UserCircleIconOutline,
     UploadIconSolid,
     XIconSolid

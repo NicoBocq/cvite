@@ -12,6 +12,7 @@
         <resume-preview
           :resume="resume"
           :model="model"
+          :theme="theme"
         />
       </div>
       <div class="w-full lg:w-1/2 flex flex-col flex-1">
@@ -42,7 +43,7 @@
 <script>
 import { onMounted, defineAsyncComponent } from 'vue'
 import { tabs, activeTab, setTab } from '../../modules/uiStore'
-import { resume, model } from '../../modules/resumeStore'
+import { resume, model, theme } from '../../modules/resumeStore'
 
 import NLoading from '../ui/NLoading.vue'
 import NTabs from '../ui/NTabs.vue'
@@ -90,7 +91,8 @@ export default {
       activeTab,
       setTab,
       resume,
-      model
+      model,
+      theme
     }
   }
 }

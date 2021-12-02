@@ -1,7 +1,7 @@
 <template>
   <div class="space-y-4 py-3">
     <div class="flex justify-between space-x-4">
-      <div class="flex items-center space-x-2 min-w-0 flex-1">
+      <div class="flex items-center space-x-2 min-w-0 flex-1 select-none">
         <n-icon
           v-if="resume[stateKey].length > 1"
           color="text-gray-200"

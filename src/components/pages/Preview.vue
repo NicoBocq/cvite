@@ -1,28 +1,48 @@
 <template>
   <resume-preview
-    v-if="parseModel && parseResume"
-    :model="parseModel"
-    :resume="parseResume"
+    v-if="active"
+    :model="modelData"
+    :resume="resumeData"
+    :theme="themeData"
+    print
   />
 </template>
 
 <script>
 import ResumePreview from '../layout/ResumePreview.vue'
-import { useRoute } from 'vue-router'
+import { ref } from 'vue'
 export default {
   name: 'Preview',
   components: { ResumePreview },
+  props: {
+    model: {
+      type: Object,
+      default: () => {}
+    },
+    resume: {
+      type: Object,
+      default: () => {}
+    }
+  },
   setup () {
-    const route = useRoute()
-    const params = route.params
-    const { model, resume } = params
-    /* Router 4 : impossible to pass object to params */
-    const parseModel = JSON.parse(model)
-    const parseResume = JSON.parse(resume)
+    const modelData = ref({})
+    const resumeData = ref({})
+    const themeData = ref({})
+    const active = ref(false)
+
+    window.getData = (data) => {
+      const { model, resume, theme } = data
+      modelData.value = model
+      resumeData.value = resume
+      themeData.value = theme
+      active.value = true
+    }
 
     return {
-      parseModel,
-      parseResume
+      modelData,
+      resumeData,
+      themeData,
+      active
     }
   }
 }

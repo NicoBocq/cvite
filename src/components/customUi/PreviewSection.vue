@@ -1,6 +1,6 @@
 <template>
-  <div class="space-y-2">
-    <div class="font-bold text-plg">
+  <div class="space-y-2 print:space-y-4">
+    <div class="font-bold text-plg print:text-xl">
       {{ model[resumeKey].title }}
     </div>
     <transition-group
@@ -10,28 +10,29 @@
       <div
         v-for="item in resume[resumeKey]"
         :key="item.id"
-        class="text-pxs"
+        class="text-pxs print:text-xs print:leading-4 space-y-1"
+        style="page-break-before: auto;"
       >
         <template v-if="resumeKey === 'experience'">
-          <div class="text-gray-800 text-psm font-bold">
+          <div class="text-gray-800 text-psm print:text-sm font-bold">
             {{ item.title }}, {{ item.company }}
           </div>
-          <div class="text-gray-500">
+          <div class="text-gray-600 font-semibold">
             {{ item.beginDate }}<span v-if="!!item.endDate"> - {{ item.endDate }}</span>
           </div>
-          <div class="text-gray-500 whitespace-pre-line">
+          <div class="text-gray-800 whitespace-pre-line">
             {{ item.description }}
           </div>
         </template>
         <template v-else-if="resumeKey === 'education'">
-          <div class="text-gray-800 text-psm font-bold">
+          <div class="text-gray-800 text-psm print:text-sm font-bold">
             {{ item.degree }}
           </div>
-          <div class="text-gray-500">
+          <div class="text-gray-600">
             {{ item.beginDate }}<span v-if="!!item.endDate"> / {{ item.endDate }}</span>
             {{ item.school }} ({{ item.city }})
           </div>
-          <div class="text-gray-500 whitespace-pre-line">
+          <div class="text-gray-800 whitespace-pre-line">
             {{ item.description }}
           </div>
         </template>
@@ -96,7 +97,7 @@
 </template>
 
 <script>
-import { isEmpty } from '@/modules/resumeStore.js'
+import { toRefs } from 'vue'
 
 export default {
   name: 'PreviewSection',
@@ -114,7 +115,13 @@ export default {
       default: () => ({})
     }
   },
-  setup () {
+  setup (props) {
+    const { resumeKey, resume } = toRefs(props)
+    const isEmpty = () => {
+      const { id, ...obj } = resume.value[resumeKey.value]
+      return Object.values(obj).every((i) => !i)
+    }
+
     return {
       isEmpty
     }
