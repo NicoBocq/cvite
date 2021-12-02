@@ -92,7 +92,7 @@ export const nicoBocq = {
       id: 7,
       beginDate: '2005',
       endDate: '2007',
-      title: 'Frontend developer',
+      title: 'Intégrateur',
       company: '3SC Global Services',
       description: 'HTML, CSS, JS'
     },
@@ -123,8 +123,17 @@ export const nicoBocq = {
       school: 'Université des Pays du Vaucluse',
       degree: 'MST Communication : conception multimédias',
       city: 'Avignon',
-      description: null
+      description: ''
     }
+    // {
+    //   id: 3,
+    //   beginDate: '1999',
+    //   endDate: '2001',
+    //   school: 'Université des Pays du Vaucluse',
+    //   degree: 'MST Communication : conception multimédias',
+    //   city: 'Avignon',
+    //   description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).'
+    // }
   ],
   skill: [
     { id: 1, label: 'Javascript (ES6) ***' },
