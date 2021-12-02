@@ -18,10 +18,10 @@ module.exports = {
       screen: 'calc(var(--vh) * 100)'
     }),
     fontSize: {
-      pxs: ['7px', '9px'],
-      psm: ['9px', '11px'],
-      plg: ['11px', '13px'],
-      pxl: ['13px', '15px'],
+      pxs: '7px',
+      psm: '9px',
+      plg: '11px',
+      pxl: '13px',
       xs: '.75rem',
       sm: '.875rem',
       base: '1rem',
@@ -53,6 +53,9 @@ module.exports = {
       }
     },
     extend: {
+      screens: {
+        print: { raw: 'print' }
+      },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans]
       }
