@@ -1,3 +1,5 @@
+/* Deprecated */
+
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from '@/assets/customVfs.js'
 import { resume, model } from '@/modules/resumeStore.js'
@@ -5,16 +7,13 @@ import { readonly } from 'vue'
 
 const themeColor = '#1F2937'
 
-export default async function useExportToPdf () {
+export default function useExportToPdf () {
   pdfMake.vfs = pdfFonts
 
   pdfMake.fonts = {
     Inter: {
       normal: 'Inter-Regular.ttf',
       bold: 'Inter-Bold.ttf'
-      // medium: 'Inter-Medium.ttf',
-      // semiBold: 'Inter-SemiBold.ttf',
-      // extraBold: 'Inter-ExtraBold.ttf'
     }
   }
 
