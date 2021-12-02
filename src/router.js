@@ -6,8 +6,8 @@ const lazyLoad = (view) => {
 }
 
 const routes = [
-  { path: '/', name: 'Home', component: lazyLoad('Edit') }
-  // { path: '/about', name: 'About', component: About }
+  { path: '/', name: 'Home', component: lazyLoad('Edit') },
+  { path: '/preview', name: 'Preview', component: lazyLoad('Preview') }
 ]
 const router = createRouter({ history, routes })
 export default router
