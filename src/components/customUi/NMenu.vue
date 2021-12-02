@@ -5,13 +5,10 @@
     <div class="relative">
       <div class="inline-flex shadow-sm rounded-md divide-x divide-brand-600">
         <div class="relative z-0 inline-flex shadow-sm rounded-lg divide-x divide-brand-600">
-          <button @click="goToPreview">
-            TEst
-          </button>
           <button
             class="relative inline-flex items-center text-sm font-medium flex space-x-2 py-2 pl-3 pr-4 border border-transparent rounded-l-md shadow-sm text-white"
             :disabled="!isValidResume"
-            :class="isValidResume ? 'cursor-pointer bg-brand-500 hover:bg-brand-600' : 'cursor-default bg-brand-400'"
+            :class="isValidResume ? 'bg-brand-500 hover:bg-brand-600 focus:outline-none focus:z-10 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-brand-500' : 'cursor-default bg-brand-400'"
             @click="exportToPdf"
           >
             <n-icon icon="download" />
@@ -53,10 +50,11 @@
           <ListboxOption class="p-4">
             <RadioGroup
               v-model="locale"
-              class="space-y-2"
+              class="space-y-3"
             >
-              <RadioGroupLabel class="text-sm text-gray-500">
-                {{ t('ui.languageLabel') }}
+              <RadioGroupLabel class="text-sm text-gray-500 space-x-2 flex items-center">
+                <n-icon icon="translate" />
+                <span>{{ t('ui.languageLabel') }}</span>
               </RadioGroupLabel>
               <div class="grid grid-cols-2 gap-2">
                 <RadioGroupOption
@@ -88,11 +86,9 @@
 <script>
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions, RadioGroup, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
 import NIcon from '../ui/NIcon.vue'
-// import useExportToPdf from '../../composables/pdfExport'
-import { resume, model, setNewResume, addNicoBocq, isValidResume, exportToPdf } from '../../modules/resumeStore'
+import { setNewResume, addNicoBocq, isValidResume, exportToPdf } from '../../modules/resumeStore'
 import { useI18n } from 'vue-i18n'
 import { computed } from 'vue'
-import { useRouter } from 'vue-router'
 
 export default {
   name: 'NMenu',
@@ -108,11 +104,7 @@ export default {
   },
   setup () {
     const { t, locale } = useI18n()
-    const router = useRouter()
 
-    const goToPreview = () => {
-      router.push({ name: 'Preview', params: { resume: JSON.stringify(resume.value), model: JSON.stringify(model.value) } })
-    }
     const items = computed(() => {
       return [
         { label: t('ui.startOver'), icon: 'refresh', action: setNewResume },
@@ -132,8 +124,7 @@ export default {
       languages,
       setNewResume,
       addNicoBocq,
-      isValidResume,
-      goToPreview
+      isValidResume
     }
   }
 }
