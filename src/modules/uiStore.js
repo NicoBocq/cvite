@@ -1,17 +1,13 @@
 import { computed, reactive } from 'vue'
+import { i18n } from '../composables/i18n'
+const { t } = i18n.global
 
 const uiStore = reactive({
   activeTab: 1,
   tabs: [
-    { id: 1, label: 'Contenu' },
-    { id: 2, label: 'Design' }
-  ],
-  options: {
-    colorList: ['']
-  },
-  theme: {
-    color: null
-  }
+    { id: 1, label: computed(() => t('ui.content')) },
+    { id: 2, label: computed(() => t('ui.design')) }
+  ]
 })
 
 const activeTab = computed(() => uiStore.activeTab)
