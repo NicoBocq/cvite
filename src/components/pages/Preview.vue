@@ -4,7 +4,7 @@
     :model="modelData"
     :resume="resumeData"
     :theme="themeData"
-    print
+    :print="true"
   />
 </template>
 

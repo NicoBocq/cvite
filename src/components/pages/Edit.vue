@@ -7,7 +7,7 @@
       class="flex-grow w-full max-w-7xl mx-auto xl:px-8 flex overflow-hidden"
     >
       <div
-        class="w-1/2 hidden md:flex md:flex-col md:items-center md:justify-center overflow-scroll"
+        class="w-1/2 hidden md:flex md:flex-col md:items-center md:justify-center overflow-scroll pt-4"
       >
         <resume-preview
           :resume="resume"

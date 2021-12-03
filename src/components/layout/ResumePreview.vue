@@ -2,7 +2,7 @@
   <div class="relative min-h-full">
     <div
       ref="preview"
-      class="select-none cursor-move shadow-xl print:shadow-none flex flex-col p-4 print:p-6"
+      class="select-none cursor-move shadow-xl print:shadow-none flex flex-col p-4"
       :style="!print ? `width: 529px; min-height: 748px; background: ${background}` : 'width: 210mm; min-height: 297mm;'"
     >
       <div class="flex">
@@ -69,7 +69,7 @@
 <script>
 import PreviewSection from '../customUi/PreviewSection.vue'
 import PreviewHeader from '../customUi/PreviewHeader.vue'
-import { computed, ref, toRefs } from 'vue'
+import { computed, onMounted, ref, toRefs } from 'vue'
 
 export default {
   name: 'ResumePreview',
@@ -94,7 +94,7 @@ export default {
   },
   setup (props) {
     const preview = ref(null)
-    const { theme } = toRefs(props)
+    const { theme, print } = toRefs(props)
     // const isPageBreak = ref(false)
     // const calcHeight = (el) => {
     //   isPageBreak.value = el.clientHeight > 748
@@ -115,6 +115,23 @@ export default {
     //   calcHeight()
     // })
 
+    const bodyBackground = () => {
+      const body = document.body
+      // const html = document.documentElement
+      body.style.background = background.value
+      // document.querySelectorAll('html, body').forEach(node => node.style.height = '100%')
+      // // html.style.width = '210mm'
+      // html.style.height = '100%'
+      // // body.style.width = '210mm'
+      // body.style.height = '100%'
+    }
+
+    onMounted(() => {
+      if (print.value) {
+        bodyBackground()
+      }
+    })
+
     const background = computed(() => {
       return `linear-gradient(90deg, #fff ${100 * 2 / 3}%, ${theme.value.color} ${100 / 3}%`
     })
@@ -128,19 +145,19 @@ export default {
 }
 </script>
 
-<style scoped>
+<!--<style scoped>-->
 
-@media print {
-  @page {
-    size: A4;
-    margin: 0;
-  }
+<!--@media print {-->
+<!--  @page {-->
+<!--    size: A4;-->
+<!--    margin: 0;-->
+<!--  }-->
 
-  html, body {
-    width: 210mm;
-    height: 297mm;
-    background: v-bind(background);
-  }
-}
+<!--  html, body {-->
+<!--    width: 210mm;-->
+<!--    height: 297mm;-->
+<!--    background: v-bind(background);-->
+<!--  }-->
+<!--}-->
 
-</style>
+<!--</style>-->

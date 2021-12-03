@@ -10,8 +10,8 @@
       <div
         v-for="item in resume[resumeKey]"
         :key="item.id"
-        class="text-pxs print:text-xs print:leading-4 space-y-1"
-        style="page-break-before: auto;"
+        class="text-pxs print:text-sm print:leading-4 space-y-1"
+        style="break-inside: avoid;"
       >
         <template v-if="resumeKey === 'experience'">
           <div class="text-gray-800 text-psm print:text-sm font-bold">
