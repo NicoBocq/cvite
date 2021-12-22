@@ -225,12 +225,16 @@ const state = reactive({
       ]
     },
     color: '#1F2937'
+  },
+  isLoading: {
+    pdf: false
   }
 })
 
 const resume = computed(() => state.resume)
 const model = computed(() => state.model)
 const theme = computed(() => state.theme)
+const isLoading = computed(() => state.isLoading)
 
 const addItem = (type) => {
   state.resume[type].push({
@@ -294,17 +298,29 @@ const clearState = (key, customPath = resume) => {
   }
 }
 
-const addNicoBocq = () => {
+const addMe = () => {
   Object.assign(state.resume, nicoBocq)
 }
 
 const exportToPdf = () => {
-  axios.post('https://cvite-pdfserver.herokuapp.com/pdf/', { resume: state.resume, model: state.model, theme: state.theme }, {
+  state.isLoading.pdf = true
+  const url = import.meta.env.DEV
+    ? {
+        endPoint: 'http://localhost:4000/pdf/',
+        preview: 'http://localhost:3000/preview'
+      }
+    : {
+        endPoint: 'https://resume-api.herokuapp.com/pdf/',
+        preview: 'https://cvite.netlify.app/preview'
+      }
+  console.log(url)
+  axios.post(url.endPoint, { url: url.preview, resume: state.resume, model: state.model, theme: state.theme }, {
     responseType: 'arraybuffer'
   })
     .then((res) => {
       const file = new Blob([res.data], { type: 'application/pdf' })
       const fileURL = URL.createObjectURL(file)
+      state.isLoading.pdf = false
       window.open(fileURL)
     })
 }
@@ -313,10 +329,11 @@ export {
   resume,
   model,
   theme,
+  isLoading,
   addItem,
   removeItem,
   clearState,
-  addNicoBocq,
+  addMe,
   isEmpty,
   setNewResume,
   saveItem,

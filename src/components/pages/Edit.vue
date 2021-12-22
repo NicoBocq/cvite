@@ -38,18 +38,26 @@
       </div>
     </div>
   </div>
+  <n-loading
+    v-if="isLoading.pdf"
+    :title="t('ui.pdfGeneration')"
+  />
 </template>
 
 <script>
 import { onMounted, defineAsyncComponent } from 'vue'
 import { tabs, activeTab, setTab } from '../../modules/uiStore'
-import { resume, model, theme } from '../../modules/resumeStore'
+import { resume, model, theme, isLoading } from '../../modules/resumeStore'
 
 import NLoading from '../ui/NLoading.vue'
-import NTabs from '../ui/NTabs.vue'
+import { useI18n } from 'vue-i18n'
 
 const DesignForm = defineAsyncComponent({
   loader: () => import('../layout/DesignForm.vue'),
+  loadingComponent: NLoading
+})
+const NTabs = defineAsyncComponent({
+  loader: () => import('../ui/NTabs.vue'),
   loadingComponent: NLoading
 })
 
@@ -68,6 +76,7 @@ const ResumePreview = defineAsyncComponent({
 export default {
   name: 'Edit',
   components: {
+    NLoading,
     DesignForm,
     NTabs,
     NHeader,
@@ -79,6 +88,7 @@ export default {
       const vh = window.innerHeight * 0.01
       document.documentElement.style.setProperty('--vh', `${vh}px`)
     }
+    const { t } = useI18n()
 
     onMounted(async () => {
       setViewHeight()
@@ -92,7 +102,9 @@ export default {
       setTab,
       resume,
       model,
-      theme
+      theme,
+      isLoading,
+      t
     }
   }
 }

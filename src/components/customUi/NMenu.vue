@@ -86,7 +86,7 @@
 <script>
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions, RadioGroup, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
 import NIcon from '../ui/NIcon.vue'
-import { setNewResume, addNicoBocq, isValidResume, exportToPdf } from '../../modules/resumeStore'
+import { setNewResume, addMe, isValidResume, exportToPdf } from '../../modules/resumeStore'
 import { useI18n } from 'vue-i18n'
 import { computed } from 'vue'
 
@@ -108,7 +108,7 @@ export default {
     const items = computed(() => {
       return [
         { label: t('ui.startOver'), icon: 'refresh', action: setNewResume },
-        { label: t('ui.about'), icon: 'question-mark-circle', action: addNicoBocq }
+        { label: t('ui.about'), icon: 'question-mark-circle', action: addMe }
       ]
     })
     const languages = [
@@ -123,7 +123,7 @@ export default {
       locale,
       languages,
       setNewResume,
-      addNicoBocq,
+      addMe,
       isValidResume
     }
   }

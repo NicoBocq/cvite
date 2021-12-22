@@ -46,7 +46,7 @@
                 active ? 'bg-brand-500 text-white' : 'text-gray-700',
                 'group flex rounded-md items-center w-full px-2 py-2 text-sm',
               ]"
-              @click="addNicoBocq"
+              @click="addMe"
             >
               <n-icon icon="question-mark-circle" />
               <span>{{ t('ui.about') }}</span>
@@ -74,7 +74,7 @@
 <script>
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 import NIcon from './NIcon.vue'
-import { setNewResume, addNicoBocq } from '../../modules/resumeStore'
+import { setNewResume, addMe } from '../../modules/resumeStore'
 import { useI18n } from 'vue-i18n'
 
 export default {
@@ -109,7 +109,7 @@ export default {
 
     return {
       setNewResume,
-      addNicoBocq,
+      addMe,
       t,
       setLocale
     }
