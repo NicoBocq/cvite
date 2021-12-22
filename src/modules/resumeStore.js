@@ -310,7 +310,7 @@ const exportToPdf = () => {
         preview: 'http://localhost:3000/preview'
       }
     : {
-        endPoint: 'https://resume-api.herokuapp.com/pdf/',
+        endPoint: 'https://cvite-pdfserver.herokuapp.com/pdf/',
         preview: 'https://cvite.netlify.app/preview'
       }
   console.log(url)
@@ -320,8 +320,13 @@ const exportToPdf = () => {
     .then((res) => {
       const file = new Blob([res.data], { type: 'application/pdf' })
       const fileURL = URL.createObjectURL(file)
-      state.isLoading.pdf = false
       window.open(fileURL)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+    .finally(() => {
+      state.isLoading.pdf = false
     })
 }
 
