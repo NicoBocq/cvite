@@ -13,7 +13,8 @@
     "startOver": "Recommencer",
     "design": "Design",
     "content": "Contenu",
-    "languageLabel": "Changer la langue"
+    "languageLabel": "Changer la langue",
+    "pdfGeneration": "Génération du PDF"
   },
   "resume": {
     "firstName": "Prénom",
