@@ -313,14 +313,17 @@ const exportToPdf = () => {
         endPoint: 'https://cvite-pdfserver.herokuapp.com/pdf/',
         preview: 'https://cvite.netlify.app/preview'
       }
-  console.log(url)
   axios.post(url.endPoint, { url: url.preview, resume: state.resume, model: state.model, theme: state.theme }, {
     responseType: 'arraybuffer'
   })
     .then((res) => {
       const file = new Blob([res.data], { type: 'application/pdf' })
       const fileURL = URL.createObjectURL(file)
-      window.open(fileURL)
+      const link = document.createElement('a')
+      link.href = fileURL
+      link.download = `${state.resume.firstName}-${state.resume.lastName}.pdf`
+      link.click()
+      // window.open(fileURL)
     })
     .catch((err) => {
       console.log(err)
