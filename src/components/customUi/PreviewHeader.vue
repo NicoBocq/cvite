@@ -10,10 +10,10 @@
         alt=""
         class="w-16 h-16 print:w-24 print:h-24 rounded-full"
       >
-      <div class="flex-1">
+      <div class="flex-1 space-y-1">
         <div
           v-if="resume.firstName || resume.lastName"
-          class="text-pxl font-semibold print:text-xl w-full print:leading-5"
+          class="text-pxl font-semibold print:text-cxl w-full"
         >
           {{ resume.firstName }} {{ resume.lastName }}
         </div>
@@ -23,7 +23,7 @@
         />
         <div
           v-if="resume.title"
-          class="text-pxl print:text-3xl font-extrabold w-full"
+          class="text-pxl print:text-cxl font-extrabold w-full"
           :style="'color:' + theme.color"
         >
           {{ resume.title }}
@@ -32,7 +32,7 @@
           v-else
           type="title"
         />
-        <div class="text-gray-600 text-psm print:text-sm print:leading-5">
+        <div class="text-gray-600 text-psm print:text-csm">
           {{ resume.summary }}
         </div>
       </div>
@@ -40,17 +40,23 @@
   </div>
   <div
     v-else-if="resumeKey === 'contact'"
-    class="text-pxs print:text-sm w-full"
+    class="text-psm print:text-csm w-full"
   >
     <div
       v-if="resume.phone || resume.email || resume.address || resume.more"
       class="space-y-1"
     >
       <div v-if="resume.phone">
-        {{ resume.phone }}
+        <a
+          :href="'tel:' + resume.phone"
+          class="text-white"
+        >{{ resume.phone }}</a>
       </div>
       <div v-if="resume.email">
-        {{ resume.email }}
+        <a
+          :href="'mailto:' + resume.email"
+          class="text-white"
+        >{{ resume.email }}</a>
       </div>
       <div v-if="resume.address">
         {{ resume.address }}
