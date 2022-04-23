@@ -25,28 +25,26 @@ export const nicoBocq = {
     {
       id: 3,
       label: 'Twitter',
-      url: 'https://twitter.com/_nicolasbocquet'
+      url: 'https://twitter.com/nicobocq'
     }
   ],
   experience: [
-    // {
-    //   id: 1,
-    //   beginDate: '2021',
-    //   endDate: '',
-    //   title: 'Front End Lead',
-    //   company: 'Oparédo',
-    //   description: 'Développement d\'une librairie de composants (Vue, Tailwind, Storybook).\n' +
-    //     'Tests unitaires et fonctionnels\n' +
-    //     'Spécifications UX/UI'
-    // },
+    {
+      id: 1,
+      beginDate: '2022',
+      endDate: '',
+      title: 'Développeur Front-End (React - Ecommerce)',
+      company: 'Alltricks',
+      description: 'Développement d\'un site Ecommerce et de son backoffice, consommation d\'API et mise en place du design system avec React, Redux et Typescript).'
+    },
     {
       id: 2,
-      beginDate: '2020',
+      beginDate: '2020 - 2021',
       endDate: '',
-      title: 'Développeur Front-End',
+      title: 'Développeur Front-End (Vue - B2B)',
       company: 'Internethic',
       description:
-        "Développement d'une app BtoB : \n" +
+        "Développement d'une app BtoB (gestion de contrats, faturation...): \n" +
         '- développement de composants (UI et custom) et de stores : Vuejs, Vuex, Tailwind, Storybook\n' +
         '- spécifications fonctionnelles et ergonomiques\n' +
         '- test unitaires'
@@ -55,7 +53,7 @@ export const nicoBocq = {
       id: 3,
       beginDate: '2019',
       endDate: '2020',
-      title: 'Développeur Front-End',
+      title: 'Développeur Front-End (Vue - B2C)',
       company: 'Novazéo',
       description:
         'Intégration et développement sur Django CMS / Symfony (VueJs, OpenLayers).' +
@@ -136,18 +134,19 @@ export const nicoBocq = {
     // }
   ],
   skill: [
-    { id: 1, label: 'Javascript (ES6) ***' },
-    { id: 2, label: 'Vuejs (Vue3, Vuex) ***' },
-    { id: 9, label: 'React *' },
-    { id: 4, label: 'UI : Tailwind, Headless UI, Vuetify, Quasar ***' },
-    { id: 8, label: 'Datavisualisation : D3, OpenLayers **' },
-    { id: 3, label: 'Figma, Adobe XD **' },
-    { id: 5, label: 'Storybook, Bit ***' },
+    { id: 1, label: 'Javascript / Typescript' },
+    { id: 2, label: 'Vue / Vuex' },
+    { id: 3, label: 'React / Redux' },
+    { id: 4, label: 'UI : Tailwind, Material UI, Headless UI, Vuetify, Quasar' },
+    { id: 5, label: 'Node' },
+    { id: 6, label: 'Datavisualisation : D3, OpenLayers' },
+    { id: 7, label: 'Figma, Adobe XD' },
+    { id: 8, label: 'Storybook, Bit' },
     {
-      id: 6,
-      label: 'Tests unitaires et fonctionnels (Behat, Gherkin, Cypress) **'
+      id: 9,
+      label: 'Tests unitaires et fonctionnels : React Testing, Behat, Gherkin, Cypress'
     },
-    { id: 7, label: 'Git **' }
+    { id: 10, label: 'Git' }
   ],
   hobby: 'Side projects, histoire, sports (course à pied, football)'
 }
