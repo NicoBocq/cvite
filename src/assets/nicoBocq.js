@@ -5,7 +5,7 @@ export const nicoBocq = {
   lastName: 'Bocquet',
   title: 'Développeur Front-End',
   summary:
-    "20 ans d'expériences sur le web et toujours la même passion : mettre en forme les données.",
+    "20 ans d'expérience dans le numérique. J'ai été développeur, chef de projet et même journaliste. Je suis ambitieux, curieux et m'engage à toujours suivre les meilleures pratiques.",
   email: 'nicolas.fow@gmail.com',
   phone: '06 21 02 31 65',
   address: '29 rue Wulfram Puget - 13008 Marseille',
@@ -30,15 +30,23 @@ export const nicoBocq = {
   ],
   experience: [
     {
-      id: 1,
+      id: 8,
       beginDate: '2022',
       endDate: '',
+      title: 'Développeur Front-End (React Native - Application)',
+      company: 'Alltricks',
+      description: 'J\'ai refactorisé l\'ensemble de l\'application Grantrofeo (React Native) :\n- en me basant sur Redux Toolkit et ses middlewares (AsyncThunk RTK Query), j\'ai entièrement reconstruit la gestion des magasins et des appels API,\n- optimisation, simplification et refactoring du code legacy : réécriture des composants de classe en composants fonctionnels, ajout de hooks personnalisés, structure du projet...\n- mise en place d\'une bibliothèque de composants.'
+    },
+    {
+      id: 7,
+      beginDate: '2022',
+      endDate: '2022',
       title: 'Développeur Front-End (React - Ecommerce)',
       company: 'Alltricks',
       description: 'Développement d\'un site Ecommerce et de son backoffice, consommation d\'API et mise en place du design system avec React, Redux et Typescript).'
     },
     {
-      id: 2,
+      id: 6,
       beginDate: '2020 - 2021',
       endDate: '',
       title: 'Développeur Front-End (Vue - B2B)',
@@ -50,7 +58,7 @@ export const nicoBocq = {
         '- test unitaires'
     },
     {
-      id: 3,
+      id: 5,
       beginDate: '2019',
       endDate: '2020',
       title: 'Développeur Front-End (Vue - B2C)',
@@ -69,7 +77,7 @@ export const nicoBocq = {
         'Rédaction, production de modules éditoriaux (Data journalisme, infographies).'
     },
     {
-      id: 5,
+      id: 3,
       beginDate: '2011',
       endDate: '2015',
       title: 'Chef de Projet numérique',
@@ -78,7 +86,7 @@ export const nicoBocq = {
         'En charge de projets numériques : web, mobiles, applications, réseaux sociaux...'
     },
     {
-      id: 6,
+      id: 2,
       beginDate: '2007',
       endDate: '2010',
       title: 'Webmaster',
@@ -87,17 +95,9 @@ export const nicoBocq = {
         'Développement et intégration, accompagnement de la rédaction au numérique.'
     },
     {
-      id: 7,
-      beginDate: '2005',
-      endDate: '2007',
-      title: 'Intégrateur',
-      company: '3SC Global Services',
-      description: 'HTML, CSS, JS'
-    },
-    {
-      id: 8,
+      id: 1,
       beginDate: '2001',
-      endDate: '2004',
+      endDate: '2007',
       title: 'Développeur fullstack',
       company: 'Freelance',
       description:
@@ -135,8 +135,8 @@ export const nicoBocq = {
   ],
   skill: [
     { id: 1, label: 'Javascript / Typescript' },
+    { id: 3, label: 'React / React Native / Redux Toolkit' },
     { id: 2, label: 'Vue / Vuex' },
-    { id: 3, label: 'React / Redux' },
     { id: 4, label: 'UI : Tailwind, Material UI, Headless UI, Vuetify, Quasar' },
     { id: 5, label: 'Node' },
     { id: 6, label: 'Datavisualisation : D3, OpenLayers' },
