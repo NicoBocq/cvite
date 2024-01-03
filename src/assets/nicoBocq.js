@@ -3,9 +3,9 @@ import { avatar } from './avatar'
 export const nicoBocq = {
   firstName: 'Nicolas',
   lastName: 'Bocquet',
-  title: 'Développeur Front-End',
+  title: 'Front-End Engineer',
   summary:
-    "20 ans d'expérience dans le numérique. J'ai été développeur, chef de projet et même journaliste. Je suis ambitieux, curieux et m'engage à toujours suivre les meilleures pratiques.",
+    "",
   email: 'nicolas.fow@gmail.com',
   phone: '06 21 02 31 65',
   address: '29 rue Wulfram Puget - 13008 Marseille',
@@ -33,9 +33,9 @@ export const nicoBocq = {
       id: 8,
       beginDate: '2022',
       endDate: '',
-      title: 'Développeur Front-End (React Native - Application)',
-      company: 'Alltricks',
-      description: 'J\'ai refactorisé l\'ensemble de l\'application Grantrofeo (React Native) :\n- en me basant sur Redux Toolkit et ses middlewares (AsyncThunk RTK Query), j\'ai entièrement reconstruit la gestion des magasins et des appels API,\n- optimisation, simplification et refactoring du code legacy : réécriture des composants de classe en composants fonctionnels, ajout de hooks personnalisés, structure du projet...\n- mise en place d\'une bibliothèque de composants.'
+      title: 'Développeur Full-Stack (React Native - NextJs)',
+      company: 'Inforca',
+      description: '- Développement d\'une application de course automobile (guidage routier, calcul de temps, gestion des participants, des classements...)  \n' +  'React Native (CLI)  \n' + '- Développement d\'un CRM  \n' + 'NextJs (app router), Prisma, Shadcn'
     },
     {
       id: 7,
@@ -89,7 +89,7 @@ export const nicoBocq = {
       id: 2,
       beginDate: '2007',
       endDate: '2010',
-      title: 'Webmaster',
+      title: 'Développeur web',
       company: 'La Provence',
       description:
         'Développement et intégration, accompagnement de la rédaction au numérique.'
@@ -98,7 +98,7 @@ export const nicoBocq = {
       id: 1,
       beginDate: '2001',
       endDate: '2007',
-      title: 'Développeur fullstack',
+      title: 'Développeur web',
       company: 'Freelance',
       description:
         'Création de sites web : graphisme, développement et intégration'
@@ -135,18 +135,18 @@ export const nicoBocq = {
   ],
   skill: [
     { id: 1, label: 'Javascript / Typescript' },
-    { id: 3, label: 'React / React Native / Redux Toolkit' },
+    { id: 3, label: 'React / React Native / NextJs' },
+    { id: 11, label: 'Prisma / GraphQL'},
     { id: 2, label: 'Vue / Vuex' },
-    { id: 4, label: 'UI : Tailwind, Material UI, Headless UI, Vuetify, Quasar' },
-    { id: 5, label: 'Node' },
-    { id: 6, label: 'Datavisualisation : D3, OpenLayers' },
+    { id: 4, label: 'Tailwind, Shadcn, Radix, Material UI, Headless UI' },
+    { id: 5, label: 'Node, Express' },
+    { id: 6, label: 'D3, OpenLayers' },
     { id: 7, label: 'Figma, Adobe XD' },
-    { id: 8, label: 'Storybook, Bit' },
     {
       id: 9,
       label: 'Tests unitaires et fonctionnels : React Testing, Behat, Gherkin, Cypress'
     },
-    { id: 10, label: 'Git' }
+    { id: 10, label: 'Anglais'}
   ],
-  hobby: 'Side projects, histoire, sports (course à pied, football)'
+  hobby: 'Side projects, Histoire, sports (course à pied, football)'
 }
